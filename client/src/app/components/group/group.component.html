@@ -1,0 +1,47 @@
+<app-header></app-header>
+<div class="container">
+  <div class="row">
+
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+      <div class="card text-left">
+        <div class="profile-card">
+          <h2>Chung Tay</h2>
+          <p>3.000 thành viên</p>
+        </div>
+        <div class="card-body option-left">
+          <ul class="list-group">
+            <!-- <li class="list-group-item ">
+              <a [routerLink]="['/groupdetail/newfeed']">Tin tức</a>
+            </li> -->
+
+            <li class="list-group-item ">
+              <a [routerLink]="['/groupdetail/intro']">Giới thiệu</a>
+            </li>
+
+            <li class="list-group-item">
+              <a [routerLink]="['/groupdetail/events']">Sự kiện</a>
+            </li>
+
+            <li class="list-group-item ">
+              <a [routerLink]="['/groupdetail/mngroup']">Quản lý nhóm</a>
+            </li>
+
+            <li class="list-group-item active">
+              <a [routerLink]="['/groupdetail/creategroup']">Tạo nhóm</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+      <div class="row">
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

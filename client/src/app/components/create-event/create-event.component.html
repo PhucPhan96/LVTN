@@ -1,0 +1,70 @@
+<div class="row">
+  <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 create-body">
+
+    <form action="" method="POST" role="form">
+      <legend><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp; Tạo sự kiện</legend>
+
+      <div class="form-group">
+        <label for="title">Tiêu đề</label>
+        <input type="text" class="form-control" id="title">
+      </div>
+
+      <div class="form-group">
+        <label for="discription">Miêu tả</label>
+        <textarea type="text" class="form-control" id="discription"></textarea>
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="startday">Ngày bắt đầu</label>
+            <input type="date" class="form-control" id="startday">
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="endday">Ngày kết thúc</label>
+            <input type="date" class="form-control" id="endday">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-3 mb-3">
+            <label for="numvol">Số lượng</label>
+            <input type="number" class="form-control" id="numvol">
+          </div>
+          <div class="col-md-9 mb-3">
+            <label for="address">Địa chỉ</label>
+            <input type="text" class="form-control" id="address">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <h5>Nội dung</h5>
+        <p id="helpId" class="text-muted">Hãy thêm các nhiệm vụ, mục tiêu, và yêu cầu của sự kiện. Để tình nguyện
+          viên có thể nắm bắt kĩ hơn về sự kiện.</p>
+      </div>
+      <div class="form-group">
+        <label for="tasks">Nhiệm vụ</label>
+        <textarea type="text" class="form-control" id="tasks"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="objective">Mục tiêu</label>
+        <textarea type="text" class="form-control" id="objective"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="requi">Yêu cầu</label>
+        <textarea type="text" class="form-control" id="requi"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="file">Đính kèm</label>
+        <input type="file" class="form-control-file" name="" id="file" accept="image/*" aria-describedby="fileHelpId">
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Tạo</button>
+      </div>
+    </form>
+
+  </div>
+</div>

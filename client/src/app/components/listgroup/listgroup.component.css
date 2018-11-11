@@ -1,0 +1,59 @@
+.container{
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+}
+
+.header{
+    background-color: #ececec;
+}
+
+.row{
+    margin-bottom: 15px;
+}
+
+.group-header{
+    height: 60px;
+    background-color: #ececec;
+}
+
+.create-group{
+    margin-top: 20px;
+}
+
+.create-group a{
+    border: 1px solid #cccccc;
+    padding: 5px;
+    border-radius: 4px;
+    color:#8dc63f;
+    cursor: pointer;
+}
+
+.group-header .text-left h5{
+    padding-top: 15px;
+    font-weight: 600;
+}
+
+.post-container img.profile-photo-md{
+    height: 120px;
+    margin: 15px;
+}
+
+.post-detail{
+    margin: 15px;
+}
+
+.profile-link{
+    font-weight: bold;
+    font-size: 1.7rem;
+    color: #dc3545 !important;
+    cursor: pointer;
+}
+
+.user-info h6{
+    color: #696969;
+    font-size: 0.7rem;
+}
+
+.post-text p{
+    font-size: 0.8rem;
+}

@@ -1,0 +1,26 @@
+.create-body{
+    background-image: url(./../../../../assets/images/volunteerbg.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.create-body form legend{
+    margin-bottom: 50px;
+    font-size: 2em;
+    color: #0c1732;
+    font-weight: 600;
+}
+
+.create-body .form-group textarea{
+    height: 100px;
+}
+
+.form-group button{
+  margin-top: 20px;
+  width: 20%;
+}
+
+.form-group h5{
+  margin-top: 20px;
+  font-weight: 600;
+}

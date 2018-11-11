@@ -1,0 +1,64 @@
+ .tab-pane .row{
+     margin-top: 15px;
+ }
+ 
+ /*==================================================
+  List Member CSS
+  ==================================================*/
+
+  .friend-list .friend-card{
+    border-radius: 4px;
+    border-bottom: 1px solid #f1f2f2;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  
+  .friend-list .friend-card .card-info{
+    padding: 0 20px 10px;
+  }
+  
+  .friend-list .friend-card .card-info img.profile-photo-lg{
+    border: 7px solid #fff;
+    margin-right: 20px;
+    position: relative;
+    top: -50px;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+  }
+
+  .friend-card img.cover{
+    object-fit: cover;
+    width: 100%;
+    height: 200px;
+  }
+
+  .friend-info{
+    position: relative;
+    top: -30px;
+    font-size: 0.8em;
+  }
+
+  .friend-info i{
+      color: #8dc63f;
+      padding-top: 10px;
+  }
+
+ /*==================================================
+  Activity Group CSS
+  ==================================================*/
+
+  .activity-dt{
+    margin-top: 15px;
+  }
+
+  .his-dt h5{
+    color: #0c2e8a;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .his-dt p{
+    margin-bottom: 10px;
+  }
+  

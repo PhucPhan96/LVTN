@@ -1,0 +1,79 @@
+<app-header></app-header>
+<div class="container">
+  <div class="timeline">
+    <div class="timeline-cover" [ngStyle]="{'background-image': 'url(' + coverimg  + ')'}">
+      <div class="editimg cover">
+        <h5 (click)="openLg(content)"><i clas class="fa fa-camera" aria-hidden="true"></i><br></h5>
+      </div>
+      <ng-template #content let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title">Cập nhật ảnh bìa</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <input type="file" name="cover" id="cover" ng2FileSelect [uploader]="uploader">
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" (click)="updateCover()">Cập nhật</button>
+        </div>
+      </ng-template>
+      <!--Timeline Menu for Large Screens-->
+      <div class="timeline-nav-bar hidden-sm hidden-xs">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="profile-info" (click)="profile()">
+              <div class="editimg avatar">
+                <h5 (click)="openLg2(imgavatar)"><i clas class="fa fa-camera" aria-hidden="true"></i></h5>
+              </div>
+              <ng-template #imgavatar let-modal>
+                <div class="modal-header">
+                  <h4 class="modal-title">Cập nhật ảnh đại diện</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <input type="file" name="avatar" id="avatar" ng2FileSelect [uploader]="uploader">
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-light" (click)="updateAvatar()">Cập nhật</button>
+                </div>
+              </ng-template>
+              <img src="{{api}}images/{{user.avatarpath}}" alt="" class="img-responsive profile-photo">
+              <h3>{{user.firstname}} {{user.lastname}}</h3>
+              <p class="text-muted">{{user.job}}</p>
+            </div>
+          </div>
+          <!-- <div class="col-md-9">
+          </div> -->
+        </div>
+      </div>
+
+    </div>
+    <div id="page-contents">
+      <div class="row">
+        <div class="col-md-3">
+
+          <!--Edit Profile Menu-->
+          <ul class="edit-menu">
+            <li><i class="icon ion-ios-information-outline"></i><a (click)="editBasic()">Chỉnh sửa thông tin cơ bản</a></li>
+            <!-- <li><i class="icon ion-ios-briefcase-outline"></i><a href="edit-profile-work-edu.html">Education and Work</a></li>
+            <li><i class="icon ion-ios-heart-outline"></i><a href="edit-profile-interests.html">My Interests</a></li>
+            <li><i class="icon ion-ios-settings"></i><a href="edit-profile-settings.html">Account Settings</a></li> -->
+            <li><i class="icon ion-ios-locked-outline"></i><a (click)="changePass()">Thay đổi Password</a></li>
+          </ul>
+        </div>
+        <div class="col-md-7">
+
+          <!-- Basic Information
+        ================================================= -->
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

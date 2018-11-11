@@ -1,0 +1,93 @@
+<app-header></app-header>
+<div class="container">
+
+  <div class="row main">
+
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+      <div class="card text-left">
+        <div class="profile-card">
+          <img src="{{api}}images/{{user.avatarpath}}" alt="user" class="profile-photo" (click)="editProf()">
+          <!-- <img src="./../../../assets/images/fuk.png" alt="user" class="profile-photo" (click)="editProf()"> -->
+          <h5><a class="text-white" (click)="editProf()">{{user.firstname}} {{user.lastname}}</a></h5>
+          <ul class="nav justify-content-first">
+            <li class="nav-item">
+              <i class="fa fa-user-plus" aria-hidden="true">&nbsp; 2,3k</i>
+            </li>
+            <li class="nav-item">
+              <i class="fa fa-bookmark" aria-hidden="true">&nbsp; 34</i>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body option-left">
+          <ul class="list-group">
+
+            <li class="list-group-item active">
+              <div class="row">
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                  <i class="fa fa-home" aria-hidden="true" style="color: #0c1732"></i>
+                </div>
+
+                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                  <a [routerLink]="['/home']">Trang chủ</a>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item ">
+              <div class="row">
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                  <i class="fa fa-user" aria-hidden="true" style="color: #8dc63f"></i>
+                </div>
+
+                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                  <a [routerLink]="['/friend']">Bạn bè</a>
+                </div>
+              </div>
+
+            </li>
+
+            <li class="list-group-item ">
+              <div class="row">
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                  <i class="fa fa-users" aria-hidden="true" style="color: #dc3545"></i>
+                </div>
+
+                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                  <a [routerLink]="['/group']">Tổ chức</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="list-group-item ">
+              <div class="row">
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                  <i class="fa fa-weixin" aria-hidden="true" style="color: #f7941e"></i>
+                </div>
+
+                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                  <a [routerLink]="['/chat']">Tin nhắn</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                  <i class="fa fa-bookmark" aria-hidden="true" style="color: #1c75bc"></i>
+                </div>
+
+                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                  <a [routerLink]="['/events']">Sự kiện</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</div>

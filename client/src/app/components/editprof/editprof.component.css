@@ -1,0 +1,309 @@
+.container{
+    margin-top: 80px;
+}
+
+.btn-primary{
+	background: #27aae1;
+	padding: 7px 25px;
+	border: none;
+	font-size: 14px;
+	border-radius: 4px;
+	color: #fff;
+	position: relative;
+  font-weight: 600;
+  outline: none;
+  border-radius: 30px;
+}
+
+.btn-primary:hover{
+  background: #149AC9;
+  transition: all 1s;
+}
+
+#page-contents{
+    padding: 30px 0 50px;
+  }
+/*==================================================
+  Timeline
+  ==================================================*/
+
+  .timeline-cover{
+    /* background: url("./../../../assets/images/banner.jpg") no-repeat; */
+    background-position: center;
+    background-size: cover;
+    min-height: 360px;
+    border-radius: 0 0 4px 4px;
+    position: relative;
+  }
+  
+  /*Timeline Menu for Large Screens*/
+  
+  .timeline-cover .timeline-nav-bar{
+    /* background: rgba(0,0,0, .7); */
+    width: 100%;
+    position: absolute;
+    bottom: 25px;
+  }
+
+  .timeline-cover .timeline-nav-bar .btn-addfriend{
+    float: right;
+    margin-right: 30px;
+  }
+  
+  .timeline-cover .timeline-nav-bar .profile-info{
+    position: absolute;
+    text-align: center;
+    padding: 0 20px;
+    top: -100px;
+    z-index: 999;
+    cursor: pointer;
+  }
+  
+  .timeline-cover .timeline-nav-bar .profile-info img.profile-photo{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    border: 10px solid #fff;
+  }
+  
+  .timeline-cover .timeline-nav-bar ul.profile-menu{
+    margin: 0;
+    display: table;
+  }
+  
+  .timeline-cover .timeline-nav-bar .profile-menu li{
+    display: table-cell;
+    vertical-align: middle;
+    padding: 15px 0;
+  }
+  
+  .timeline-cover .timeline-nav-bar .profile-menu li a{
+    color: #fff;
+    padding: 15px;
+    text-decoration: none;
+  }
+  
+  .timeline-cover .timeline-nav-bar .profile-menu li a.active{
+    color: #27aae1;
+  }
+  
+  .timeline-cover .timeline-nav-bar .profile-menu li a:hover{
+    color: #27aae1;
+  }
+  
+  .timeline-cover .timeline-nav-bar ul.follow-me{
+    margin: 0;
+    position: absolute;
+    right: 15px;
+    top: 2px;
+  }
+  
+  .timeline-cover .timeline-nav-bar .follow-me li{
+    padding: 6px 15px;
+    color: #fff;
+  }
+  
+  /*Timeline Menu for Small Screens*/
+  
+  .timeline-cover .navbar-mobile{
+    bottom: -185px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+  }
+  
+  .timeline-cover .navbar-mobile .profile-info img.profile-photo{
+    border: 10px solid #fff;
+    border-radius: 50%;
+    height: 200px;
+    margin: auto;
+    width: 200px;
+  }
+  
+  .timeline-cover .navbar-mobile .mobile-menu ul{
+    margin: 0 0 20px;
+  }
+  
+  .timeline-cover .navbar-mobile .mobile-menu ul li{
+    padding-left: 10px;
+    padding-right: 10px;
+    position: relative;
+  }
+  
+  .timeline-cover .navbar-mobile .mobile-menu ul li::after{
+    content: "";
+    height: 20px;
+    background: none;
+    border-right: 1px solid #f1f2f2;
+    position: absolute;
+    right: 0;
+  }
+  
+  .timeline-cover .navbar-mobile .mobile-menu ul li:nth-child(4)::after{
+    content: none;
+  }
+  
+  .timeline-cover .navbar-mobile .mobile-menu ul li a{
+    color: #4d4d4d;
+  }
+  
+  .timeline-cover .navbar-mobile .mobile-menu ul li a.active{
+    color: #27aae1;
+  }
+  
+  
+  /*==================================================
+    Timeline Sidebar Right
+    ==================================================*/
+  
+  .feed-item{
+    text-align: left;
+    margin-bottom: 13px;
+    padding: 0 20px;
+    position: relative;
+  }
+  
+  .feed-item::before{
+    border-left: 2px solid #8dc63f;
+    position: absolute;
+    height: 30px;
+    content: "";
+    left: 0;
+    top: 5px;
+  }
+  
+  .feed-item img.profile-photo-sm{
+    float: left;
+    margin-right: 10px;
+  }
+  
+  .feed-item .live-activity{
+    border-bottom: 1px solid #f1f2f2;
+  }
+  
+  
+  /*==================================================
+   Post Date
+  ==================================================*/
+  
+  .timeline .post-content{
+    position: relative;
+    overflow: visible;
+  }
+  
+  .timeline .post-content::before{
+    content: "";
+    position: absolute;
+    background: none;
+    width: 1px;
+    height: 98%;
+    left: -145px;
+    border-left: 2px solid #8dc63f;
+    top: 15px;
+  }
+  
+  .timeline .post-content .post-date{
+    position: absolute;
+    margin-left: -125px;
+  }
+  
+  .timeline .post-content .post-date::before{
+    content: "";
+    background: #8dc63f;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    left: -30px;
+    top: 10px;
+    border: 2px solid #fff;
+  }
+  
+  .timeline .post-content img.post-image{
+    border-radius: 4px 4px 0 0;
+  }
+
+  .line{
+    background: #f1f2f2;
+    height: 1px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  /*==================================================
+  Edit Profile
+  ==================================================*/
+
+/* Edit Profile Menu */  
+
+ul.edit-menu{
+    margin-top: 150px;
+    padding: 0 20px;
+    cursor: pointer;
+  }
+  
+  ul.edit-menu li{
+    list-style: none;
+    border-bottom: 1px solid #f1f2f2;
+    padding: 15px 0;
+    position: relative;
+  }
+  
+  ul.edit-menu li.active::before{
+    content: "";
+    background: #8dc63f;
+    width: 2px;
+    height: 40px;
+    position: absolute;
+    top: 50%;
+    left: -20px;
+    transform: translate(-50%,-50%);
+  }
+  
+  ul.edit-menu li i.icon{
+    font-size: 16px;
+  }
+  
+  ul.edit-menu li.active i.icon{
+    color: #8dc63f;
+  }
+  
+  ul.edit-menu li a{
+    color: #6d6e71;
+    margin-left: 20px;
+  }
+  
+  ul.edit-menu li.active a{
+    color: #8dc63f;
+  }
+
+  .form-group .custom-label, .radio-inline{
+      padding-right: 30px;
+  }
+
+  .form-group textarea{
+      resize: none;
+      height: 130px;
+  }
+  
+
+  .editimg{
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    bottom: 0;
+    color: #636464;
+    cursor: pointer;
+  }
+
+  .editimg.cover{
+    text-align: right !important;
+    padding: 5px 30px !important;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .editimg.avatar{
+    margin-bottom: 100px;
+    padding-right: 20%;
+  }
