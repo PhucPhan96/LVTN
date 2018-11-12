@@ -34,8 +34,20 @@ export class EditBasicComponent implements OnInit {
       console.log(res);
       this.user = JSON.parse(JSON.stringify(res.data));
       console.log(this.user);
-      
     });
+  }
+
+  changeBirthday(event : any){
+    this.user.birthday = event.target.value;
+    console.log(this.user.birthday);
+    
+  }
+
+  updateUser(){
+    this.subscription = this.userService.updateUser(this.user).subscribe(data =>{
+      console.log(data);
+    })
+    this.router.navigateByUrl('editprof');
   }
 
 }
