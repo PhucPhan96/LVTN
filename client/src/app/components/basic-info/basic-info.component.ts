@@ -35,7 +35,6 @@ export class BasicInfoComponent implements OnInit {
       console.log(res);
       this.user = JSON.parse(JSON.stringify(res.data));
       console.log(this.user);
-      
     });
   }
 

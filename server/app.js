@@ -1,10 +1,11 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-// const cors = require('cors');
+const cors = require('cors');
 const path = require('path');
 var db = require('./db');
 var multer = require('multer');
+var logger = require('morgan');
 // var router = require('./src/controllers/userController');
 // var user = require('./src/models/user');
 // var groupModel = require('./src/models/group');
@@ -21,30 +22,39 @@ var multer = require('multer');
 // var plan = require('./src/models/plan');
 // var plan_detail = require('./src/models/plan_detail');
 // var like_event = require('./src/models/like_event');
-
+app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// var corsOptions = {
-//   origin: 'http://localhost:4200',
-//   // origin: '*',
-//   method: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-//   Header: 'Access-Control-Allow-Origin, Conten t-Type, Authorization, Content-Length, X-Requested-With, x-access-token',
-  
+var corsOptions = {
+  // origin: 'http://localhost:4200',
+  origin: '*',
+  method: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  Header: 'Access-Control-Allow-Origin, Content-Type, Authorization, Content-Length, X-Requested-With, x-access-token',
+}
 // }
-app.use(function(req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, OPTIONS, PUT');
-  next();
-});
+// app.use(function(req, res, next) {
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+//   res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, OPTIONS, PUT');
+//   next();
+// });
 
-// app.use(cors(corsOptions));
+// app.options("*",function(req,res,next){
+//   res.header("Access-Control-Allow-Origin", req.get("Origin")||"*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   res.header('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, PUT, OPTIONS');
+//    //other headers here
+//   // res.status(200).end();
+// });
+
+app.use(cors(corsOptions));
 
 const index = require('./src/router/index');
 app.use('/', index);
 require('./src/router/routerUser.js')(app);
+require('./src/router/routerFriend.js')(app);
 
 var store = multer.diskStorage({
   destination: function (req, file, callback) {

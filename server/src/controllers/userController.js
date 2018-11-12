@@ -33,6 +33,17 @@ var users = {
         })
     },
 
+    updatePassword: (req, res) => {
+        console.log('update password ' + JSON.stringify(req.body));
+        Users.findOneAndUpdate({ '_id': req.body._id }, { 'password': req.body.password }, (err, data) => {
+            if (err || !data) {
+                console.log(`Update error ${err}`);
+                res.json({ result: 0, msg: `${err}`, data: {} });
+            } else
+                res.json({ result: 1, msg: data || {} });
+        })
+    },
+
     updateUser: (req, res) => {
         console.log(req.body);
         Users.findByIdAndUpdate(req.body._id, req.body, (err, data) => {
@@ -96,6 +107,7 @@ var users = {
             }
         });
     },
+    
     insert: (req, res) => {
         var user = req.body;
         // console.log('Adding user: ' + JSON.stringify(user));

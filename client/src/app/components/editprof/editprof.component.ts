@@ -39,7 +39,7 @@ export class EditprofComponent implements OnInit {
     });
 
     this.email = localStorage.getItem('user');
-
+    console.log('edit prof get userby email');
     this.getUserByEmail();
 
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
@@ -55,6 +55,7 @@ export class EditprofComponent implements OnInit {
       console.log(this.resultUpload.file.name);
       alert('File uploaded successfully');
       window.location.reload();
+      // this.router.navigateByUrl('/editprof/basicInfo');
     };
 
   }
@@ -73,7 +74,7 @@ export class EditprofComponent implements OnInit {
 
   getUserByEmail() {
     this.subscription = this.userService.getUserByEmail(this.email).subscribe(data => {
-
+      console.log('edit prof get userby email 2');
       let res = new MyResponse<User>();
       res = JSON.parse(JSON.stringify(data));
       console.log(res);
@@ -89,7 +90,7 @@ export class EditprofComponent implements OnInit {
     this.subscription = this.userService.updateAvatar(id, path).subscribe(data => {
       let res = new MyResponse<User>();
       res = JSON.parse(JSON.stringify(data));
-      console.log(res);
+      console.log(res); 
     });
   }
 

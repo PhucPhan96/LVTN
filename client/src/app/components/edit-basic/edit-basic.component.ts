@@ -44,10 +44,12 @@ export class EditBasicComponent implements OnInit {
   }
 
   updateUser(){
-    this.subscription = this.userService.updateUser(this.user).subscribe(data =>{
+    console.log(JSON.parse(JSON.stringify(this.user)));
+    
+    this.subscription = this.userService.updateUser(JSON.parse(JSON.stringify(this.user))).subscribe(data =>{
       console.log(data);
-    })
-    this.router.navigateByUrl('editprof');
+    });
+    this.router.navigateByUrl('editprof/basicInfo');
   }
 
 }

@@ -14,6 +14,8 @@ module.exports = (app) => {
         .put(UsersController.updateAvatar);
     app.route('/updatecover')
         .put(UsersController.updateCover);
+    app.route('/updatepassword')
+        .put(UsersController.updatePassword);
     app.route('/updateuser')
         .put(UsersController.updateUser);
 };

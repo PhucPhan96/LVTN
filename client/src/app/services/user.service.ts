@@ -38,7 +38,16 @@ export class UserService {
     return this.http.put<MyResponse<User>>(this.API + 'updatecover/', body);
   }
 
-  updateUser(user : User):Observable<MyResponse<User>>{
-    return this.http.put<MyResponse<User>>(this.API + 'updatecover/', user);
+  updatePassword(id : String, password : String):Observable<MyResponse<User>>{
+    var body =  { 
+      _id: id,
+      password : password
+   };
+    return this.http.put<MyResponse<User>>(this.API + 'updatepassword/', body);
+  }
+
+  updateUser(user : User){
+    var body = user;
+    return this.http.put(this.API + 'updateuser', body);
   }
 }
