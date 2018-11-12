@@ -33,6 +33,18 @@ var users = {
         })
     },
 
+    updateUser: (req, res) => {
+        console.log(req.body);
+        Users.findByIdAndUpdate(req.body._id, req.body, (err, data) => {
+            if (err || !data) {
+                console.log(`Update user error ${err}`);
+                res.json({ result: 0, msg: `${err}`, data: {} });
+            }
+            else
+                res.json({ result: 1, msg: data || {} });
+        })
+    },
+
     getUserByEmail: (req, res) => {
         // console.log("body: " + JSON.stringify(req.body));
         Users.findOne({ "email": req.body.email }, function (err, result) {

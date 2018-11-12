@@ -14,13 +14,13 @@
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
           <div class="form-group">
             <label for="firstname">Họ</label>
-            <input type="text" class="form-control" id="firstname" value="{{user.firstname}}">
+            <input type="text" class="form-control" id="firstname" [(ngModel)]="user.firstname" [ngModelOptions]="{standalone: true}">
           </div>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
           <div class="form-group">
             <label for="lastname">Tên</label>
-            <input type="text" class="form-control" id="lastname" value="{{user.lastname}}">
+            <input type="text" class="form-control" id="lastname" [(ngModel)]="user.lastname" [ngModelOptions]="{standalone: true}">
           </div>
         </div>
       </div>
@@ -29,40 +29,34 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <div class="form-group">
             <label for="email">Email</label>
-            <input id="email" class="form-control" type="text" name="Email" value="{{user.email}}">
+            <input id="email" class="form-control" type="text" name="Email" [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}">
           </div>
         </div>
       </div>
 
       <div class="row">
 
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
           <label for="birthday">Ngày sinh</label>
-          <input type="date" class="form-control" id="birthday">
+          <input type="date" class="form-control" id="birthday" value="{{user.birthday | date : 'yyyy-MM-dd'}}" (keyup)="changeBirthday($event)">
         </div>
-
-      </div>
-
-      <div class="row">
-
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
           <div class="form-group">
             <label class="custom-label">Giới tính: </label>
-            <select class="form-control" id="gender">
+            <select class="form-control" id="gender" [(ngModel)]="user.gender" [ngModelOptions]="{standalone: true}">
               <option value="gender">{{user.gender}}</option>
               <option>Nam</option>
               <option>Nữ</option>
             </select>
           </div>
         </div>
-
       </div>
 
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <div class="form-group">
             <label for="address">Địa chỉ</label>
-            <input id="address" class="form-control" type="text" name="Address" value="{{user.address}}">
+            <input id="address" class="form-control" type="text" name="Address" [(ngModel)]="user.address" [ngModelOptions]="{standalone: true}">
           </div>
         </div>
       </div>
@@ -71,12 +65,12 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <div class="form-group">
             <label for="address">Giới thiệu bản thân</label>
-            <textarea id="address" class="form-control infouser" type="text" name="Address">{{user.about}}</textarea>
+            <textarea id="address" class="form-control infouser" type="text" name="Address" [(ngModel)]="user.about" [ngModelOptions]="{standalone: true}"></textarea>
           </div>
         </div>
       </div>
 
-      <button type="submit" class="btn btn-primary">Cập nhật</button>
+      <button type="submit" class="btn btn-primary" (click)="updateUser()">Cập nhật</button>
     </form>
 
   </div>

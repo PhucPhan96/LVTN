@@ -37,4 +37,8 @@ export class UserService {
    };
     return this.http.put<MyResponse<User>>(this.API + 'updatecover/', body);
   }
+
+  updateUser(user : User):Observable<MyResponse<User>>{
+    return this.http.put<MyResponse<User>>(this.API + 'updatecover/', user);
+  }
 }
