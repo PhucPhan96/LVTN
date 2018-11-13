@@ -1,7 +1,7 @@
 'use strict';
-const UsersController = require('../controllers/friendController.js');
+const FriendController = require('../controllers/friendController.js');
 
 module.exports = (app) => {
     app.route('/getAllFriend')
-        .post(UsersController.getAllFriend);
+        .post(FriendController.getAllFriend);
 };
