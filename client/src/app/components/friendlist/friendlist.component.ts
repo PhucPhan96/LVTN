@@ -14,16 +14,18 @@ import { User } from 'src/app/models/user.class';
 })
 export class FriendlistComponent implements OnInit {
   user : User = new User();
+  public listUser : User[] = Array<User>();
   email : String = "";
-  idUser : String = "";
   public subscription: Subscription;
+  api : String = this.config.API;
+  public numFriend : Number;
 
   constructor(private friendService : FriendService, private config : Config, private userService : UserService) { }
 
   ngOnInit() {
     this.email = localStorage.getItem('user');
     this.getUserByEmail();
-    this.getAllFriend();
+  
   }
 
   getUserByEmail(){
@@ -33,15 +35,27 @@ export class FriendlistComponent implements OnInit {
       res = JSON.parse(JSON.stringify(data));
       console.log(res);
       this.user = JSON.parse(JSON.stringify(res.data));
-      this.idUser = this.user._id;
-      console.log(this.idUser);
-      
+      this.getAllFriend();
     });
   }
 
   getAllFriend(){
-    this.subscription = this.friendService.getAllFriend(this.idUser).subscribe(data => {
-      console.log(data);
+    this.subscription = this.friendService.getAllFriends(this.user._id).subscribe(data => {
+      let res = JSON.parse(JSON.stringify(data));
+      console.log(res.msg);
+      res.msg.forEach((e) => {
+        console.log(e.user_one._id);
+        
+        if(e.user_one._id == this.user._id){
+          let ev: User= JSON.parse(JSON.stringify(e.user_two));
+          this.listUser.push(ev);
+        }
+        else if(e.user_one._id != this.user._id){
+          let ev: User= JSON.parse(JSON.stringify(e.user_one));
+          this.listUser.push(ev);
+        }
+      });
+      this.numFriend = this.listUser.length;
     })
   }
 

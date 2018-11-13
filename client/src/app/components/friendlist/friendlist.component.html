@@ -2,28 +2,15 @@
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div class="friend-list">
       <div class="row">
-        <div class="col-md-6 col-sm-6">
+        <div class="col-md-6 col-sm-6" *ngFor="let user of listUser">
           <div class="friend-card">
-            <img src="./../../../assets/images/banner.jpg" alt="profile-cover" class="img-responsive cover">
+            <img src="{{api}}images/{{user.coverpath}}" alt="profile-cover" class="img-responsive cover">
             <div class="card-info">
-              <img src="./../../../assets/images/fuk.png" alt="user" class="profile-photo-lg">
+              <img src="{{api}}images/{{user.avatarpath}}" alt="user" class="profile-photo-lg">
               <div class="friend-info">
                 <i class="fa fa-check pull-right" aria-hidden="true">&nbsp;My Friend</i>
-                <h5><a href="timeline.html" class="profile-link">Sophia Lee</a></h5>
-                <p>Student at Harvard</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-sm-6">
-          <div class="friend-card">
-            <img src="./../../../assets/images/banner.jpg" alt="profile-cover" class="img-responsive cover">
-            <div class="card-info">
-              <img src="./../../../assets/images/fuk.png" alt="user" class="profile-photo-lg">
-              <div class="friend-info">
-                <i class="fa fa-check pull-right" aria-hidden="true">&nbsp; My Friend</i>
-                <h5><a href="timeline.html" class="profile-link">John Doe</a></h5>
-                <p>Traveler</p>
+                <h5><a href="timeline.html" class="profile-link">{{user.firstname}} {{user.lastname}}</a></h5>
+                <p>{{user.job}}</p>
               </div>
             </div>
           </div>

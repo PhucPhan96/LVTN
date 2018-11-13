@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import * as $ from 'jquery';
 
 import { UserService } from './../../services/user.service';
+import { FriendService } from './../../services/friend.service';
 import { User } from './../../models/user.class';
 import { Subscription } from 'rxjs';
 import { MyResponse } from './../../models/my_response.class';
@@ -20,8 +21,10 @@ export class HomepageComponent implements OnInit {
   public api : String = this.cofig.API;
 
   public subscription: Subscription;
+  public listUser : User[] = Array<User>();
+  numFriend : Number;
 
-  constructor(private router : Router, private userService : UserService, private cofig : Config) { }
+  constructor(private friendService : FriendService, private router : Router, private userService : UserService, private cofig : Config) { }
 
   ngOnInit() {
     $(function () {
@@ -35,6 +38,7 @@ export class HomepageComponent implements OnInit {
     
     this.getUserByEmail();
     console.log(this.api);
+    
     
   }
 
@@ -50,7 +54,27 @@ export class HomepageComponent implements OnInit {
       console.log(res);
       this.user = JSON.parse(JSON.stringify(res.data));
       console.log(this.user);
-      
+      this.getAllFriend();
     });
+  }
+
+  getAllFriend(){
+    this.subscription = this.friendService.getAllFriends(this.user._id).subscribe(data => {
+      let res = JSON.parse(JSON.stringify(data));
+      console.log(res.msg);
+      res.msg.forEach((e) => {
+        console.log(e.user_one._id);
+        
+        if(e.user_one._id == this.user._id){
+          let ev: User= JSON.parse(JSON.stringify(e.user_two));
+          this.listUser.push(ev);
+        }
+        else if(e.user_one._id != this.user._id){
+          let ev: User= JSON.parse(JSON.stringify(e.user_one));
+          this.listUser.push(ev);
+        }
+      });
+      this.numFriend = this.listUser.length;
+    })
   }
 }
