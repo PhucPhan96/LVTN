@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FriendService } from './../../services/friend.service';
 import { UserService } from './../../services/user.service';
 
@@ -20,12 +21,11 @@ export class FriendlistComponent implements OnInit {
   api : String = this.config.API;
   public numFriend : Number;
 
-  constructor(private friendService : FriendService, private config : Config, private userService : UserService) { }
+  constructor(private friendService : FriendService, private config : Config, private userService : UserService, private router : Router) { }
 
   ngOnInit() {
     this.email = localStorage.getItem('user');
     this.getUserByEmail();
-  
   }
 
   getUserByEmail(){
@@ -57,6 +57,13 @@ export class FriendlistComponent implements OnInit {
       });
       this.numFriend = this.listUser.length;
     })
+  }
+
+  gotoProfile(event){
+    console.log(event.email);
+    localStorage.setItem('friendemail', event.email)
+    localStorage.setItem('profile', 'friend');
+    this.router.navigateByUrl('/editprof/basicInfo');
   }
 
 }

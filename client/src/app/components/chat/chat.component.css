@@ -111,3 +111,7 @@
     background: #0c1732;
     color: #fff;
   }
+
+  .list-group-item{
+    cursor: pointer;
+  }

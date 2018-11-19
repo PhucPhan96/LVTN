@@ -26,6 +26,7 @@ export class EditprofComponent implements OnInit {
 
   resultUpload: any;
   typeUpdate: String = "";
+  isProfile : String = "";
 
   public api: String = this.cofig.API;
   public uploader: FileUploader = new FileUploader({ url: 'http://localhost:3200/api/uploadimg', itemAlias: 'userPhoto' });
@@ -37,8 +38,15 @@ export class EditprofComponent implements OnInit {
         $(this).addClass('active').siblings().removeClass('active');
       });
     });
-
-    this.email = localStorage.getItem('user');
+    console.log(localStorage.getItem('user'));
+    this.isProfile = localStorage.getItem('profile');
+    
+    if(this.isProfile == 'user'){
+      this.email = localStorage.getItem('user');
+    }
+    else if(this.isProfile == 'friend'){
+      this.email = localStorage.getItem('friendemail');
+    }
     console.log('edit prof get userby email');
     this.getUserByEmail();
 

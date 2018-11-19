@@ -42,3 +42,6 @@
       padding-top: 10px;
   }
   
+  .profile-link{
+    cursor: pointer;
+  }

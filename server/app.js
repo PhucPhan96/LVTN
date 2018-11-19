@@ -22,6 +22,7 @@ var logger = require('morgan');
 // var plan = require('./src/models/plan');
 // var plan_detail = require('./src/models/plan_detail');
 // var like_event = require('./src/models/like_event');
+// var conversation = require('./src/models/conversation');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -55,6 +56,7 @@ const index = require('./src/router/index');
 app.use('/', index);
 require('./src/router/routerUser.js')(app);
 require('./src/router/routerFriend.js')(app);
+require('./src/router/routerMessage.js')(app);
 
 var store = multer.diskStorage({
   destination: function (req, file, callback) {

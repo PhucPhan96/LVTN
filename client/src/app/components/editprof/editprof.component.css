@@ -307,3 +307,11 @@ ul.edit-menu{
     margin-bottom: 100px;
     padding-right: 20%;
   }
+
+  .hidden{
+    visibility: hidden;
+  }
+
+  .show{
+    visibility: inherit;
+  }

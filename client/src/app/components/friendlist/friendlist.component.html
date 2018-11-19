@@ -9,7 +9,7 @@
               <img src="{{api}}images/{{user.avatarpath}}" alt="user" class="profile-photo-lg">
               <div class="friend-info">
                 <i class="fa fa-check pull-right" aria-hidden="true">&nbsp;My Friend</i>
-                <h5><a href="timeline.html" class="profile-link">{{user.firstname}} {{user.lastname}}</a></h5>
+                <h5><a class="profile-link" (click)="gotoProfile(user)">{{user.firstname}} {{user.lastname}}</a></h5>
                 <p>{{user.job}}</p>
               </div>
             </div>

@@ -28,6 +28,9 @@ import { BasicInfoComponent } from './components/basic-info/basic-info.component
 import { LoginService } from './../app/services/login.service';
 import { AuthGuard } from './services/auth.guard';
 import { UserService } from './services/user.service';
+import { FriendService } from './services/friend.service';
+import { ConversationService } from './services/conversation.service';
+import { MessageService } from './services/message.service';
 import { Config } from './app.cofig';
 
 const appRoutes : Routes = [
@@ -106,7 +109,10 @@ const appRoutes : Routes = [
     Config,
     LoginService,
     UserService,
-    AuthGuard
+    AuthGuard,
+    FriendService,
+    ConversationService,
+    MessageService
   ],
   bootstrap: [AppComponent]
 })

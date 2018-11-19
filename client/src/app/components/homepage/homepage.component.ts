@@ -38,11 +38,10 @@ export class HomepageComponent implements OnInit {
     
     this.getUserByEmail();
     console.log(this.api);
-    
-    
   }
 
   editProf(){
+    localStorage.setItem('profile', 'user')
     this.router.navigateByUrl('/editprof/basicInfo');
   }
 
@@ -55,6 +54,7 @@ export class HomepageComponent implements OnInit {
       this.user = JSON.parse(JSON.stringify(res.data));
       console.log(this.user);
       this.getAllFriend();
+      localStorage.setItem('idUser', this.user._id.toString());
     });
   }
 
