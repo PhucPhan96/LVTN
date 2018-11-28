@@ -50,4 +50,8 @@ export class UserService {
     var body = user;
     return this.http.put(this.API + 'updateuser', body);
   }
+
+  getUserByID(_id : String){
+    return this.http.get(`${this.API}getUserByID/${_id}`);
+  }
 }

@@ -5,16 +5,35 @@
     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
       <div class="card text-left">
         <div class="profile-card">
-          <h2>Chung Tay</h2>
-          <p>3.000 thành viên</p>
+          
+          <div class="editimg avatar">
+              <img src="{{api}}images/{{group.avatarpath}}" alt="">
+              <h5 (click)="openLg(imgavatar)" [ngClass]="isAdmin? 'show': 'hide'"><i clas class="fa fa-camera" aria-hidden="true"></i></h5>
+          </div>
+          <ng-template #imgavatar let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title">Cập nhật ảnh đại diện</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <input type="file" name="avatar" id="avatar" ng2FileSelect [uploader]="uploader">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-light" (click)="updateAvatar()">Cập nhật</button>
+            </div>
+          </ng-template>
+          <h2>{{group.name}}</h2>
+          <p>{{group.member}} thành viên</p>
         </div>
         <div class="card-body option-left">
           <ul class="list-group">
-            <!-- <li class="list-group-item ">
-              <a [routerLink]="['/groupdetail/newfeed']">Tin tức</a>
-            </li> -->
+            <li class="list-group-item active">
+              <a [routerLink]="['/groupdetail/newfeed']">Trang chủ</a>
+            </li>
 
-            <li class="list-group-item ">
+            <li class="list-group-item">
               <a [routerLink]="['/groupdetail/intro']">Giới thiệu</a>
             </li>
 
@@ -22,13 +41,13 @@
               <a [routerLink]="['/groupdetail/events']">Sự kiện</a>
             </li>
 
-            <li class="list-group-item ">
-              <a [routerLink]="['/groupdetail/mngroup']">Quản lý nhóm</a>
+            <li class="list-group-item">
+              <a [routerLink]="['/groupdetail/member']">Thành viên</a>
             </li>
 
-            <li class="list-group-item active">
-              <a [routerLink]="['/groupdetail/creategroup']">Tạo nhóm</a>
-            </li>
+            <li class="list-group-item ">
+                <a [routerLink]="['/groupdetail/mngroup']"  [ngClass]="isAdmin ? 'show': 'hide'">Quản lý nhóm</a>
+              </li>
           </ul>
         </div>
       </div>

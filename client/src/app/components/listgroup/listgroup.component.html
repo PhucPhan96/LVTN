@@ -5,7 +5,7 @@
       <div class="group-header">
         <div class="text-left">
           <h5>Tổ chức của tôi</h5>
-          <h6>Số lượng: 4</h6>
+          <h6>Số lượng: {{listGroup.length}}</h6>
         </div>
       </div>
     </div>
@@ -19,69 +19,17 @@
 
   </div>
   <div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" *ngFor="let group of listGroup" >
       <div class="card text-left card-newfeeds">
         <div class="post-container">
-          <img src="./../../../assets/images/group.jpg" alt="user" class="profile-photo-md pull-left">
+          <img src="{{api}}images/{{group.avatarpath}}" alt="user" class="profile-photo-md pull-left">
           <div class="post-detail">
             <div class="user-info">
-              <h5><a class="profile-link" (click)="detail()">Chung Tay</a></h5>
-              <h6>250.000 Thành viên</h6>
+              <h5><a class="profile-link" (click)="detail(group)">{{group.name}}<i class="fa fa-check-circle-o" aria-hidden="true" [ngClass]="idUser == group.admin ? 'show' : 'hide'"></i></a></h5>
+              <h6>{{group.member}} Thành viên</h6>
             </div>
             <div class="post-text">
-              <p>Xin Chào, hãy cùng chúng tôi chung tay giúp đỡ những hoàn cảnh khó khăn nào!</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-      <div class="card text-left card-newfeeds">
-        <div class="post-container">
-          <img src="./../../../assets/images/group.jpg" alt="user" class="profile-photo-md pull-left">
-          <div class="post-detail">
-            <div class="user-info">
-              <h5><a class="profile-link">Năng động</a></h5>
-              <h6>250.000 Thành viên</h6>
-            </div>
-            <div class="post-text">
-              <p>Xin Chào, hãy cùng chúng tôi chung tay giúp đỡ những hoàn cảnh khó khăn nào!</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-      <div class="card text-left card-newfeeds">
-        <div class="post-container">
-          <img src="./../../../assets/images/group.jpg" alt="user" class="profile-photo-md pull-left">
-          <div class="post-detail">
-            <div class="user-info">
-              <h5><a class="profile-link">Chung Tay</a></h5>
-              <h6>250.000 Thành viên</h6>
-            </div>
-            <div class="post-text">
-              <p>Xin Chào, hãy cùng chúng tôi chung tay giúp đỡ những hoàn cảnh khó khăn nào!</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-      <div class="card text-left card-newfeeds">
-        <div class="post-container">
-          <img src="./../../../assets/images/group.jpg" alt="user" class="profile-photo-md pull-left">
-          <div class="post-detail">
-            <div class="user-info">
-              <h5><a class="profile-link">Năng động</a></h5>
-              <h6>250.000 Thành viên</h6>
-            </div>
-            <div class="post-text">
-              <p>Xin Chào, hãy cùng chúng tôi chung tay giúp đỡ những hoàn cảnh khó khăn nào!</p>
+              <p>{{group.intro}}</p>
             </div>
           </div>
         </div>

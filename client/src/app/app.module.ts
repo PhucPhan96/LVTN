@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
+import { TimeAgoPipe } from 'time-ago-pipe';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -25,13 +26,18 @@ import { IntroGroupComponent } from './components/group/intro-group/intro-group.
 import { CreateGroupComponent } from './components/group/create-group/create-group.component';
 import { MngroupComponent } from './components/group/mngroup/mngroup.component';
 import { BasicInfoComponent } from './components/basic-info/basic-info.component';
+import { ListmemberComponent } from './components/group/listmember/listmember.component';
+
 import { LoginService } from './../app/services/login.service';
 import { AuthGuard } from './services/auth.guard';
 import { UserService } from './services/user.service';
 import { FriendService } from './services/friend.service';
 import { ConversationService } from './services/conversation.service';
 import { MessageService } from './services/message.service';
+import { WebsocketService } from './services/websocket.service';
+import { GroupService } from './services/group.service';
 import { Config } from './app.cofig';
+import { CommentComponent } from './components/group/gr-newfeed/comment/comment.component';
 
 const appRoutes : Routes = [
   {
@@ -65,12 +71,13 @@ const appRoutes : Routes = [
     path: 'groupdetail',
     component: GroupComponent,
     children: [
-      // { path: 'newfeed', component: GrNewfeedComponent },
+      { path: 'newfeed', component: GrNewfeedComponent },
       { path: 'createEvent', component: CreateEventComponent },
       { path: 'events', component: EventsComponent },
       { path: 'intro', component: IntroGroupComponent },
       { path: 'mngroup', component: MngroupComponent },
-      { path: 'creategroup', component: CreateGroupComponent }
+      { path: 'creategroup', component: CreateGroupComponent },
+      { path: 'member', component: ListmemberComponent },
     ]
   }
 ];
@@ -96,7 +103,10 @@ const appRoutes : Routes = [
     CreateGroupComponent,
     MngroupComponent,
     BasicInfoComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    ListmemberComponent,
+    TimeAgoPipe,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
@@ -112,7 +122,9 @@ const appRoutes : Routes = [
     AuthGuard,
     FriendService,
     ConversationService,
-    MessageService
+    MessageService,
+    WebsocketService,
+    GroupService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,9 +1,9 @@
 <ul class="nav nav-tabs" role="tablist">
-  <li class="nav-item">
+  <!-- <li class="nav-item">
     <a class="nav-link active" href="#member" role="tab" data-toggle="tab">DS thành viên</a>
-  </li>
+  </li> -->
   <li class="nav-item">
-    <a class="nav-link" href="#activity" role="tab" data-toggle="tab">Hoạt động</a>
+    <a class="nav-link active" href="#activity" role="tab" data-toggle="tab">Hoạt động</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#funds" role="tab" data-toggle="tab">Quỹ</a>
@@ -18,33 +18,20 @@
 
 <!-- Tab panes -->
 <div class="tab-content">
-  <div role="tabpanel" class="tab-pane in active" id="member">
+  <!-- <div role="tabpanel" class="tab-pane in active" id="member">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="friend-list">
           <div class="row">
-            <div class="col-md-6 col-sm-6">
+            <div class="col-md-6 col-sm-6" *ngFor="let member of listMember" >
               <div class="friend-card">
-                <img src="./../../../assets/images/banner.jpg" alt="profile-cover" class="img-responsive cover">
+                <img src="{{api}}images/{{member.coverpath}}" alt="profile-cover" class="img-responsive cover">
                 <div class="card-info">
-                  <img src="./../../../assets/images/fuk.png" alt="user" class="profile-photo-lg">
+                  <img src="{{api}}images/{{member.avatarpath}}" alt="user" class="profile-photo-lg">
                   <div class="friend-info">
-                    <!-- <i class="fa fa-check pull-right" aria-hidden="true">&nbsp;My Friend</i> -->
-                    <h5><a href="timeline.html" class="profile-link">Sophia Lee</a></h5>
-                    <p>Student at Harvard</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 col-sm-6">
-              <div class="friend-card">
-                <img src="./../../../assets/images/banner.jpg" alt="profile-cover" class="img-responsive cover">
-                <div class="card-info">
-                  <img src="./../../../assets/images/fuk.png" alt="user" class="profile-photo-lg">
-                  <div class="friend-info">
-                    <!-- <i class="fa fa-check pull-right" aria-hidden="true">&nbsp; My Friend</i> -->
-                    <h5><a href="timeline.html" class="profile-link">John Doe</a></h5>
-                    <p>Traveler</p>
+                    <i class="fa fa-check pull-right" aria-hidden="true">&nbsp;My Friend</i>
+                    <h5><a href="timeline.html" class="profile-link">{{member.firstname}} {{member.lastname}}</a></h5>
+                    <p>{{member.job}}</p>
                   </div>
                 </div>
               </div>
@@ -53,7 +40,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <div role="tabpanel" class="tab-pane" id="activity">
     <div class="activity-dt">
       <div class="his-dt">

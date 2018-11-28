@@ -1,27 +1,46 @@
 <div class="card text-left card-cover">
-  <img src="./../../../assets/images/banner.jpg" alt="">
-
+  
+  <div class="editimg cover" [ngClass]="isProfile == 'friend' ? 'hidden': 'show'">
+      <img src="{{api}}images/{{group.coverpath}}" alt="">
+      <h5 (click)="openLg(cover)"><i clas class="fa fa-camera" aria-hidden="true"></i><br></h5>
+    </div>
+    <ng-template #cover let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">Cập nhật ảnh bìa</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <input type="file" name="cover" id="cover" ng2FileSelect [uploader]="uploader">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="updateCover()">Cập nhật</button>
+      </div>
+    </ng-template>
 </div>
 
 <form >
 
   <div class="form-group">
     <label for="title">Tên nhóm</label>
-    <h2 style="font-weight: 600; color: #dc3545">Chung Tay</h2>
+    <h2 style="font-weight: 600; color: #dc3545">{{group.name}}</h2>
   </div>
 
   <div class="form-group">
     <label for="discription">Mô tả</label>
-    <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error eius magnam cum ratione facilis. Autem ex totam asperiores aperiam modi sed quis unde voluptate tempora voluptatibus. Aliquam laboriosam officia laudantium!</h6>
+    <h6>{{group.intro}}</h6>
   </div>
 
   <div class="form-group">
     <label for="tasks">Vị trí</label>
-    <h6>567 Lê Duẩn, phường EaTam, TP. Buôn Ma Thuột, tỉnh Đắk Lắk.</h6>
+    <h6>{{group.location_active}}</h6>
   </div>
 
   <div class="form-group">
     <label for="tasks">Liên hệ</label>
-    <h6>0373780102</h6>
+    <h6>{{group.contact}}</h6>
   </div>
 </form>

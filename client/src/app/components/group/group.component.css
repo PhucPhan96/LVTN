@@ -22,6 +22,18 @@
     font-weight: 600;
 }
 
+.profile-card img{
+    border:3px solid rgb(119, 119, 119);
+    /* margin-right: 20px; */
+    padding: 3px;
+    position: relative;
+    /* top: -30px; */
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
 .list-group li.active{
     background: transparent;
 }
@@ -53,3 +65,26 @@
 .mng p{
     color: #bebdbd;
 }
+
+.editimg{
+    position: relative;
+    text-align: left;
+    width: 100%;
+    bottom: 0;
+    color: #636464;
+    cursor: pointer;
+  }
+
+  .editimg.cover{
+    text-align: right !important;
+    padding: 5px 30px !important;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .editimg.avatar h5{
+      position: absolute;
+    /* padding-right: 33%; */
+    margin-top: -30px;
+    text-align: center;
+    margin-left: 30%
+  }

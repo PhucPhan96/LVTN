@@ -49,6 +49,11 @@
     cursor: pointer;
 }
 
+.profile-link i{
+    margin-left: 15px;
+    color: #8dc63f !important;
+}
+
 .user-info h6{
     color: #696969;
     font-size: 0.7rem;

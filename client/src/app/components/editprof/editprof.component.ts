@@ -30,6 +30,7 @@ export class EditprofComponent implements OnInit {
 
   public api: String = this.cofig.API;
   public uploader: FileUploader = new FileUploader({ url: 'http://localhost:3200/api/uploadimg', itemAlias: 'userPhoto' });
+  
   constructor(private router: Router, private userService: UserService, private cofig: Config, private modalService: NgbModal, private http: HttpClient) { }
 
   ngOnInit() {

@@ -7,4 +7,5 @@ export class Message {
     author : User = new User();
     message : String;
     time_send : Date;
+    Message(){}
 }

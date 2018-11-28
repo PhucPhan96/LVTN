@@ -27,4 +27,8 @@ export class ConversationService {
   getIDConversation(user_one : String, user_two : String){
     return this.http.get(`${this.API}getIDConversation/${user_one}/${user_two}`);
   }
+
+  getConversationByID(_id : String){
+    return this.http.get(`${this.API}getConversationByID/${_id}`);
+  }
 }

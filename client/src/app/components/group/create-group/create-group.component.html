@@ -6,9 +6,9 @@
 
       <div class="form-group">
         <label for="title">Tên nhóm</label>
-        <input type="text" class="form-control" id="title">
+        <input type="text" class="form-control" id="title" [(ngModel)]="newGroup.name" [ngModelOptions]="{standalone: true}">
       </div>
-
+<!-- 
       <div class="form-group">
         <div class="row">
           <div class="col-md-6 mb-3">
@@ -20,25 +20,25 @@
             <input type="file" class="form-control-file" name="" id="file" accept="image/*" aria-describedby="fileHelpId">
           </div>
         </div>
-      </div>
+      </div> -->
 
       <div class="form-group">
         <label for="discription">Mô tả</label>
-        <textarea type="text" class="form-control" id="discription"></textarea>
+        <textarea type="text" class="form-control" id="discription" [(ngModel)]="newGroup.intro" [ngModelOptions]="{standalone: true}"></textarea>
       </div>
       
       <div class="form-group">
         <label for="tasks">Vị trí</label>
-        <input type="text" class="form-control" id="title">
+        <input type="text" class="form-control" id="title" [(ngModel)]="newGroup.location_active" [ngModelOptions]="{standalone: true}">
       </div>
 
       <div class="form-group">
         <label for="tasks">Liên hệ</label>
-        <input type="text" class="form-control" id="title">
+        <input type="text" class="form-control" id="title" [(ngModel)]="newGroup.contact" [ngModelOptions]="{standalone: true}">
       </div>
 
       <div class="form-group">
-        <button type="submit" class="btn btn-primary">Tạo</button>
+        <button type="submit" class="btn btn-primary" (click)="createGroup()" >Tạo</button>
       </div>
     </form>
 
