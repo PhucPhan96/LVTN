@@ -119,6 +119,16 @@ var users = {
                 res.json(result);
             }
         });
+    },
+
+    getUserByID : (req, res) => {
+        Users.find({'_id' : req.params._id}, function(err, rs){
+            if (err || !rs) {
+                console.log(`Error ${err}`);
+                res.json({ result: 0, msg: `${err}`, rs: {} });
+            } else
+                res.json({ result: 1, msg: rs || {} });
+        })
     }
 };
 module.exports = users;

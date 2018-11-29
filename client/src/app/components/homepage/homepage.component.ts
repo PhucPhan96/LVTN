@@ -33,11 +33,9 @@ export class HomepageComponent implements OnInit {
       });
     });
     this.router.navigateByUrl('/home');
-    console.log(localStorage.getItem('user'));
     this.email = localStorage.getItem('user');
     
     this.getUserByEmail();
-    console.log(this.api);
   }
 
   editProf(){
@@ -50,9 +48,7 @@ export class HomepageComponent implements OnInit {
       
       let res =new MyResponse<User>();
       res = JSON.parse(JSON.stringify(data));
-      console.log(res);
       this.user = JSON.parse(JSON.stringify(res.data));
-      console.log(this.user);
       this.getAllFriend();
       localStorage.setItem('idUser', this.user._id.toString());
     });
@@ -61,9 +57,7 @@ export class HomepageComponent implements OnInit {
   getAllFriend(){
     this.subscription = this.friendService.getAllFriends(this.user._id).subscribe(data => {
       let res = JSON.parse(JSON.stringify(data));
-      console.log(res.msg);
       res.msg.forEach((e) => {
-        console.log(e.user_one._id);
         
         if(e.user_one._id == this.user._id){
           let ev: User= JSON.parse(JSON.stringify(e.user_two));

@@ -34,7 +34,8 @@ export class ChatComponent implements OnInit {
   // sended : MessageSend = new MessageSend();
   messSend: String;
 
-  constructor(private conversationService: ConversationService, private userService: UserService, private config: Config, private websocketService: WebsocketService) {
+  constructor(private conversationService: ConversationService, private userService: UserService, private config: Config, 
+    private websocketService: WebsocketService) {
     this.websocketService.newMessageReceived().subscribe(data => {
       let newMessage = new Message();
       this.subscription = this.conversationService.getConversationByID(data.room).subscribe(data => {
@@ -48,17 +49,16 @@ export class ChatComponent implements OnInit {
       newMessage.message = data.message;
       newMessage.time_send = data.time_send;
       this.message.push(newMessage);
-      $(".chat-body").animate({ scrollTop: $(document).height() + 9999999999 }, "fast");
+      this.scrollbottom(".chat-body");
     });
+    this.scrollbottom(".chat-body");
   }
 
   ngOnInit() {
     this.idUser = localStorage.getItem('idUser');
     console.log(this.idUser);
     this.getAllConversation();
-    $(".contact-list").animate({ scrollTop: $(document).height() + 9999999999 }, "fast");
-    $(".chat-body").animate({ scrollTop: $(document).height() + 9999999999 }, "fast");
-    return false;
+    this.scrollbottom(".chat-body");
   }
 
   getAllConversation() {
@@ -78,7 +78,6 @@ export class ChatComponent implements OnInit {
       });
       this.showAllMessage(this.userCons[0]._id);
       console.log(this.message);
-
     })
   }
 
@@ -86,6 +85,7 @@ export class ChatComponent implements OnInit {
     this.subscription = this.conversationService.getIDConversation(this.idUser, id).subscribe(data => {
       let res = JSON.parse(JSON.stringify(data));
       console.log(res.msg[0]._id);
+      this.websocketService.leaveRoom(this.idCons);
       this.idCons = res.msg[0]._id;
       this.websocketService.joinRoom(res.msg[0]._id);
       this.subscription = this.conversationService.getConversation(res.msg[0]._id).subscribe(rs => {
@@ -97,11 +97,18 @@ export class ChatComponent implements OnInit {
         });
       })
     })
-    $(".chat-body").animate({ scrollTop: $(document).height() + 9999999999 }, "fast");
+    this.scrollbottom(".chat-body");
+  }
+
+  scrollbottom(string: String) {
+    $(document).ready(function () {
+      $(string).animate({ scrollTop: $(document).height() + 9999999999 });
+      return false;
+    });
   }
 
   sendMessage() {
-    this.websocketService.sendMessage({ room: this.idCons, author: this.idUser, message: this.messSend, time_send: Date.now()});
+    this.websocketService.sendMessage({ room: this.idCons, author: this.idUser, message: this.messSend, time_send: Date.now() });
     this.messSend = "";
   }
 }

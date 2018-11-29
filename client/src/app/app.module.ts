@@ -38,6 +38,8 @@ import { WebsocketService } from './services/websocket.service';
 import { GroupService } from './services/group.service';
 import { Config } from './app.cofig';
 import { CommentComponent } from './components/group/gr-newfeed/comment/comment.component';
+import { PostComponent } from './components/group/gr-newfeed/post/post.component';
+import { SortDatePipe } from './pipe/sortDate';
 
 const appRoutes : Routes = [
   {
@@ -106,7 +108,9 @@ const appRoutes : Routes = [
     FileSelectDirective,
     ListmemberComponent,
     TimeAgoPipe,
-    CommentComponent
+    CommentComponent,
+    PostComponent,
+    SortDatePipe
   ],
   imports: [
     BrowserModule,

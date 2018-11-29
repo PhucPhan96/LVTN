@@ -31,7 +31,7 @@ export class AppComponent implements OnInit, OnDestroy {
   LoadData() {
     this.subscription = this.loginService.getAllUser().subscribe(data => {
       this.users = data;
-      console.log(this.users)
+      // console.log(this.users)
     }, error => {
       console.log(error);
     })

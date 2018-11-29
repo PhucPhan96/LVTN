@@ -16,7 +16,7 @@ export class FriendService {
   constructor(public http: HttpClient, private cofig: Config) { }
 
   getAllFriends(id : String){
-    console.log('id ' + id);
+    // console.log('id ' + id);
     return this.http.get(`${this.API}getAllFriend/${id}`);
   }
 }

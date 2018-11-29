@@ -1,12 +1,14 @@
 var express = require('express');
 var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 var bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 var db = require('./db');
 var multer = require('multer');
 var logger = require('morgan');
-// var router = require('./src/controllers/userController');
+var router = require('./src/controllers/userController');
 // var user = require('./src/models/user');
 // var groupModel = require('./src/models/group');
 // var event = require('./src/models/event');
@@ -50,6 +52,16 @@ var corsOptions = {
 //   // res.status(200).end();
 // });
 
+const socketIO = require('./src/controllers/websocketController');
+socketIO(io);
+// io.on('connection', (socket) => {
+//   console.log('new connection made');
+  
+//   socket.on('join', (data) => {
+//     console.log(data);
+//   });
+// });
+
 app.use(cors(corsOptions));
 
 const index = require('./src/router/index');
@@ -57,6 +69,8 @@ app.use('/', index);
 require('./src/router/routerUser.js')(app);
 require('./src/router/routerFriend.js')(app);
 require('./src/router/routerMessage.js')(app);
+require('./src/router/routerGroup.js')(app);
+require('./src/router/routerPost.js')(app);
 
 var store = multer.diskStorage({
   destination: function (req, file, callback) {
@@ -77,6 +91,6 @@ app.post('/api/uploadimg', function (req, res) {
   });
 });
 
-app.listen(3200);
+server.listen(3200);
 
 module.exports = app;

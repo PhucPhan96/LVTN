@@ -3,7 +3,6 @@ const objectId = mongoose.Schema.Types.ObjectId;
 const schema = mongoose.Schema;
 
 var postSchema = new schema({
-    title : String,
     time_create : Date,
     content : String,
     img_path : String,
@@ -15,7 +14,6 @@ module.exports = mongoose.model('post', postSchema);
 // var post = mongoose.model('post', postSchema);
 //  module.exports = post;
 //  post.create({
-//     'title' : 'Oh Yeah',
 //     'time_create' : '2003-05-13T00:00:00Z',
 //     'content' : 'abcdefghiklmnogh',
 //     'img_path' : 'C:/image/img.jpg',

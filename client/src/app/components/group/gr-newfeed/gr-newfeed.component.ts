@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { Post } from './../../../models/post.class';
 import { PostDetail } from './../../../models/postDetail.class';
 import { PostService } from './../../../services/post.service';
@@ -27,6 +27,8 @@ export class GrNewfeedComponent implements OnInit {
   listPost: PostDetail[] = Array<PostDetail>();
   api: String = this.config.API;
   idUser: String = localStorage.getItem('idUser');
+  txtComment : String;
+  skip : Number = 0;
 
   resultUpload: any;
   public uploader: FileUploader = new FileUploader({ url: 'http://localhost:3200/api/uploadimg', itemAlias: 'userPhoto' });
@@ -78,7 +80,7 @@ export class GrNewfeedComponent implements OnInit {
       // this.updateAvatarPath(this.group._id, this.resultUpload.file.name);
       this.post.img_path = this.resultUpload.file.name;
     }
-    this.getAllPost(this.group._id);
+    this.getAllPost(this.group._id, this.skip, 3);
   }
 
   createPost() {
@@ -88,21 +90,6 @@ export class GrNewfeedComponent implements OnInit {
 
     this.websocketService.createNewPost({ content: this.post.content, img_path: this.post.img_path, time_create: this.post.time_create, user: this.post.user, group: this.post.group });
     this.post.content = "";
-
-    // this.subcription = this.postService.createPost(this.post).subscribe(data => {
-    //   let res = new MyResponse();
-    //   res = JSON.parse(JSON.stringify(data));
-    //   console.log(res);
-    //   if (!res.error) {
-    //     alert('Tạo thành công!')
-    //     location.reload();
-    //   }
-    //   else {
-    //     alert("Thất bại!");
-    //   }
-    // }, error => {
-    //   console.log(error);
-    // });
   }
 
   openLg(content) {
@@ -114,8 +101,8 @@ export class GrNewfeedComponent implements OnInit {
     this.modalService.dismissAll();
   }
 
-  getAllPost(idGroup: String) {
-    this.subcription = this.postService.getAllPost(idGroup).subscribe(data => {
+  getAllPost(idGroup: String, skip : Number, limit : Number) {
+    this.subcription = this.postService.getAllPost(idGroup, skip, limit).subscribe(data => {
       let res = JSON.parse(JSON.stringify(data));
       res.msg.forEach(element => {
         this.listPost.push(element);
@@ -125,20 +112,26 @@ export class GrNewfeedComponent implements OnInit {
         this.subcription = this.postService.getAllCmtPost(e._id).subscribe(data => {
           let ls = JSON.parse(JSON.stringify(data));
           e.cmtPost = ls.msg;
-          // ls.msg.forEach(lss => {
-          //   console.log(lss);
-          //   this.cmtPost.push(lss);
-          //   console.log(this.cmtPost);
-          //   e.cmtPost = this.cmtPost;
-          // });
         })
       })
     })
   }
 
-  commentPost(post, value) {
+  newCommentSend(event) {
     let time_cmt = new Date();
-    this.websocketService.newComment({ user: this.idUser, post: post, comment: value, time_cmt: time_cmt });
-    
+    this.websocketService.newComment({ user: this.idUser, post: event.post, comment: event.cmt, time_cmt: time_cmt });
+  }
+
+  @HostListener("window:scroll", [])
+  onWindowScroll() {
+    //In chrome and some browser scroll is given to body tag
+    let pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
+    let max = document.documentElement.scrollHeight;
+    // pos/max will give you the distance between scroll bottom and and bottom of screen in percentage.
+    if (pos == max) {
+      //Do your action here 
+      console.log('Da het trang!');
+      this.getAllPost(this.group._id, this.listPost.length, 3);
+    }
   }
 }

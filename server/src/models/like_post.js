@@ -4,7 +4,7 @@ const schema = mongoose.Schema;
 
 var likePostSchema = new schema({
     user : {type : objectId, ref : 'user'},
-    event : {type : objectId, ref : 'event'}
+    post : {type : objectId, ref : 'post'}
 });
 
 module.exports = mongoose.model('like_post', likePostSchema);
@@ -12,7 +12,7 @@ module.exports = mongoose.model('like_post', likePostSchema);
 //  module.exports = like_post;
 //  like_post.create({
 //     'user' : '5bd9af0de0eb103174dd61c9',
-//     'event' : '5bd9b0b4b6354f1324dc5219'
+//     'event' : '5bfce150d2a67818b00af3ac'
 // }).then(()=>{
 //     console.log('craete');
 // }).catch((err)=>{

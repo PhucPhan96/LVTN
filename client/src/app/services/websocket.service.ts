@@ -17,6 +17,10 @@ export class WebsocketService {
     this.socket.emit('join', data);
   }
 
+  leaveRoom(data){
+    this.socket.emit('leave', data);
+  }
+
   sendMessage(data) {
     console.log(data);
     
