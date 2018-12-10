@@ -1,0 +1,59 @@
+<div class="post-content">
+  <div class="post-container">
+      <img src="{{api}}images/{{group.avatarpath}}" alt="group" class="profile-photo-md pull-left">
+    <div class="post-detail">
+      <div class="user-info">
+        <h5><a class="profile-link">{{group.name}}</a></h5>
+        <p class="text-muted">Created on {{event.time_create | timeAgo}} </p>
+      </div>
+      <div class="post-text">
+        <img src="{{api}}images/{{event.imgpath}}" width="100%" alt="">
+        <h4><a class="profile-link">{{event.title}}</a></h4>
+        <div class="reaction">
+            <button type="button" class="btn" [ngClass]="isJoin == 'Tham gia' ? 'btn-join' : 'btn-leave'" (click)="joinorleave(event._id)">{{isJoin}}</button>
+          </div>
+        <p>{{event.intro}}</p>
+        <h5>Nhiệm vụ</h5>
+        <p>{{event.misson}}</p>
+        <h5>Mục tiêu</h5>
+        <p>{{event.target}}</p>
+        <h5>Yêu cầu</h5>
+        <p>{{event.require}}</p>
+      </div>
+      <div class="timer">
+        <div class="row">
+          <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+          </div>
+          <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+            <span>Start: {{event.event_start | date : "yyyy-MM-dd"}}</span>
+          </div>
+          <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+          </div>
+          <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+            <span>End: {{event.event_end | date : "yyyy-MM-dd"}}</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+            <i class="fa fa-users" aria-hidden="true"></i>
+          </div>
+          <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+            <span>Số lượng thành viên hiện tại: </span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+            <i class="fa fa-map-marker" aria-hidden="true"></i>
+          </div>
+          <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+            <span>{{event.event_address}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

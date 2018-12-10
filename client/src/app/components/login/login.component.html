@@ -99,7 +99,7 @@
 
               <div class="mb-3">
                 <label for="repassword">Xác nhận mật khẩu</label>
-                <input type="password" class="form-control" id="repassword" placeholder="********" required=""  [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}">
+                <input type="password" class="form-control" id="repassword" placeholder="********" required=""  [(ngModel)]="confimPass" [ngModelOptions]="{standalone: true}">
               </div>
 
               <button class="btn btn-lg btn-block btn-signup" type="submit" (click)="insert()">Đăng kí</button>

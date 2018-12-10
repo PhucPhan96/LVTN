@@ -6,23 +6,23 @@
 
       <div class="form-group">
         <label for="title">Tiêu đề</label>
-        <input type="text" class="form-control" id="title">
+        <input type="text" class="form-control" id="title" [(ngModel)]="event.title" [ngModelOptions]="{standalone: true}">
       </div>
 
       <div class="form-group">
         <label for="discription">Miêu tả</label>
-        <textarea type="text" class="form-control" id="discription"></textarea>
+        <textarea type="text" class="form-control" id="discription" [(ngModel)]="event.intro" [ngModelOptions]="{standalone: true}"></textarea>
       </div>
 
       <div class="form-group">
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="startday">Ngày bắt đầu</label>
-            <input type="date" class="form-control" id="startday">
+            <input type="date" class="form-control" id="startday" [(ngModel)]="event.event_start" [ngModelOptions]="{standalone: true}">
           </div>
           <div class="col-md-6 mb-3">
             <label for="endday">Ngày kết thúc</label>
-            <input type="date" class="form-control" id="endday">
+            <input type="date" class="form-control" id="endday" [(ngModel)]="event.event_end" [ngModelOptions]="{standalone: true}">
           </div>
         </div>
       </div>
@@ -30,11 +30,11 @@
         <div class="row">
           <div class="col-md-3 mb-3">
             <label for="numvol">Số lượng</label>
-            <input type="number" class="form-control" id="numvol">
+            <input type="number" class="form-control" id="numvol" [(ngModel)]="event.total_member" [ngModelOptions]="{standalone: true}">
           </div>
           <div class="col-md-9 mb-3">
             <label for="address">Địa chỉ</label>
-            <input type="text" class="form-control" id="address">
+            <input type="text" class="form-control" id="address"[(ngModel)]="event.event_address" [ngModelOptions]="{standalone: true}">
           </div>
         </div>
       </div>
@@ -45,24 +45,24 @@
       </div>
       <div class="form-group">
         <label for="tasks">Nhiệm vụ</label>
-        <textarea type="text" class="form-control" id="tasks"></textarea>
+        <textarea type="text" class="form-control" id="tasks" [(ngModel)]="event.misson" [ngModelOptions]="{standalone: true}"></textarea>
       </div>
       <div class="form-group">
         <label for="objective">Mục tiêu</label>
-        <textarea type="text" class="form-control" id="objective"></textarea>
+        <textarea type="text" class="form-control" id="objective" [(ngModel)]="event.target" [ngModelOptions]="{standalone: true}"></textarea>
       </div>
       <div class="form-group">
         <label for="requi">Yêu cầu</label>
-        <textarea type="text" class="form-control" id="requi"></textarea>
+        <textarea type="text" class="form-control" id="requi" [(ngModel)]="event.require" [ngModelOptions]="{standalone: true}"></textarea>
       </div>
 
       <div class="form-group">
         <label for="file">Đính kèm</label>
-        <input type="file" class="form-control-file" name="" id="file" accept="image/*" aria-describedby="fileHelpId">
+        <input type="file" class="form-control-file" name="" id="file" ng2FileSelect [uploader]="uploader">
       </div>
 
       <div class="form-group">
-        <button type="submit" class="btn btn-primary">Tạo</button>
+        <button type="submit" class="btn btn-primary" (click)="create()" >Tạo</button>
       </div>
     </form>
 

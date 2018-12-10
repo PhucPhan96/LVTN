@@ -2,14 +2,16 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import * as io from 'socket.io-client';
 import { Post } from './../models/post.class';
+import { Config } from './../app.cofig';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WebsocketService {
   private socket : SocketIOClient.Socket;
-  constructor() {
-    this.socket = io('http://localhost:3200');
+  api : String = this.config.API;
+  constructor(private config : Config) {
+    this.socket = io(this.api.toString());
   }
 
   joinRoom(data) {

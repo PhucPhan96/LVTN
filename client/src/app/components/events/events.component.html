@@ -1,94 +1,16 @@
-<div class="row">
+<!-- <div class="row">
   <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-    <div class="card text-left card-newfeeds">
-      <div class="post-content">
-        <!-- <img src="./../../../assets/images/banner.jpg" alt="post-image" class="img-responsive post-image"> -->
-        <div class="post-container">
-          <!-- <img src="./../../../assets/images/fuk.png" alt="user" class="profile-photo-md pull-left"> -->
-          <div class="post-detail">
-            <div class="user-info">
-              <h4><a href="timeline.html" class="profile-link">Chắp cánh ước mơ vùng cao</a></h4>
-              <!-- <p class="text-muted">Published a photo about 3 mins ago</p> -->
-            </div>
-            <div class="reaction">
-              <button type="button" class="btn btn-danger">Rời khỏi</button>
-            </div>
-            <div class="post-text">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                qui officia deserunt mollit anim id est laborum.</p>
-                <h5>Nhiệm vụ</h5>
-                <p>............</p>
-                <h5>Mục tiêu</h5>
-                <p>............</p>
-                <h5>Yêu cầu</h5>
-                <p>............</p>
-            </div>
-            <div class="timer">
-              <div class="row">
-                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                  <i class="fa fa-clock-o" aria-hidden="true"></i>
-                </div>
-                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-                  <span>Start: 25-12-2018</span>
-                </div>
-                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                  <i class="fa fa-clock-o" aria-hidden="true"></i>
-                </div>
-                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-                  <span>End: 29-12-2018</span>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                  <i class="fa fa-users" aria-hidden="true"></i>
-                </div>
-                <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
-                  <span>Số lượng thành viên hiện tại: 32</span>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                  <i class="fa fa-map-marker" aria-hidden="true"></i>
-                </div>
-                <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
-                  <span>567 Lê Duẩn, phường EaTam, TP. Buôn Ma
-                    Thuột, tỉnh Đắk Lắk.</span>
-                </div>
-              </div>
-            </div>
-            <!-- <div class="post-comment">
-              <img src="./../../../assets/images/fuk.png" alt="" class="profile-photo-sm">
-              <p><a href="timeline.html" class="profile-link">Diana </a><i class="em em-laughing"></i> Lorem ipsum
-                dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
-            </div>
-            <div class="post-comment">
-              <img src="./../../../assets/images/fuk.png" alt="" class="profile-photo-sm">
-              <p><a href="timeline.html" class="profile-link">John</a> Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                veniam, quis nostrud </p>
-            </div>
-            <div class="post-comment">
-              <img src="./../../../assets/images/fuk.png" alt="" class="profile-photo-sm">
-              <input type="text" class="form-control" placeholder="Post a comment">
-            </div> -->
-          </div>
-        </div>
-      </div>
+    <div class="card text-left card-newfeeds" *ngFor="let event of listEvent" >
+      <app-event-detail [event] = event></app-event-detail>
     </div>
   </div>
 
   <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-    <div class="panel panel-default panel-right" (click)="createEvent()">
+    <div class="panel panel-default panel-right" >
       <div class="createEvent">
-        <i class="fa fa-plus" aria-hidden="true">&nbsp; Tạo sự kiện</i>
+        <i class="fa fa-plus" aria-hidden="true" (click)="createEvent()">&nbsp; Tạo sự kiện</i>
+        <hr>
       </div>
-      <hr>
       <div class="title">
         <h4>Sắp diễn ra</h4>
       </div>
@@ -107,4 +29,18 @@
       </ul>
     </div>
   </div>
-</div>
+</div> -->
+<ul class="list-group">
+  <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let event of listEvent" >
+    <div>
+      <h3>{{event.title}}</h3>
+      <p>{{event.intro}}</p>
+      <p><i aria-hidden="true" class="fa fa-clock-o" style="color: rgb(226, 2, 2)">&nbsp; {{event.event_start |
+          date
+          : "HH:mm dd-MM-yyyy"}}</i> &nbsp;&nbsp;
+        <i aria-hidden="true" class="fa fa-location-arrow" style="color: #8dc63f">&nbsp; {{event.event_address}}</i>
+      </p>
+    </div>
+    <span><i class="fa fa-angle-double-right" aria-hidden="true" style="font-size: 2rem" (click)="createPlan()"></i></span>
+  </li>
+</ul>

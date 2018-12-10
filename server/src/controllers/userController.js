@@ -107,7 +107,7 @@ var users = {
             }
         });
     },
-    
+
     insert: (req, res) => {
         var user = req.body;
         // console.log('Adding user: ' + JSON.stringify(user));
@@ -121,14 +121,28 @@ var users = {
         });
     },
 
-    getUserByID : (req, res) => {
-        Users.find({'_id' : req.params._id}, function(err, rs){
+    getUserByID: (req, res) => {
+        Users.find({ '_id': req.params._id }, function (err, rs) {
             if (err || !rs) {
                 console.log(`Error ${err}`);
                 res.json({ result: 0, msg: `${err}`, rs: {} });
             } else
                 res.json({ result: 1, msg: rs || {} });
         })
-    }
+    },
+
+    getUserByName: (req, res) => {
+        Users.find({
+            $or: [
+                { firstname: new RegExp(req.params.search, "i") },
+                { lastname: new RegExp(req.params.search, "i") }
+            ]}, function(err, rs) {
+                if (err || !rs) {
+                    console.log(`Error ${err}`);
+                    res.json({ result: 0, msg: `${err}`, rs: {} });
+                } else
+                    res.json({ result: 1, msg: rs || {} });
+            })
+    },
 };
 module.exports = users;

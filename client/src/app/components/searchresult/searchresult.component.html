@@ -1,0 +1,32 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Người dùng</h3>
+  </div>
+  <div class="panel-body">
+    <div class="list" *ngFor="let user of lstUser" >
+      <app-resultpeple [user] = user></app-resultpeple>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Nhóm</h3>
+  </div>
+  <div class="panel-body">
+    <div class="list" *ngFor="let group of lstGroup">
+      <app-resultgroup [group] = group></app-resultgroup>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Sự kiện</h3>
+  </div>
+  <div class="panel-body">
+    <div class="list" *ngFor="let event of lstEvent">
+      <app-resultevent [event] = event></app-resultevent>
+    </div>
+  </div>
+</div>

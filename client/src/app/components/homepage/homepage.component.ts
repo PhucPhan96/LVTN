@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import * as $ from 'jquery';
 
 import { UserService } from './../../services/user.service';
+import { PostService } from './../../services/post.service';
 import { FriendService } from './../../services/friend.service';
 import { User } from './../../models/user.class';
 import { Subscription } from 'rxjs';
@@ -23,8 +24,9 @@ export class HomepageComponent implements OnInit {
   public subscription: Subscription;
   public listUser : User[] = Array<User>();
   numFriend : Number;
+  numPost : Number;
 
-  constructor(private friendService : FriendService, private router : Router, private userService : UserService, private cofig : Config) { }
+  constructor(private friendService : FriendService, private router : Router, private userService : UserService, private cofig : Config, private postService : PostService) { }
 
   ngOnInit() {
     $(function () {
@@ -36,6 +38,10 @@ export class HomepageComponent implements OnInit {
     this.email = localStorage.getItem('user');
     
     this.getUserByEmail();
+    this.subscription = this.postService.getAllPostOfUser(localStorage.getItem('idUser')).subscribe(data => {
+      let res = JSON.parse(JSON.stringify(data));
+      this.numPost = res.msg.length;
+    })
   }
 
   editProf(){

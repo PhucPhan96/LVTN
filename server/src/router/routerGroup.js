@@ -6,6 +6,8 @@ module.exports = (app) => {
         .get(GroupController.getAllGroupJoined);
     app.route('/getAllGroupUserAdmin/:_id')
         .get(GroupController.getAllGroupUserAdmin);
+    app.route('/getGroupByName/:search')
+        .get(GroupController.getGroupByName);
     app.route('/getAllMemberGroup/:_id')
         .get(GroupController.getAllMemberGroup);
     app.route('/getAllMemberGroupMain/:_id')

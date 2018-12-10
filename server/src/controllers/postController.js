@@ -34,6 +34,17 @@ var post = {
                 else console.log(users);
             })
     },
+
+    getAllPostOfUser: (req, res) => {
+        Post.find({ 'user': req.params._id }, function (err, rs) {
+            if (err || !rs) {
+                console.log(`Get error ${err}`);
+                res.json({ result: 0, msg: `${err}`, rs: {} });
+            } else
+                res.json({ result: 1, msg: rs || {} });
+        })
+    },
+
     getAllCmtPost: (req, res) => {
         CmtPost.find({ 'post': req.params._id }, function (err, rs) {
             if (err || !rs) {
@@ -61,7 +72,7 @@ var post = {
     },
 
     likePost: (req, res) => {
-        var likepost = {'user' : req.body.user, 'post' : req.body.post}
+        var likepost = { 'user': req.body.user, 'post': req.body.post }
         LikePost.create(likepost, function (err, result) {
             if (err) {
                 res.send("Error!");
@@ -72,8 +83,8 @@ var post = {
         });
     },
 
-    dislikePost : (req, res) => {
-        LikePost.deleteOne({'user' : req.body.user, 'post' : req.body.post}, function(err, result) {
+    dislikePost: (req, res) => {
+        LikePost.deleteOne({ 'user': req.body.user, 'post': req.body.post }, function (err, result) {
             if (err) {
                 res.send("Error!");
             }
@@ -83,9 +94,9 @@ var post = {
         });
     },
 
-    checkLikePost : (req, res) => {
-        LikePost.findOne({'user' : req.body.user, 'post' : req.body.post}, function(err, result) {
-            if(result === null){
+    checkLikePost: (req, res) => {
+        LikePost.findOne({ 'user': req.body.user, 'post': req.body.post }, function (err, result) {
+            if (result === null) {
                 res.send("nolike");
                 return;
             }
@@ -95,15 +106,15 @@ var post = {
         });
     },
 
-    getAllPostOfGroup : (req, res) => {
-        Post.find({'group' : req.params._id}, function(err, rs){
+    getAllPostOfGroup: (req, res) => {
+        Post.find({ 'group': req.params._id }, function (err, rs) {
             if (err || !rs) {
                 console.log(`Error ${err}`);
                 res.json({ result: 0, msg: `${err}`, rs: {} });
             } else
                 res.json({ result: 1, msg: rs || {} });
         })
-        .populate(['user', 'group'])
+            .populate(['user', 'group'])
     },
 }
 

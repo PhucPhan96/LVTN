@@ -22,7 +22,7 @@ export class GroupComponent implements OnInit {
   isAdmin : Boolean = false;
 
   resultUpload: any;
-  public uploader: FileUploader = new FileUploader({ url: 'http://localhost:3200/api/uploadimg', itemAlias: 'userPhoto' });
+  public uploader: FileUploader = new FileUploader({ url: this.api + '/api/uploadimg', itemAlias: 'userPhoto' });
 
   constructor(private router : Router, private config: Config, private groupService: GroupService, private modalService: NgbModal) { }
 
@@ -73,4 +73,5 @@ export class GroupComponent implements OnInit {
     this.uploader.uploadAll();
     this.modalService.dismissAll();
   }
+
 }

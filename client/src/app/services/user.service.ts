@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from './../models/user.class';
 import {MyResponse} from '../models/my_response.class';
+import { Config } from './../app.cofig';
 
 @Injectable({
   providedIn: 'root'
@@ -11,15 +12,19 @@ import {MyResponse} from '../models/my_response.class';
 export class UserService {
   // public username : Object;
   public user: User = new User();
-  public API: string = 'http://localhost:3200/';
+  public api : String = this.config.API;
 
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient, private config : Config) { }
 
   getUserByEmail(e : String): Observable<MyResponse<User>> {
     var body =  { 
       email: e
    };
-    return this.http.post<MyResponse<User>>(this.API + 'getUserByEmail/', body);
+    return this.http.post<MyResponse<User>>(this.api + 'getUserByEmail/', body);
+  }
+
+  getUserByName(search : String) : Observable<MyResponse<Event[]>>{
+    return this.http.get<MyResponse<Event[]>>(`${this.api}getUserByName/${search}`);
   }
 
   updateAvatar(id : String, path : String):Observable<MyResponse<User>>{
@@ -27,7 +32,7 @@ export class UserService {
       _id: id,
       path : path
    };
-    return this.http.put<MyResponse<User>>(this.API + 'updateavatar/', body);
+    return this.http.put<MyResponse<User>>(this.api + 'updateavatar/', body);
   }
 
   updateCover(id : String, path : String):Observable<MyResponse<User>>{
@@ -35,7 +40,7 @@ export class UserService {
       _id: id,
       path : path
    };
-    return this.http.put<MyResponse<User>>(this.API + 'updatecover/', body);
+    return this.http.put<MyResponse<User>>(this.api + 'updatecover/', body);
   }
 
   updatePassword(id : String, password : String):Observable<MyResponse<User>>{
@@ -43,15 +48,15 @@ export class UserService {
       _id: id,
       password : password
    };
-    return this.http.put<MyResponse<User>>(this.API + 'updatepassword/', body);
+    return this.http.put<MyResponse<User>>(this.api + 'updatepassword/', body);
   }
 
   updateUser(user : User){
     var body = user;
-    return this.http.put(this.API + 'updateuser', body);
+    return this.http.put(this.api + 'updateuser', body);
   }
 
   getUserByID(_id : String){
-    return this.http.get(`${this.API}getUserByID/${_id}`);
+    return this.http.get(`${this.api}getUserByID/${_id}`);
   }
 }

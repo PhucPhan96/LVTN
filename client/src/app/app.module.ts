@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FileSelectDirective, FileDropDirective, FileUploadModule  } from 'ng2-file-upload';
 import { TimeAgoPipe } from 'time-ago-pipe';
 
 import { AppComponent } from './app.component';
@@ -36,10 +36,18 @@ import { ConversationService } from './services/conversation.service';
 import { MessageService } from './services/message.service';
 import { WebsocketService } from './services/websocket.service';
 import { GroupService } from './services/group.service';
+import { EventService } from './services/event.service';
 import { Config } from './app.cofig';
 import { CommentComponent } from './components/group/gr-newfeed/comment/comment.component';
 import { PostComponent } from './components/group/gr-newfeed/post/post.component';
 import { SortDatePipe } from './pipe/sortDate';
+import { EventDetailComponent } from './components/events/event-detail/event-detail.component';
+import { MyeventComponent } from './components/events/myevent/myevent.component';
+import { SearchresultComponent } from './components/searchresult/searchresult.component';
+import { ResultpepleComponent } from './components/searchresult/resultpeple/resultpeple.component';
+import { ResultgroupComponent } from './components/searchresult/resultgroup/resultgroup.component';
+import { ResulteventComponent } from './components/searchresult/resultevent/resultevent.component';
+import { CreatePlanComponent } from './components/group/create-plan/create-plan.component';
 
 const appRoutes : Routes = [
   {
@@ -47,7 +55,7 @@ const appRoutes : Routes = [
     component: LoginComponent
   },
   {
-    path: '',
+    path: '', 
     component: HomepageComponent,
     canActivate : [AuthGuard],
     children: [
@@ -55,9 +63,10 @@ const appRoutes : Routes = [
       { path: 'friend', component: FriendlistComponent },
       { path: 'chat', component: ChatComponent },
       { path: 'group', component: ListgroupComponent },
-      { path: 'events', component: EventsComponent },
+      { path: 'events', component: MyeventComponent },
       { path: 'createEvent', component: CreateEventComponent },
-      { path: 'creategroup', component: CreateGroupComponent }
+      { path: 'creategroup', component: CreateGroupComponent },
+      { path: 'searchresult', component: SearchresultComponent }
     ]
   },
   {
@@ -80,6 +89,7 @@ const appRoutes : Routes = [
       { path: 'mngroup', component: MngroupComponent },
       { path: 'creategroup', component: CreateGroupComponent },
       { path: 'member', component: ListmemberComponent },
+      { path: 'createplan', component: CreatePlanComponent}
     ]
   }
 ];
@@ -105,18 +115,25 @@ const appRoutes : Routes = [
     CreateGroupComponent,
     MngroupComponent,
     BasicInfoComponent,
-    FileSelectDirective,
     ListmemberComponent,
     TimeAgoPipe,
     CommentComponent,
     PostComponent,
-    SortDatePipe
+    SortDatePipe,
+    EventDetailComponent,
+    MyeventComponent,
+    SearchresultComponent,
+    ResultpepleComponent,
+    ResultgroupComponent,
+    ResulteventComponent,
+    CreatePlanComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     NgbModule,
+    FileUploadModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
@@ -128,7 +145,8 @@ const appRoutes : Routes = [
     ConversationService,
     MessageService,
     WebsocketService,
-    GroupService
+    GroupService,
+    EventService
   ],
   bootstrap: [AppComponent]
 })

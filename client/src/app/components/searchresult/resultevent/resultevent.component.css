@@ -1,0 +1,8 @@
+.row{
+    height: 80px;
+}
+h5{
+    font-weight: bold;
+    color : #0056b3;
+    cursor: pointer;
+}

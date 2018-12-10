@@ -6,6 +6,8 @@ module.exports = (app) => {
         .get(UsersController.getAllUser);
     app.route('/getUserByID/:_id')
         .get(UsersController.getUserByID);
+    app.route('/getUserByName/:search')
+        .get(UsersController.getUserByName);
     app.route('/getUserByEmail')
         .post(UsersController.getUserByEmail);
     app.route('/login')

@@ -29,6 +29,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public/dist')));
 
 var corsOptions = {
   // origin: 'http://localhost:4200',
@@ -65,12 +66,12 @@ socketIO(io);
 app.use(cors(corsOptions));
 
 const index = require('./src/router/index');
-app.use('/', index);
 require('./src/router/routerUser.js')(app);
 require('./src/router/routerFriend.js')(app);
 require('./src/router/routerMessage.js')(app);
 require('./src/router/routerGroup.js')(app);
 require('./src/router/routerPost.js')(app);
+require('./src/router/routerEvent.js')(app);
 
 var store = multer.diskStorage({
   destination: function (req, file, callback) {
@@ -92,5 +93,9 @@ app.post('/api/uploadimg', function (req, res) {
 });
 
 server.listen(3200);
+
+app.use(function(req, res) {
+  res.sendFile(path.join(__dirname, '/public/dist/index.html'));
+});
 
 module.exports = app;

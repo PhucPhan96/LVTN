@@ -34,6 +34,9 @@ export class PostService {
   getAllPostOfGroup(group : String) : Observable<MyResponse<PostDetail[]>> {
     return this.http.get<MyResponse<PostDetail[]>>(`${this.API}getAllPostOfGroup/${group}`);
   }
+  getAllPostOfUser(id : String) : Observable<MyResponse<Post[]>> {
+    return this.http.get<MyResponse<Post[]>>(`${this.API}getAllPostOfUser/${id}`);
+  }
 
   likePost(user : String, post : String){
     var body = {

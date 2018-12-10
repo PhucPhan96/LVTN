@@ -1,0 +1,19 @@
+<div class="row">
+
+  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+  </div>
+
+  <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+    <h5>{{event.title}}</h5>
+    <p>{{event.intro}}</p>
+    <p><i aria-hidden="true" class="fa fa-clock-o" style="color: rgb(226, 2, 2)">&nbsp; {{event.event_start | date : "HH:mm dd-MM-yyyy"}}</i> &nbsp;&nbsp;
+      <i aria-hidden="true" class="fa fa-location-arrow" style="color: #8dc63f">&nbsp; {{event.event_address}}</i>
+    </p>
+  </div>
+
+  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+    <button class="btn"><i class="fa fa-plus" aria-hidden="true"></i> Tham Gia</button>
+  </div>
+
+</div>
+<hr>

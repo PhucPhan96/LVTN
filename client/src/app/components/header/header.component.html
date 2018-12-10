@@ -4,7 +4,7 @@
         alt=""></a>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <form class="form-inline mt-3 mt-md-0">
-        <input class="form-control mr-sm-3" type="text" placeholder="Tìm kiếm" aria-label="Search">
+        <input class="form-control mr-sm-3" type="text" placeholder="Tìm kiếm" aria-label="Search" (keyup.enter)="search()" [(ngModel)]="txtSearch" [ngModelOptions]="{standalone: true}" >
       </form>
       <ul class="navbar-nav mr-auto topnav-right">
         <li class="nav-item dropdown">

@@ -29,7 +29,7 @@ export class EditprofComponent implements OnInit {
   isProfile : String = "";
 
   public api: String = this.cofig.API;
-  public uploader: FileUploader = new FileUploader({ url: 'http://localhost:3200/api/uploadimg', itemAlias: 'userPhoto' });
+  public uploader: FileUploader = new FileUploader({ url: this.api + '/api/uploadimg', itemAlias: 'userPhoto' });
   
   constructor(private router: Router, private userService: UserService, private cofig: Config, private modalService: NgbModal, private http: HttpClient) { }
 

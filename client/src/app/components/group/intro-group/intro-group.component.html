@@ -1,6 +1,6 @@
 <div class="card text-left card-cover">
   
-  <div class="editimg cover" [ngClass]="isProfile == 'friend' ? 'hidden': 'show'">
+  <div class="editimg cover" [ngClass]="isAdmin ? 'hidden': 'show'">
       <img src="{{api}}images/{{group.coverpath}}" alt="">
       <h5 (click)="openLg(cover)"><i clas class="fa fa-camera" aria-hidden="true"></i><br></h5>
     </div>

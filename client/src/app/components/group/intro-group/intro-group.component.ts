@@ -19,10 +19,17 @@ export class IntroGroupComponent implements OnInit {
   api: String = this.config.API;
   public subscription: Subscription;
   resultUpload: any;
-  public uploader: FileUploader = new FileUploader({ url: 'http://localhost:3200/api/uploadimg', itemAlias: 'userPhoto' });
+  isAdmin : Boolean = false;
+  public uploader: FileUploader = new FileUploader({ url: this.api + '/api/uploadimg', itemAlias: 'userPhoto' });
   constructor(private config: Config, private groupService: GroupService, private modalService: NgbModal) { }
 
   ngOnInit() {
+    if(this.group.admin == localStorage.getItem('idUser')){
+      this.isAdmin = true;
+    }
+    else{
+      this.isAdmin = false;
+    }
     this.group = JSON.parse(localStorage.getItem('group'));
     console.log(this.group);
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };

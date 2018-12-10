@@ -19,4 +19,21 @@ export class FriendService {
     // console.log('id ' + id);
     return this.http.get(`${this.API}getAllFriend/${id}`);
   }
+
+  checkFriend(user_one : String, user_two : String){
+    var body = {
+      user_one : user_one,
+      user_two : user_two
+    }
+    return this.http.post(`${this.API}checkFriend`, body);
+  }
+
+  addFriend(user_one : String, user_two : String, status : String){
+    var body = {
+      user_one : user_one,
+      user_two : user_two,
+      status : status
+    }
+    return this.http.post(`${this.API}addFriend`, body);
+  }
 }

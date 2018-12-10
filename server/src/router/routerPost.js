@@ -18,4 +18,6 @@ module.exports = (app) => {
         .post(PostController.checkLikePost);
     app.route('/getAllPostOfGroup/:_id')
         .get(PostController.getAllPostOfGroup);
+    app.route('/getAllPostOfUser/:_id')
+        .get(PostController.getAllPostOfUser);
 }

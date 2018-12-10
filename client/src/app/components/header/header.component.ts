@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
+  txtSearch : String;
   constructor(private router : Router) { }
 
   ngOnInit() {
@@ -22,4 +23,11 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl("/home");
   }
 
+  search(){
+    this.router.navigateByUrl('/searchresult');
+    console.log(this.txtSearch);
+    
+    localStorage.setItem('txtSearch', this.txtSearch.toString());
+    this.txtSearch = "";
+  }
 }

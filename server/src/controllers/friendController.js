@@ -6,7 +6,7 @@ const Users = require('../models/user.js');
 const jwt = require('jsonwebtoken');
 
 var friend = {
-    getAllFriend: (req, res) => {
+    getAllFriend : (req, res) => {
         Friend.find({ $or: [{ 'user_one': req.params.id}, { 'user_two': req.params.id}] }, function (err, rs) {
             if (err || !rs) {
                 console.log(`Update error ${err}`);
@@ -19,6 +19,42 @@ var friend = {
                 if (err) console.log(err);
                 else console.log(users)
             })
+    },
+
+    checkFriend : (req, res) => {
+        Friend.findOne({ $or: [{ "user_one": req.body.user_one , 'user_two' : req.body.user_two }, { "user_one": req.body.user_two , 'user_two' : req.body.user_one }]}, function (err, result) {
+            if (err) {
+                res.send("Error!");
+            }
+            else {
+                if (result == null || result == undefined || result.length == 0) {
+                    res.json({
+                        error: true,
+                        msg: 'notexist',
+                        data: result,
+                    });
+                }
+                else {
+                    res.json({
+                        error: false,
+                        msg: 'OK',
+                        data: result,
+                    });
+                }
+            }
+        });
+    },
+
+    addFriend : (req, res) => {
+        var body = req.body;
+        Friend.create(body, function(err, rs) {
+            if (err) {
+                res.send("Error!");
+            }
+            else {
+                res.json(rs);
+            }
+        })
     }
 }
 

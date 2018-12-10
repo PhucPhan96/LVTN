@@ -17,12 +17,21 @@ export class BasicInfoComponent implements OnInit {
   user : User = new User();
   email : String = ""
   public subscription: Subscription;
+  isProfile : String = "";
 
   public api : String = this.cofig.API;
   constructor(private router : Router, private userService : UserService, private cofig : Config) { }
 
   ngOnInit() {
-    this.email = localStorage.getItem('user');
+    this.isProfile = localStorage.getItem('profile');
+    
+    if(this.isProfile == 'user'){
+      this.email = localStorage.getItem('user');
+    }
+    else if(this.isProfile == 'friend'){
+      this.email = localStorage.getItem('friendemail');
+    }
+    // this.email = localStorage.getItem('friendemail');
     
     this.getUserByEmail();
   }

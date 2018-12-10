@@ -13,6 +13,10 @@ export class GroupService {
 
   constructor(public http: HttpClient, private cofig: Config) { }
 
+  getGroupByName(name : String) : Observable<MyResponse<Event[]>>{
+    return this.http.get<MyResponse<Event[]>>(`${this.API}getGroupByName/${name}`);
+  }
+
   getAllGroupUserJoin(_id : String){
     return this.http.get(`${this.API}getAllGroupUserJoin/${_id}`);
   }

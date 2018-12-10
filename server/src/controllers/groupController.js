@@ -102,7 +102,17 @@ var group = {
             } else
                 res.json({ result: 1, msg: rs || {} });
         })
-    }
+    },
+    
+    getGroupByName : (req, res) => {
+        Group.find({ name: new RegExp(req.params.search, "i") }, function(err, rs){
+            if (err || !rs) {
+                console.log(`Error ${err}`);
+                res.json({ result: 0, msg: `${err}`, rs: {} });
+            } else
+                res.json({ result: 1, msg: rs || {} });
+        })
+    },
 }
 
 module.exports = group;

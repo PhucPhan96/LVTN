@@ -52,7 +52,11 @@ export class NewfeedsComponent implements OnInit {
   }
 
   getAllGroupUserJoin(id: String) {
+    console.log(id);
+    
     this.subscription = this.groupService.getAllGroupUserJoin(id).subscribe(data => {
+      console.log(data);
+      
       let res = JSON.parse(JSON.stringify(data));
       res.msg.forEach(element => {
         this.listGroup.push(element.group);

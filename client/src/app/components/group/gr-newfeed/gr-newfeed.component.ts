@@ -31,7 +31,7 @@ export class GrNewfeedComponent implements OnInit {
   skip : Number = 0;
 
   resultUpload: any;
-  public uploader: FileUploader = new FileUploader({ url: 'http://localhost:3200/api/uploadimg', itemAlias: 'userPhoto' });
+  public uploader: FileUploader = new FileUploader({ url: this.api + '/api/uploadimg', itemAlias: 'userPhoto' });
   constructor(private config: Config, private postService: PostService, private modalService: NgbModal,
     private websocketService: WebsocketService, private userService: UserService, private groupService: GroupService) {
 

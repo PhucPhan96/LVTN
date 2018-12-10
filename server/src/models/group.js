@@ -1,10 +1,9 @@
 const mongoose = require('mongoose');
 const objectId = mongoose.Schema.Types.ObjectId;
 const schema = mongoose.Schema;
-const member = require('./user');
 
 var groupSchema = new schema({
-    name : String,
+    name : {type : String, index : true},
     intro : String,
     location_active : String,
     contact : String,
