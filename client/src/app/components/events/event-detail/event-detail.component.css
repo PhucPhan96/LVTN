@@ -1,7 +1,10 @@
 /*==================================================
   Post Contents CSS
   ==================================================*/
-
+ .container{
+    margin-top: 110px;
+  }
+  
   .post-content{
     background: #f8f8f8;
     border-radius: 4px;
@@ -40,10 +43,8 @@
     font-weight: 600;
   }
   
-  .post-content .post-container .post-detail .reaction{
-    position: absolute;
-    right: 0;
-    top: 0;
+  .reaction{
+    margin-top: 1rem;
   }
   
   .post-content .post-container .post-detail .post-comment{
@@ -117,4 +118,92 @@
   }
   .post-detail .user-info{
     margin-left: 30px;
+  }
+
+  .redtext{
+    color: red;
+    text-align: center;
+    font-size: 1.1rem;
+  }
+
+  .datestart{
+    color: black;
+    font-weight: bold;
+    font-size: 2.5rem;
+    text-align: center;
+  }
+
+  .nameevent{
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .createby{
+    margin-top: .5rem;
+    margin-bottom: 1rem;
+  }
+
+  .reaction{
+    margin-top: 1rem;
+  }
+
+  .btn-create{
+    float: right;
+    color: white;
+    background-color: #4267b2;
+  }
+
+  .admin h5{
+    font-weight: bold;
+    margin-top: 2rem;
+  }
+
+  .admin button{
+    margin-top: 1rem;
+  }
+
+  /* menu */
+  ul.edit-menu{
+    /* margin-top: 150px; */
+    padding: 0 10px;
+    cursor: pointer;
+  }
+  
+  ul.edit-menu li{
+    list-style: none;
+    border-bottom: 1px solid #f1f2f2;
+    padding: 15px 0;
+    position: relative;
+    color: black !important;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  
+  ul.edit-menu li.active::before{
+    content: "";
+    background: #4267b2;
+    width: 2px;
+    height: 40px;
+    position: absolute;
+    top: 50%;
+    left: -20px;
+    transform: translate(-50%,-50%);
+  }
+  
+  ul.edit-menu li i.icon{
+    font-size: 16px;
+  }
+/*   
+  ul.edit-menu li.active i.icon{
+    color: #8dc63f;
+  } */
+  
+  ul.edit-menu li a{
+    color: black;
+    margin-left: 10px;
+  }
+  
+  ul.edit-menu li.active a{
+    color: #4267b2;
   }

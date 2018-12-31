@@ -39,4 +39,9 @@ export class EventsComponent implements OnInit {
       });
     })
   }
+
+  detailEvent(event){
+    localStorage.setItem('detailevent', JSON.stringify(event).toString());
+    this.router.navigateByUrl('eventdetail/plan');
+  }
 }

@@ -1,6 +1,7 @@
 var Message = require('./../models/message');
 var Post = require('./../models/post');
 var CmtPost = require('./../models/cmt_post');
+const PlanDetail = require('./../models/plan_detail.js');
 
 exports = module.exports = function (io) {
     io.on('connection', (socket) => {
@@ -56,6 +57,22 @@ exports = module.exports = function (io) {
                     "post" : data.post,
                     "comment" : data.comment,
                     "time_cmt" : data.time_cmt
+                }, function(err, rs){
+                    if(err) console.log(err);
+                    else console.log(rs);
+                })
+        });
+
+        socket.on('itemPlan', (data)=>{
+            console.log(data);
+            
+            io.sockets.emit('newItemPlan', data);
+            PlanDetail.create(
+                {
+                    "time" : data.time,
+                    "work" : data.work,
+                    "cost" : data.cost,
+                    "plan" : data.plan
                 }, function(err, rs){
                     if(err) console.log(err);
                     else console.log(rs);

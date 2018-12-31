@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import * as $ from 'jquery';
 
 import { Subscription } from 'rxjs';
 import { Event } from './../../../models/event.class';
@@ -13,21 +15,29 @@ import { GroupService } from './../.././../services/group.service';
 })
 export class EventDetailComponent implements OnInit {
   @Input() event : Event;
+  ev : Event = new Event();
   isJoin : String = "Tham gia";
   public subscription: Subscription;
   api: String = this.config.API;
   group : Group = new Group();
 
-  constructor(private eventService : EventService, private config: Config, private groupService : GroupService) { }
+  constructor(private router : Router, private eventService : EventService, private config: Config, private groupService : GroupService) { }
 
   ngOnInit() {
-    this.subscription = this.groupService.getGroupByID(this.event.group).subscribe(rs => {
+    $(function () {
+      $('.edit-menu').on('click', 'li', function () {
+        $(this).addClass('active').siblings().removeClass('active');
+      });
+    });
+    this.ev = JSON.parse(localStorage.getItem('detailevent'));
+    console.log(this.event);
+    this.subscription = this.groupService.getGroupByID(this.ev.group).subscribe(rs => {
       let res = JSON.parse(JSON.stringify(rs));
       this.group = res.msg[0];
       console.log(this.group);
     })
 
-    this.subscription = this.eventService.isJoin(localStorage.getItem('idUser'), this.event._id).subscribe(data => {
+    this.subscription = this.eventService.isJoin(localStorage.getItem('idUser'), this.ev._id).subscribe(data => {
       let res = JSON.parse(JSON.stringify(data));
       
       if(res == null){
@@ -50,4 +60,15 @@ export class EventDetailComponent implements OnInit {
     }
   }
 
+  donate(){
+    this.router.navigateByUrl('eventdetail/donate');
+  }
+
+  homeevent(){
+    this.router.navigateByUrl('eventdetail/plan');
+  }
+
+  listDonate(){
+    this.router.navigateByUrl('eventdetail/listdonate');
+  }
 }

@@ -1,0 +1,30 @@
+.plan{
+    display: none;
+}
+
+.noplan{
+    display: flow-root;
+}
+
+.create button{
+    float: right;
+}
+
+.list-group-item{
+    background-color: transparent !important;
+}
+
+.list-group-item label{
+    font-weight: bold;
+}
+
+.fund{
+    margin-top: 2rem;
+}
+
+.addmore{
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    cursor: pointer;
+}

@@ -1,8 +1,19 @@
 <div class="row">
   <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-    <div class="card text-left card-newfeeds" *ngFor="let event of listEvent" >
-      <app-event-detail [event] = event></app-event-detail>
-    </div>
+    <ul class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let event of listEvent">
+        <div>
+          <h3 (click)="detailEvent(event)">{{event.title}}</h3>
+          <p>{{event.intro}}</p>
+          <p><i aria-hidden="true" class="fa fa-clock-o" style="color: rgb(226, 2, 2)">&nbsp; {{event.event_start |
+              date
+              : "HH:mm dd-MM-yyyy"}}</i> &nbsp;&nbsp;
+            <i aria-hidden="true" class="fa fa-location-arrow" style="color: #8dc63f">&nbsp; {{event.event_address}}</i>
+          </p>
+        </div>
+        <!-- <span><i class="fa fa-angle-double-right" aria-hidden="true" style="font-size: 2rem" (click)="createPlan()"></i></span> -->
+      </li>
+    </ul>
   </div>
 
   <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">

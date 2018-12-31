@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Event } from './../models/event.class';
+import { Donate } from './../models/donate.class';
 import { Config } from './../app.cofig';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { MyResponse } from '../models/my_response.class';
@@ -28,6 +29,25 @@ export class EventService {
   
   getEventByName(title : String) : Observable<MyResponse<Event[]>>{
     return this.http.get<MyResponse<Event[]>>(`${this.API}getEventByName/${title}`);
+  }
+
+  donate(dona : Donate) : Observable<MyResponse<Donate>>{
+    return this.http.post<MyResponse<Donate>>(this.API + 'donate/', dona);
+  }
+
+  getAllDonateEvent(event : String) : Observable<MyResponse<Donate[]>>{
+    return this.http.get<MyResponse<Donate[]>>(`${this.API}getAllDonateEvent/${event}`);
+  }
+
+  updateStatusDonate(id : String) : Observable<MyResponse<Donate>>{
+    var body = {
+      _id : id
+    }
+    return this.http.put<MyResponse<Donate>>(this.API + 'updateStatusDonate/', body);
+  }
+
+  getAllDonateReceived(event : String) : Observable<MyResponse<Donate[]>>{
+    return this.http.get<MyResponse<Donate[]>>(`${this.API}getAllDonateReceived/${event}`);
   }
 
   isJoin(user : String, event : String){

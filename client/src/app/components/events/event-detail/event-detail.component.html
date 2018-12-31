@@ -1,38 +1,42 @@
-<div class="post-content">
-  <div class="post-container">
-      <img src="{{api}}images/{{group.avatarpath}}" alt="group" class="profile-photo-md pull-left">
-    <div class="post-detail">
-      <div class="user-info">
-        <h5><a class="profile-link">{{group.name}}</a></h5>
-        <p class="text-muted">Created on {{event.time_create | timeAgo}} </p>
-      </div>
-      <div class="post-text">
-        <img src="{{api}}images/{{event.imgpath}}" width="100%" alt="">
-        <h4><a class="profile-link">{{event.title}}</a></h4>
-        <div class="reaction">
-            <button type="button" class="btn" [ngClass]="isJoin == 'Tham gia' ? 'btn-join' : 'btn-leave'" (click)="joinorleave(event._id)">{{isJoin}}</button>
+<app-header></app-header>
+<div class="container">
+  <div class="row">
+
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+      <img src="{{api}}images/{{ev.imgpath}}" width="100%" alt="">
+      <div class="row" style="margin-top: .5rem;">
+
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+          <div class="redtext">Tháng {{ev.event_start | date : "MM"}}</div>
+          <div class="datestart">{{ev.event_start | date : "dd"}}</div>
+        </div>
+
+        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+          <div class="nameevent" (click)="homeevent()">{{ev.title}}</div>
+          <div class="createby">
+            Được tạo bởi nhóm <span style="color: #007bff; font-weight: 600">{{group.name}}</span>
           </div>
-        <p>{{event.intro}}</p>
-        <h5>Nhiệm vụ</h5>
-        <p>{{event.misson}}</p>
-        <h5>Mục tiêu</h5>
-        <p>{{event.target}}</p>
-        <h5>Yêu cầu</h5>
-        <p>{{event.require}}</p>
+        </div>
       </div>
+
+      <div class="reaction">
+        <button type="button" class="btn" [ngClass]="isJoin == 'Tham gia' ? 'btn-join' : 'btn-leave'" (click)="joinorleave(ev._id)">{{isJoin}}</button>
+        <button type="button" class="btn btn-create" (click)="donate()">Đóng góp</button>
+      </div>
+      <hr>
       <div class="timer">
         <div class="row">
           <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
           </div>
           <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-            <span>Start: {{event.event_start | date : "yyyy-MM-dd"}}</span>
+            <span>Start: {{ev.event_start | date : "yyyy-MM-dd"}}</span>
           </div>
           <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
           </div>
           <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-            <span>End: {{event.event_end | date : "yyyy-MM-dd"}}</span>
+            <span>End: {{ev.event_end | date : "yyyy-MM-dd"}}</span>
           </div>
         </div>
 
@@ -50,8 +54,26 @@
             <i class="fa fa-map-marker" aria-hidden="true"></i>
           </div>
           <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
-            <span>{{event.event_address}}</span>
+            <span>{{ev.event_address}}</span>
           </div>
+        </div>
+      </div>
+      <div class="admin">
+        <h5>Quản lý</h5>
+        <hr>
+        <ul class="edit-menu" [ngClass]="isProfile == 'friend' ? 'hidden': 'show'">
+          <li><a (click)="listDonate()">Danh sách đóng góp</a></li>
+          <li><a (click)="createReport()">Tạo báo cáo</a></li>
+          <li><a (click)="summary()">Tổng kết</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+      <div class="post-content">
+        <div class="post-container">
+          <!-- <div class="noplan">Chưa có kế hoạch</div>   -->
+          <router-outlet></router-outlet>
         </div>
       </div>
     </div>

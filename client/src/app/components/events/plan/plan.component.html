@@ -1,0 +1,42 @@
+<div class="titleEvent">
+  <h3>Kế hoạch</h3>
+  <hr>
+
+  <div class="detail">
+    <div class="create" [ngClass]="lsPlan.length > 0 ? 'plan' : 'noplan'">
+      <h4>Chưa có kế hoạch</h4>
+      <button class="btn btn-success" (click)="createPlan()">Lập kế hoạch</button>
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item" [ngClass]="lsPlan.length > 0 ? '' : 'plan'">
+        <div class="row">
+          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <label for="">Thời gian:</label>
+          </div>
+
+          <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+            <label for="">Công việc:</label>
+          </div>
+
+          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            <label for="">Chi phí:</label>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item" *ngFor="let plan of lsPlan">
+        <app-plan-item [planItem]='plan'></app-plan-item>
+      </li>
+      <div class="addmore" [ngClass]="lsPlan.length > 0 ? '' : 'plan'" (click)="createPlan()" >. . . Thêm</div>
+    </ul>
+  </div>
+
+  <h3 class="fund">Quỹ hiện có</h3>
+  <hr>
+
+  <div class="detail">
+    <ul class="list-group">
+      <li class="list-group-item">
+      </li>
+    </ul>
+  </div>
+</div>

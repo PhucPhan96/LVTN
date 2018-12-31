@@ -16,4 +16,12 @@ module.exports = (app) => {
         .post(EventController.leaveEvent);
     app.route('/isJoin')
         .post(EventController.isJoin);
+    app.route('/donate')
+        .post(EventController.donate);
+    app.route('/getAllDonateEvent/:event')
+        .get(EventController.getAllDonateEvent);
+    app.route('/getAllDonateReceived/:event')
+        .get(EventController.getAllDonateReceived);
+    app.route('/updateStatusDonate')
+        .put(EventController.updateStatusDonate);
 }

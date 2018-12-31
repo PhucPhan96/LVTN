@@ -47,7 +47,13 @@ import { SearchresultComponent } from './components/searchresult/searchresult.co
 import { ResultpepleComponent } from './components/searchresult/resultpeple/resultpeple.component';
 import { ResultgroupComponent } from './components/searchresult/resultgroup/resultgroup.component';
 import { ResulteventComponent } from './components/searchresult/resultevent/resultevent.component';
-import { CreatePlanComponent } from './components/group/create-plan/create-plan.component';
+import { CreatePlanComponent } from './components/events/create-plan/create-plan.component';
+import { PlanItemComponent } from './components/events/plan-item/plan-item.component';
+import { PlanComponent } from './components/events/plan/plan.component';
+import { DonateComponent } from './components/events/donate/donate.component';
+import { PlanService } from './services/plan.service';
+import { ListdonateComponent } from './components/events/listdonate/listdonate.component';
+import { DonateItemComponent } from './components/events/listdonate/donate-item/donate-item.component';
 
 const appRoutes : Routes = [
   {
@@ -89,7 +95,16 @@ const appRoutes : Routes = [
       { path: 'mngroup', component: MngroupComponent },
       { path: 'creategroup', component: CreateGroupComponent },
       { path: 'member', component: ListmemberComponent },
-      { path: 'createplan', component: CreatePlanComponent}
+    ]
+  },
+  {
+    path: 'eventdetail',
+    component: EventDetailComponent,
+    children: [
+      { path: 'plan', component: PlanComponent},
+      { path: 'createplan', component: CreatePlanComponent},
+      { path: 'donate', component: DonateComponent},
+      { path: 'listdonate', component: ListdonateComponent},
     ]
   }
 ];
@@ -126,7 +141,12 @@ const appRoutes : Routes = [
     ResultpepleComponent,
     ResultgroupComponent,
     ResulteventComponent,
-    CreatePlanComponent
+    CreatePlanComponent,
+    PlanItemComponent,
+    PlanComponent,
+    DonateComponent,
+    ListdonateComponent,
+    DonateItemComponent
   ],
   imports: [
     BrowserModule,
@@ -146,7 +166,8 @@ const appRoutes : Routes = [
     MessageService,
     WebsocketService,
     GroupService,
-    EventService
+    EventService,
+    PlanService
   ],
   bootstrap: [AppComponent]
 })

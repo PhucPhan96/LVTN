@@ -1,0 +1,27 @@
+<div class="titleEvent">
+  <h3>Danh sách đóng góp</h3>
+  <hr>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+          <label for="">Loại:</label>
+        </div>
+
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+          <label for="">Tên:</label>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+          <label for="">Số lượng:</label>
+        </div>
+
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+          <label for="">Trạng thái:</label>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item" *ngFor="let donate of listDonate">
+      <app-donate-item [donate_item]='donate'></app-donate-item>
+    </li>
+  </ul>
+</div>

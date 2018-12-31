@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 var Event = require('./../models/event');
 var JoinEvent = require('./../models/join_event');
+var Donate = require('./../models/donate');
 
 var event = {
     createEvent: (req, res) => {
@@ -81,14 +82,56 @@ var event = {
     },
 
     getEventByName: (req, res) => {
-        Event.find({ title: new RegExp(req.params.search, "i") }, function(err, rs) {
-                if (err || !rs) {
-                    console.log(`Error ${err}`);
-                    res.json({ result: 0, msg: `${err}`, rs: {} });
-                } else
-                    res.json({ result: 1, msg: rs || {} });
-            })
+        Event.find({ title: new RegExp(req.params.search, "i") }, function (err, rs) {
+            if (err || !rs) {
+                console.log(`Error ${err}`);
+                res.json({ result: 0, msg: `${err}`, rs: {} });
+            } else
+                res.json({ result: 1, msg: rs || {} });
+        })
     },
+
+    donate: (req, res) => {
+        var donate = req.body;
+        Donate.create(donate, function (err, result) {
+            if (err) {
+                res.send("Error!");
+            }
+            else {
+                res.json(result);
+            }
+        });
+    },
+
+    getAllDonateEvent: (req, res) => {
+        Donate.find({ 'event': req.params.event }, function (err, rs) {
+            if (err || !rs) {
+                console.log(`Error ${err}`);
+                res.json({ result: 0, msg: `${err}`, rs: {} });
+            } else
+                res.json({ result: 1, msg: rs || {} });
+        })
+    },
+
+    getAllDonateReceived: (req, res) => {
+        Donate.find({'event': req.params.event, 'status': 'Đã nhận' }, function (err, rs) {
+            if (err || !rs) {
+                console.log(`Error ${err}`);
+                res.json({ result: 0, msg: `${err}`, rs: {} });
+            } else
+                res.json({ result: 1, msg: rs || {} });
+        })
+    },
+
+    updateStatusDonate: (req, res) => {
+        Donate.findOneAndUpdate({'_id' : req.body._id}, { 'status': 'Đã nhận' }, (err, data) => {
+            if (err || !data) {
+                console.log(`Update error ${err}`);
+                res.json({ result: 0, msg: `${err}`, data: {} });
+            } else
+                res.json({ result: 1, msg: data || {} });
+        })
+    }
 }
 
 module.exports = event;

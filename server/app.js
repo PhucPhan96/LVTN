@@ -72,6 +72,7 @@ require('./src/router/routerMessage.js')(app);
 require('./src/router/routerGroup.js')(app);
 require('./src/router/routerPost.js')(app);
 require('./src/router/routerEvent.js')(app);
+require('./src/router/routerPlan.js')(app);
 
 var store = multer.diskStorage({
   destination: function (req, file, callback) {

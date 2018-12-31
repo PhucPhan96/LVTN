@@ -76,4 +76,20 @@ export class WebsocketService {
     });
     return observable;
   }
+
+  newItemPlan(data){
+    this.socket.emit('itemPlan', data);
+  }
+
+  newItemPlanReceived(){
+    const observable = new Observable<{ time : Date, work : String, cost : Number, plan : String}>(observer => {
+      this.socket.on('newItemPlan', (data) => {
+        observer.next(data);
+      });
+      return () => {
+        this.socket.disconnect();
+      };
+    });
+    return observable;
+  }
 }

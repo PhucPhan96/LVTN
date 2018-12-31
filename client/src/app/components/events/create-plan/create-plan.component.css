@@ -1,0 +1,27 @@
+.ev-detail{
+    margin-top: 1rem;
+}
+
+.ev-detail input{
+    width: 100%;
+}
+
+.add-detail i{
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    color: #c5c5c5;
+    cursor: pointer;
+}
+
+.btn-add{
+    float: right;
+    margin-top: 1rem;
+}
+
+.list-group-item{
+    background-color: transparent !important;
+}
+
+.list-group-item label{
+    font-weight: bold;
+}
