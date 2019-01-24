@@ -92,4 +92,20 @@ export class WebsocketService {
     });
     return observable;
   }
+
+  addSpendingEvent(data){
+    this.socket.emit('spendingevent', data);
+  }
+
+  newSpendingEventReceived(){
+    const observable = new Observable<{ time : Date, content : String, spending : Number, event : String}>(observer => {
+      this.socket.on('newSpendingEvent', (data) => {
+        observer.next(data);
+      });
+      return () => {
+        this.socket.disconnect();
+      };
+    });
+    return observable;
+  }
 }

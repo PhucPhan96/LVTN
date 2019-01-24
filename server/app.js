@@ -25,6 +25,8 @@ var router = require('./src/controllers/userController');
 // var plan_detail = require('./src/models/plan_detail');
 // var like_event = require('./src/models/like_event');
 // var conversation = require('./src/models/conversation');
+// var spending = require('./src/models/spending_event');
+// var funds_group = require('./src/models/funds_group');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

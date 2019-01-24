@@ -5,8 +5,13 @@ html, body{
 
 .hide{
     visibility: hidden;
+    height: 0;
 }
 
 .show{
     visibility: inherit;
+}
+
+ul li label.table-head{
+    font-weight: bold;
 }

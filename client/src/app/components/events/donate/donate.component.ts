@@ -30,7 +30,8 @@ export class DonateComponent implements OnInit {
     this.dona.user = localStorage.getItem('idUser');
     this.dona.event = JSON.parse(localStorage.getItem('detailevent'))._id;
     this.dona.status = "Chưa nhận";
-    console.log(this.dona);
+    if(this.dona.type == 'Tiền mặt')
+      this.dona.nameitem = 'Tiền mặt';
     this.subscription = this.eventService.donate(this.dona).subscribe(data => {
       let res = JSON.parse(JSON.stringify(data));
       if (res.msg != {}) {

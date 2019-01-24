@@ -54,6 +54,8 @@ import { DonateComponent } from './components/events/donate/donate.component';
 import { PlanService } from './services/plan.service';
 import { ListdonateComponent } from './components/events/listdonate/listdonate.component';
 import { DonateItemComponent } from './components/events/listdonate/donate-item/donate-item.component';
+import { CreateReportComponent } from './components/events/event-detail/create-report/create-report.component';
+import { FriendoffriendComponent } from './components/friendlist/friendoffriend/friendoffriend.component';
 
 const appRoutes : Routes = [
   {
@@ -81,7 +83,8 @@ const appRoutes : Routes = [
     children: [
       { path: 'basicInfo', component: BasicInfoComponent },
       { path: 'changeBasicInfo', component: EditBasicComponent },
-      { path: 'changePass', component: ChangePassComponent }
+      { path: 'changePass', component: ChangePassComponent },
+      { path: 'listFriend', component: FriendoffriendComponent }
     ]
   },
   {
@@ -105,6 +108,7 @@ const appRoutes : Routes = [
       { path: 'createplan', component: CreatePlanComponent},
       { path: 'donate', component: DonateComponent},
       { path: 'listdonate', component: ListdonateComponent},
+      { path: 'createreport', component: CreateReportComponent},
     ]
   }
 ];
@@ -146,7 +150,9 @@ const appRoutes : Routes = [
     PlanComponent,
     DonateComponent,
     ListdonateComponent,
-    DonateItemComponent
+    DonateItemComponent,
+    CreateReportComponent,
+    FriendoffriendComponent
   ],
   imports: [
     BrowserModule,

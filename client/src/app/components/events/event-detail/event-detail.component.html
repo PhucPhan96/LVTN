@@ -58,12 +58,12 @@
           </div>
         </div>
       </div>
-      <div class="admin">
+      <div class="admin" [ngClass]="isAdmin ? 'show': 'hide'">
         <h5>Quản lý</h5>
         <hr>
-        <ul class="edit-menu" [ngClass]="isProfile == 'friend' ? 'hidden': 'show'">
+        <ul class="edit-menu" [ngClass]="isProfile == 'friend' ? 'hidden' : 'show'">
           <li><a (click)="listDonate()">Danh sách đóng góp</a></li>
-          <li><a (click)="createReport()">Tạo báo cáo</a></li>
+          <li><a (click)="createReport()">Thống kê chi tiêu</a></li>
           <li><a (click)="summary()">Tổng kết</a></li>
         </ul>
       </div>

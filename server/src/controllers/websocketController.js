@@ -2,6 +2,7 @@ var Message = require('./../models/message');
 var Post = require('./../models/post');
 var CmtPost = require('./../models/cmt_post');
 const PlanDetail = require('./../models/plan_detail.js');
+const SpendingEvent = require('./../models/spending_event.js');
 
 exports = module.exports = function (io) {
     io.on('connection', (socket) => {
@@ -73,6 +74,22 @@ exports = module.exports = function (io) {
                     "work" : data.work,
                     "cost" : data.cost,
                     "plan" : data.plan
+                }, function(err, rs){
+                    if(err) console.log(err);
+                    else console.log(rs);
+                })
+        });
+
+        socket.on('spendingevent', (data)=>{
+            console.log(data);
+            
+            io.sockets.emit('newSpendingEvent', data);
+            SpendingEvent.create(
+                {
+                    "time" : data.time,
+                    "content" : data.content,
+                    "spending" : data.spending,
+                    "event" : data.event
                 }, function(err, rs){
                     if(err) console.log(err);
                     else console.log(rs);

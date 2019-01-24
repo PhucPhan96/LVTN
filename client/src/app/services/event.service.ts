@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Event } from './../models/event.class';
 import { Donate } from './../models/donate.class';
+import { SpendingEvent } from './../models/spendingevent.class';
 import { Config } from './../app.cofig';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { MyResponse } from '../models/my_response.class';
@@ -73,4 +74,16 @@ export class EventService {
     }
     return this.http.post(this.API + 'leaveEvent/', body);
   }
+
+  getAllSpendingEvent(event : String) : Observable<MyResponse<SpendingEvent[]>>{
+    return this.http.get<MyResponse<SpendingEvent[]>>(`${this.API}getAllSpendingEvent/${event}`);
+  }
+
+  getEventComingSoon(user : String) : Observable<MyResponse<Event[]>>{
+    return this.http.get<MyResponse<Event[]>>(`${this.API}getEventComingSoon/${user}`);
+  }
+
+  // addSpendingEvent(spend : SpendingEvent) : Observable<MyResponse<SpendingEvent>>{
+  //   return this.http.post<MyResponse<SpendingEvent>>(this.API + 'addSpendingEvent/', spend);
+  // }
 }

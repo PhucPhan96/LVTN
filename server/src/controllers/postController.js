@@ -20,7 +20,7 @@ var post = {
     getAllPost: (req, res) => {
         Post.find({ 'group': req.params._id }, function (err, rs) {
             if (err || !rs) {
-                console.log(`Get error ${err}`);
+                //console.log(`Get error ${err}`);
                 res.json({ result: 0, msg: `${err}`, rs: {} });
             } else
                 res.json({ result: 1, msg: rs || {} });
@@ -31,14 +31,14 @@ var post = {
             .populate(['group', 'user'])
             .exec(function (err, users) {
                 if (err) console.log(err);
-                else console.log(users);
+                 //console.log(users);
             })
     },
 
     getAllPostOfUser: (req, res) => {
         Post.find({ 'user': req.params._id }, function (err, rs) {
             if (err || !rs) {
-                console.log(`Get error ${err}`);
+                //console.log(`Get error ${err}`);
                 res.json({ result: 0, msg: `${err}`, rs: {} });
             } else
                 res.json({ result: 1, msg: rs || {} });
@@ -48,10 +48,10 @@ var post = {
     getAllCmtPost: (req, res) => {
         CmtPost.find({ 'post': req.params._id }, function (err, rs) {
             if (err || !rs) {
-                console.log(`Get error ${err}`);
+                //console.log(`Get error ${err}`);
                 res.json({ result: 0, msg: `${err}`, rs: {} });
             } else
-                res.json({ result: 1, msg: rs || {} });
+                res.json({ result: 1, msg: rs || {}, len : rs.length});
         })
             .sort({ 'time_cmt': 1 })
             .populate(['post', 'user'])
@@ -61,10 +61,22 @@ var post = {
             })
     },
 
+    getAllLikePost: (req, res) => {
+        LikePost.find({ 'post': req.params._id }, function (err, rs) {
+            if (err || !rs) {
+                //console.log(`Get error ${err}`);
+               
+                res.json({ result: 0, msg: `${err}`, rs: {} });
+            } else
+                res.json({ result: 1, msg: rs.length});
+                //console.log(`Get error ${rs.length}`);
+        })
+    },
+
     getPostByID: (req, res) => {
         Post.find({ '_id': req.params._id }, function (err, rs) {
             if (err || !rs) {
-                console.log(`Error ${err}`);
+                //console.log(`Error ${err}`);
                 res.json({ result: 0, msg: `${err}`, rs: {} });
             } else
                 res.json({ result: 1, msg: rs || {} });
@@ -109,7 +121,7 @@ var post = {
     getAllPostOfGroup: (req, res) => {
         Post.find({ 'group': req.params._id }, function (err, rs) {
             if (err || !rs) {
-                console.log(`Error ${err}`);
+                //console.log(`Error ${err}`);
                 res.json({ result: 0, msg: `${err}`, rs: {} });
             } else
                 res.json({ result: 1, msg: rs || {} });

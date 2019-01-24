@@ -5,6 +5,10 @@
       <div class="editimg cover" [ngClass]="isProfile == 'friend' ? 'hidden': 'show'">
         <h5 (click)="openLg(content)"><i clas class="fa fa-camera" aria-hidden="true"></i><br></h5>
       </div>
+      <div class="list-button">
+      <button class="btn btn-light btn-unfriend" [ngClass]="isProfile == 'friend' ? 'show': 'hidden'">{{isFriend ? 'Hủy kết bạn' : 'Kết bạn'}}</button>
+      <button class="btn btn-light btn-unfriend" [ngClass]="isProfile == 'friend' ? 'show': 'hidden'" (click)="chat()" >Nhắn tin</button>
+      </div>
       <ng-template #content let-modal>
         <div class="modal-header">
           <h4 class="modal-title">Cập nhật ảnh bìa</h4>
@@ -64,10 +68,18 @@
             <!-- <li><i class="icon ion-ios-briefcase-outline"></i><a href="edit-profile-work-edu.html">Education and Work</a></li>
             <li><i class="icon ion-ios-heart-outline"></i><a href="edit-profile-interests.html">My Interests</a></li>
             <li><i class="icon ion-ios-settings"></i><a href="edit-profile-settings.html">Account Settings</a></li> -->
-            <li><i class="icon ion-ios-locked-outline"></i><a (click)="changePass()">Thay đổi Password</a></li>
+            <li><i class="icon ion-ios-locked-outline"></i><a (click)="changePass()">Thay đổi mật khẩu</a></li>
+          </ul>
+          <!-- Profile Friend -->
+          <ul class="edit-menu friend" [ngClass]="isProfile == 'friend' ? 'show': 'hidden'">
+            <li class="active"><i class="icon ion-ios-information-outline"></i><a (click)="profile()">Thông tin cơ bản</a></li>
+            <!-- <li><i class="icon ion-ios-briefcase-outline"></i><a href="edit-profile-work-edu.html">Education and Work</a></li>
+            <li><i class="icon ion-ios-heart-outline"></i><a href="edit-profile-interests.html">My Interests</a></li>
+            <li><i class="icon ion-ios-settings"></i><a href="edit-profile-settings.html">Account Settings</a></li> -->
+            <li><i class="icon ion-ios-locked-outline"></i><a (click)="listFriend()">Bạn bè</a></li>
           </ul>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-9">
 
           <!-- Basic Information
         ================================================= -->

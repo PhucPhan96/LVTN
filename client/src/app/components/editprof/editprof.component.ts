@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { FileSelectDirective, FileUploader } from 'ng2-file-upload';
 
 import { UserService } from './../../services/user.service';
+import { FriendService } from './../../services/friend.service';
 import { User } from './../../models/user.class';
 import { Subscription } from 'rxjs';
 import { MyResponse } from './../../models/my_response.class';
@@ -23,6 +24,7 @@ export class EditprofComponent implements OnInit {
   email: String = ""
   public subscription: Subscription;
   coverimg: String = "";
+  isFriend : Boolean = false;
 
   resultUpload: any;
   typeUpdate: String = "";
@@ -31,7 +33,7 @@ export class EditprofComponent implements OnInit {
   public api: String = this.cofig.API;
   public uploader: FileUploader = new FileUploader({ url: this.api + '/api/uploadimg', itemAlias: 'userPhoto' });
   
-  constructor(private router: Router, private userService: UserService, private cofig: Config, private modalService: NgbModal, private http: HttpClient) { }
+  constructor(private router: Router, private userService: UserService, private cofig: Config, private modalService: NgbModal, private http: HttpClient, private friendService : FriendService) { }
 
   ngOnInit() {
     $(function () {
@@ -66,7 +68,7 @@ export class EditprofComponent implements OnInit {
       window.location.reload();
       // this.router.navigateByUrl('/editprof/basicInfo');
     };
-
+    
   }
 
   editBasic() {
@@ -92,6 +94,7 @@ export class EditprofComponent implements OnInit {
       this.coverimg = this.api + 'images/' + this.user.coverpath;
       console.log(this.coverimg);
       this.idUser = this.user._id;
+      this.checkFriend(this.user._id, localStorage.getItem('idUser'));
     });
   }
 
@@ -111,6 +114,19 @@ export class EditprofComponent implements OnInit {
     });
   }
 
+  checkFriend(user_one : String, user_two : String){
+    this.subscription = this.friendService.checkFriend(user_one, user_two).subscribe(data => {
+      let res = JSON.parse(JSON.stringify(data));
+      console.log(res.msg);
+      
+      if(res.msg == "OK")
+        this.isFriend = true;
+      else
+        this.isFriend = false;
+    })
+    console.log(this.isFriend);
+  }
+
   openLg(content) {
     this.modalService.open(content, { size: 'lg' });
   }
@@ -128,5 +144,9 @@ export class EditprofComponent implements OnInit {
     this.uploader.uploadAll();
     this.typeUpdate = "cover";
     this.modalService.dismissAll();
+  }
+
+  listFriend(){
+    this.router.navigateByUrl('/editprof/listFriend');
   }
 }

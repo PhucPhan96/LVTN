@@ -24,4 +24,10 @@ module.exports = (app) => {
         .get(EventController.getAllDonateReceived);
     app.route('/updateStatusDonate')
         .put(EventController.updateStatusDonate);
+    app.route('/getAllSpendingEvent/:event')
+        .get(EventController.getAllSpendingEvent);
+    app.route('/getEventComingSoon/:user')
+        .get(EventController.getEventComingSoon);
+    // app.route('/addSpendingEvent')
+    //     .post(EventController.addSpendingEvent);
 }

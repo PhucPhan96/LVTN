@@ -7,6 +7,8 @@ import { UserService } from './../../services/user.service';
 import { GroupService } from './../../services/group.service';
 import { Group } from './../../models/group.class';
 import { PostService } from './../../services/post.service';
+import { EventService } from './../../services/event.service';
+import { Event } from './../../models/event.class';
 import { PostDetail } from './../../models/postDetail.class';
 import { CmtPost } from './../../models/cmtpost.class';
 import { WebsocketService } from './../../services/websocket.service';
@@ -18,13 +20,16 @@ import { WebsocketService } from './../../services/websocket.service';
 export class NewfeedsComponent implements OnInit {
   listGroup: Group[] = Array<Group>();
   listPost: PostDetail[] = Array<PostDetail>();
+  lsEventComming : Event[] = Array<Event>();
   idUser: String = '';
+
   public subscription: Subscription;
   api: String = this.config.API;
   skip: Number = 0;
 
   constructor(private websocketService: WebsocketService, private config: Config, private groupService: GroupService,
-     private postService: PostService, private userService : UserService) {
+     private postService: PostService, private userService : UserService, private eventService : EventService) {
+      
     this.websocketService.newCommentReceived().subscribe(data => {
       let newCmtPost = new CmtPost();
       this.subscription = this.userService.getUserByID(data.user).subscribe(rs => {
@@ -49,6 +54,9 @@ export class NewfeedsComponent implements OnInit {
   ngOnInit() {
     this.idUser = localStorage.getItem('idUser');
     this.getAllGroupUserJoin(this.idUser);
+    this.getEventComingSoon(this.idUser);
+    console.log(this.lsEventComming);
+    
   }
 
   getAllGroupUserJoin(id: String) {
@@ -99,5 +107,14 @@ export class NewfeedsComponent implements OnInit {
   newCommentSend(event) {
     let time_cmt = new Date();
     this.websocketService.newComment({ user: this.idUser, post: event.post, comment: event.cmt, time_cmt: time_cmt });
+  }
+
+  getEventComingSoon(user : String){
+    this.subscription = this.eventService.getEventComingSoon(user).subscribe(data => {
+      let res = JSON.parse(JSON.stringify(data));
+      res.msg.forEach(element => {
+        this.lsEventComming.push(element);
+      });
+    })
   }
 }

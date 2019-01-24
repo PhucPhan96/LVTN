@@ -4,6 +4,7 @@ mongoose.Promise = global.Promise;
 var Event = require('./../models/event');
 var JoinEvent = require('./../models/join_event');
 var Donate = require('./../models/donate');
+var SpendingEvent = require('./../models/spending_event');
 
 var event = {
     createEvent: (req, res) => {
@@ -114,7 +115,7 @@ var event = {
     },
 
     getAllDonateReceived: (req, res) => {
-        Donate.find({'event': req.params.event, 'status': 'Đã nhận' }, function (err, rs) {
+        Donate.find({ 'event': req.params.event, 'status': 'Đã nhận' }, function (err, rs) {
             if (err || !rs) {
                 console.log(`Error ${err}`);
                 res.json({ result: 0, msg: `${err}`, rs: {} });
@@ -124,14 +125,48 @@ var event = {
     },
 
     updateStatusDonate: (req, res) => {
-        Donate.findOneAndUpdate({'_id' : req.body._id}, { 'status': 'Đã nhận' }, (err, data) => {
+        Donate.findOneAndUpdate({ '_id': req.body._id }, { 'status': 'Đã nhận' }, (err, data) => {
             if (err || !data) {
                 console.log(`Update error ${err}`);
                 res.json({ result: 0, msg: `${err}`, data: {} });
             } else
                 res.json({ result: 1, msg: data || {} });
         })
+    },
+
+    getAllSpendingEvent: (req, res) => {
+        SpendingEvent.find({ 'event': req.params.event }, function (err, rs) {
+            if (err || !rs) {
+                console.log(`Error ${err}`);
+                res.json({ result: 0, msg: `${err}`, rs: {} });
+            } else
+                res.json({ result: 1, msg: rs || {} });
+        })
+    },
+
+    getEventComingSoon: (req, res) => {
+        JoinEvent.find({ 'user': req.params.user }, function (err, rs) {
+            if (err || !rs) {
+                res.json({ result: 0, msg: `${err}`, rs: {} });
+            } else
+                res.json({ result: 1, msg: rs || {} });
+            })
+            .sort({ 'event.event_start': 1 })
+            .populate(['event'])
+            .limit(3)
     }
+
+    // addSpendingEvent: (req, res) => {
+    //     var spend = req.body;
+    //     SpendingEvent.create(spend, function (err, result) {
+    //         if (err) {
+    //             res.send("Error!");
+    //         }
+    //         else {
+    //             res.json(result);
+    //         }
+    //     });
+    // },
 }
 
 module.exports = event;

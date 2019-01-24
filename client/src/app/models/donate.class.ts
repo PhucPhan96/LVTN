@@ -2,7 +2,7 @@ export class Donate{
     _id : String;
     type : String;
     nameitem: String = "";
-    quality: Number;
+    quality: number;
     notice: String;
     status: String;
     unit: String;

@@ -8,6 +8,8 @@ module.exports = (app) => {
         .get(PostController.getAllPost);
     app.route('/getAllCmtPost/:_id')
         .get(PostController.getAllCmtPost);
+    app.route('/getAllLikePost/:_id')
+        .get(PostController.getAllLikePost);
     app.route('/getPostByID/:_id')
         .get(PostController.getPostByID);
     app.route('/likePost')

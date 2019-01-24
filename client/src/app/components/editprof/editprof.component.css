@@ -242,6 +242,9 @@ ul.edit-menu{
     padding: 0 20px;
     cursor: pointer;
   }
+  ul.edit-menu.friend{
+    margin-top: 0px !important;
+  }
   
   ul.edit-menu li{
     list-style: none;
@@ -310,8 +313,20 @@ ul.edit-menu{
 
   .hidden{
     visibility: hidden;
+    height: 0px !important;
   }
 
   .show{
     visibility: inherit;
+  }
+
+  .list-button{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 10px;
+  }
+
+  .btn-unfriend{
+    margin-left: 10px;
   }

@@ -23,8 +23,12 @@ export class PostService {
     return this.http.get<MyResponse<PostDetail[]>>(`${this.API}getAllPost/${idGroup}/${skip}/${limit}`);
   }
 
-  getAllCmtPost(idPost : String) : Observable<MyResponse<CmtPost[]>> {
-    return this.http.get<MyResponse<CmtPost[]>>(`${this.API}getAllCmtPost/${idPost}`);
+  getAllCmtPost(idPost : String) {
+    return this.http.get(`${this.API}getAllCmtPost/${idPost}`);
+  }
+
+  getAllLikePost(idPost : String) : Observable<MyResponse<CmtPost[]>> {
+    return this.http.get<MyResponse<CmtPost[]>>(`${this.API}getAllLikePost/${idPost}`);
   }
 
   getPostByID(idPost : String) : Observable<MyResponse<Post>> {

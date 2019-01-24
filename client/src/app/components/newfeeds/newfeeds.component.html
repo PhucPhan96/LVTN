@@ -11,14 +11,14 @@
         <h4>Sắp diễn ra</h4>
       </div>
       <ul class="list-group">
-        <li class="list-group-item">
-          <h5>Tên sự kiện</h5>
+        <li class="list-group-item" *ngFor="let item of lsEventComming" >
+          <h5>{{item.event.title}}</h5>
           <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <i class="fa fa-clock-o" aria-hidden="true" style="color: rgb(226, 2, 2)">&nbsp; 7:30 &nbsp; 25-10-2018</i>
+              <i class="fa fa-clock-o" aria-hidden="true" style="color: rgb(226, 2, 2)">&nbsp; {{item.event.event_start | date : 'HH:mm'}} &nbsp; {{item.event.event_start | date : 'dd-MM-yyyy'}}</i>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <i class="fa fa-location-arrow" aria-hidden="true" style="color: #8dc63f">&nbsp; Củ Chi</i>
+              <i class="fa fa-location-arrow" aria-hidden="true" style="color: #8dc63f">&nbsp; {{item.event.event_address}}</i>
             </div>
           </div>
         </li>

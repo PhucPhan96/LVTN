@@ -8,4 +8,6 @@ module.exports = (app) => {
         .post(FriendController.checkFriend);
     app.route('/addFriend')
         .post(FriendController.addFriend);
+    app.route('/unFriend/:user_one/:user_two')
+        .post(FriendController.unFriend);
 };

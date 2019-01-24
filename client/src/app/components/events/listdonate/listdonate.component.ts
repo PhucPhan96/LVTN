@@ -30,7 +30,6 @@ export class ListdonateComponent implements OnInit {
       res.msg.forEach(element => {
         this.listDonate.push(element);
       });
-      console.log(this.listDonate);
       
     })
   }

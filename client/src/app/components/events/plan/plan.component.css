@@ -22,9 +22,25 @@
     margin-top: 2rem;
 }
 
+.detail h5{
+    font-weight: bold;
+}
+
 .addmore{
     font-size: 1.2rem;
     font-weight: bold;
     margin-top: 1rem;
     cursor: pointer;
+}
+
+.right{
+    float: right;
+}
+
+.center{
+    text-align: center;
+}
+
+.title h6{
+    font-weight: bold;
 }

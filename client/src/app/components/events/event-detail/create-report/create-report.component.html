@@ -1,0 +1,70 @@
+<div class="titleEvent">
+    <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <h3>Thống kê chi tiêu</h3>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <button class="btn btn-primary" style="float: right"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Xuất báo cáo</button>
+        </div>
+      </div>
+  <hr>
+
+  <div class="detail">
+    <!-- <div class="create" [ngClass]="lsPlan.length > 0 ? 'plan' : 'noplan'">
+        <h4>Chưa có kế hoạch</h4>
+        <button class="btn btn-success" [ngClass]="isAdmin ? 'show': 'hide'" (click)="createPlan()">Lập kế hoạch</button>
+      </div> -->
+    <ul class="list-group">
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <label for="" class="table-head">Thời gian</label>
+          </div>
+
+          <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+            <label for="" class="table-head">Nội dung</label>
+          </div>
+
+          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            <label for="" class="table-head">Chi phí</label>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item" *ngFor="let item of lstSpending" >
+          <div class="row">
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+              <label for="">{{item.time | date : 'yyyy-MM-dd HH:mm'}}</label>
+            </div>
+  
+            <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+              <label for="">{{item.content}}</label>
+            </div>
+  
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+              <label for="">{{item.spending}}</label>
+            </div>
+          </div>
+        </li>
+      <!-- <li class="list-group-item" *ngFor="let plan of lsPlan">
+          <app-plan-item [planItem]='plan'></app-plan-item>
+        </li> -->
+      <div class="row ev-detail" [ngClass]="action == 'Thêm' ? 'hide' : 'show'"  >
+
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+          <input type="datetime-local" class="form-control" name="" id="" [(ngModel)]="newSpending.time" [ngModelOptions]="{standalone: true}">
+        </div>
+
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <input type="text" class="form-control" name="" id="" [(ngModel)]="newSpending.content" [ngModelOptions]="{standalone: true}">
+        </div>
+
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+          <input type="text" class="form-control" name="" id="" (keyup.enter)="addSpendingEvent()" [(ngModel)]="newSpending.spending" [ngModelOptions]="{standalone: true}">
+        </div>
+      </div>
+      <div class="addmore" [ngClass]="isAdmin ? 'show': 'hide'" >
+        <button class="btn btn-success right" (click)="createReport()" >{{action}}</button>
+      </div>
+    </ul>
+  </div>
+</div>
