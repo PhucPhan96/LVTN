@@ -55,8 +55,6 @@ export class NewfeedsComponent implements OnInit {
     this.idUser = localStorage.getItem('idUser');
     this.getAllGroupUserJoin(this.idUser);
     this.getEventComingSoon(this.idUser);
-    console.log(this.lsEventComming);
-    
   }
 
   getAllGroupUserJoin(id: String) {
@@ -115,6 +113,7 @@ export class NewfeedsComponent implements OnInit {
       res.msg.forEach(element => {
         this.lsEventComming.push(element);
       });
+      console.log(this.lsEventComming);
     })
   }
 }

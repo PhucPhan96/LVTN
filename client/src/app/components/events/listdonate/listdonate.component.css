@@ -5,3 +5,10 @@
 .list-group-item label{
     font-weight: bold;
 }
+
+.export button{
+    background: transparent;
+    border-radius: 10px;
+    border: 1px solid;
+    color: white;
+}

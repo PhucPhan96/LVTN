@@ -36,6 +36,7 @@
 .post-container img.profile-photo-md{
     height: 120px;
     margin: 15px;
+    width: 120px;
 }
 
 .post-detail{

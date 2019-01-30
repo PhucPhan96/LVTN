@@ -1,6 +1,8 @@
 export class SpendingEvent{
-    time: Date;
     content: String;
-    spending: Number;
+    quality : Number;
+    unit_price : Number;
+    total: Number;
+    note: String;
     event: String;
 }

@@ -86,9 +86,11 @@ exports = module.exports = function (io) {
             io.sockets.emit('newSpendingEvent', data);
             SpendingEvent.create(
                 {
-                    "time" : data.time,
                     "content" : data.content,
-                    "spending" : data.spending,
+                    "quality" : data.quality,
+                    "unit_price" : data.unit_price,
+                    "total" : data.total,
+                    "note" : data.note,
                     "event" : data.event
                 }, function(err, rs){
                     if(err) console.log(err);

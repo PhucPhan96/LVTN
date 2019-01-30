@@ -6,6 +6,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FileSelectDirective, FileDropDirective, FileUploadModule  } from 'ng2-file-upload';
 import { TimeAgoPipe } from 'time-ago-pipe';
+import { Angular2CsvModule } from 'angular2-csv';
+import { GridModule, ExcelModule } from '@progress/kendo-angular-grid';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -56,6 +58,8 @@ import { ListdonateComponent } from './components/events/listdonate/listdonate.c
 import { DonateItemComponent } from './components/events/listdonate/donate-item/donate-item.component';
 import { CreateReportComponent } from './components/events/event-detail/create-report/create-report.component';
 import { FriendoffriendComponent } from './components/friendlist/friendoffriend/friendoffriend.component';
+import { ReportDonateComponent } from './components/events/listdonate/report-donate/report-donate.component';
+import { ExportSpendingComponent } from './components/events/event-detail/create-report/export-spending/export-spending.component';
 
 const appRoutes : Routes = [
   {
@@ -109,6 +113,8 @@ const appRoutes : Routes = [
       { path: 'donate', component: DonateComponent},
       { path: 'listdonate', component: ListdonateComponent},
       { path: 'createreport', component: CreateReportComponent},
+      { path: 'reportdonate', component: ReportDonateComponent},
+      { path: 'exportspending', component: ExportSpendingComponent},
     ]
   }
 ];
@@ -152,7 +158,9 @@ const appRoutes : Routes = [
     ListdonateComponent,
     DonateItemComponent,
     CreateReportComponent,
-    FriendoffriendComponent
+    FriendoffriendComponent,
+    ReportDonateComponent,
+    ExportSpendingComponent
   ],
   imports: [
     BrowserModule,
@@ -160,7 +168,10 @@ const appRoutes : Routes = [
     FormsModule,
     NgbModule,
     FileUploadModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    Angular2CsvModule,
+    GridModule, 
+    ExcelModule,
   ],
   providers: [
     Config,
@@ -173,7 +184,8 @@ const appRoutes : Routes = [
     WebsocketService,
     GroupService,
     EventService,
-    PlanService
+    PlanService,
+    // ExcelService
   ],
   bootstrap: [AppComponent]
 })

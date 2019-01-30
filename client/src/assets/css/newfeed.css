@@ -71,6 +71,7 @@
     padding: 2px;
     border-radius: 50%;
     height: 50px;
+    width: 50px;
   }
 
   .imgcontent img{
@@ -84,6 +85,7 @@
 
   .list-group{
     border: 0px solid rgba(0,0,0,.125);
+    font-size: .9rem;
   }
   
   .list-group-item{

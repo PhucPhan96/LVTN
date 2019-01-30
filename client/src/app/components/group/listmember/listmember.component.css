@@ -39,3 +39,7 @@
       color: #8dc63f;
       padding-top: 10px;
   }
+
+  .profile-link{
+    cursor: pointer;
+  }

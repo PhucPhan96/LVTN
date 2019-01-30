@@ -56,4 +56,10 @@ export class FriendoffriendComponent implements OnInit {
     })
   }
 
+  gotoProfile(user){
+    localStorage.setItem('friendemail', user.email);
+    localStorage.setItem('profile', 'friend');
+    this.router.navigateByUrl('/editprof/basicInfo');
+  }
+
 }

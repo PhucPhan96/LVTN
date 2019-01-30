@@ -9,7 +9,7 @@
               <img src="{{api}}images/{{member.avatarpath}}" alt="user" class="profile-photo-lg">
               <div class="friend-info">
                 <i class="fa fa-check pull-right" aria-hidden="true" [ngClass]="member._id == group.admin ? 'show' : 'hide'">&nbsp;Admin</i>
-                <h5><a href="timeline.html" class="profile-link">{{member.firstname}} {{member.lastname}}</a></h5>
+                <h5><a (click)="gotoProfile(member)" class="profile-link">{{member.firstname}} {{member.lastname}}</a></h5>
                 <p>{{member.job}}</p>
               </div>
             </div>

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { MyResponse } from '../models/my_response.class';
 import { Friend } from '../models/friend.class';
 import { Config } from '../app.cofig';

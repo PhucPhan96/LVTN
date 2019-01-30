@@ -1,0 +1,30 @@
+<kendo-grid #grid="kendoGrid" [kendoGridBinding]="datarp" [height]="auto" [group]="group">
+  <ng-template kendoGridToolbarTemplate>
+    <button type="button" kendoGridExcelCommand icon="file-excel">Export to Excel</button>
+    <div class="title">
+      <h5>TỔNG KẾT HỖ TRỢ CHƯƠNG TRÌNH # <span style="color: rgb(184, 10, 10)">{{event_name}}</span></h5>
+    </div>
+  </ng-template>
+  <kendo-grid-column field="stt" [locked]="false" title="STT" [width]="130">
+  </kendo-grid-column>
+  <kendo-grid-column field="content" title="Nội dung" [width]="220">
+  </kendo-grid-column>
+  <kendo-grid-column field="money" title="Tiền mặt" [width]="200">
+    <ng-template kendoGridGroupFooterTemplate let-aggregates>
+      Tổng: {{aggregates["money"].sum | number}} VND
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column field="gift" title="Quà tặng" width="250">
+    <ng-template kendoGridGroupHeaderTemplate let-value="value">
+      {{value}}
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column field="type" title="Loại" width="120">
+    <ng-template kendoGridGroupHeaderTemplate let-value="value">
+      {{value}}
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column field="user" title="Người đóng góp" width="180">
+  </kendo-grid-column>
+  <kendo-grid-excel fileName="Products.xlsx"></kendo-grid-excel>
+</kendo-grid>

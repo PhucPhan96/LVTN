@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { Config } from './../../../app.cofig';
 import { GroupService } from './../../../services/group.service';
 import { UserService } from './../../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listmember',
@@ -16,7 +17,7 @@ export class ListmemberComponent implements OnInit {
   listMember: User[] = Array<User>();
   api: String = this.config.API;
   subcription: Subscription;
-  constructor(private config: Config, private groupService: GroupService, private userService : UserService) { }
+  constructor(private config: Config, private groupService: GroupService, private userService : UserService, private router : Router) { }
 
   ngOnInit() {
     this.group = JSON.parse(localStorage.getItem('group'));
@@ -35,4 +36,9 @@ export class ListmemberComponent implements OnInit {
     })
   }
 
+  gotoProfile(member){
+    localStorage.setItem('friendemail', member.email);
+    localStorage.setItem('profile', 'friend');
+    this.router.navigateByUrl('/editprof/basicInfo');
+  }
 }

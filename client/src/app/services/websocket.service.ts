@@ -98,7 +98,7 @@ export class WebsocketService {
   }
 
   newSpendingEventReceived(){
-    const observable = new Observable<{ time : Date, content : String, spending : Number, event : String}>(observer => {
+    const observable = new Observable<{ content : String, quality : Number, unit_price : Number, total: Number, note : String, event : String}>(observer => {
       this.socket.on('newSpendingEvent', (data) => {
         observer.next(data);
       });

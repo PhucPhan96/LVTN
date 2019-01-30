@@ -40,7 +40,7 @@
         <h5>Tiền mặt:</h5>
       </div>
       <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <h6 class="right" style="font-weight: bold">{{totalFundMoney}} VND</h6>
+        <h6 class="right" style="font-weight: bold">{{totalFundMoney | number}} VND</h6>
       </div>
     </div>
     <hr>
@@ -69,7 +69,7 @@
             <h6>{{item.nameitem}}</h6>
           </div>
           <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 center">
-            <h6>{{item.quality}}</h6>
+            <h6>{{item.quality | number}}</h6>
           </div>
           <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
             <h6 class="right">{{item.unit}}</h6>

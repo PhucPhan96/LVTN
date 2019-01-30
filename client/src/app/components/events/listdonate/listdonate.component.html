@@ -4,7 +4,8 @@
       <h3>Danh sách đóng góp</h3>
     </div>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-      <button class="btn btn-primary" style="float: right"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Xuất báo cáo</button>
+      <button class="btn btn-primary export" style="float: right" (click)="report()" >
+        Xuất báo cáo <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
     </div>
   </div>
   <hr>
@@ -12,14 +13,14 @@
     <li class="list-group-item">
       <div class="row">
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-          <label for="">Loại:</label>
+          <label for="">Người đóng góp</label>
         </div>
 
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-          <label for="">Tên:</label>
+          <label for="">Nội dung</label>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-          <label for="">Số lượng:</label>
+          <label for="">Vào lúc</label>
         </div>
 
         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
@@ -31,4 +32,23 @@
       <app-donate-item [donate_item]='donate'></app-donate-item>
     </li>
   </ul>
+  <!-- <div style="overflow-x:auto;">
+    <table>
+      <tr>
+        <th>TỔNG KẾT HỖ TRỢ CHƯƠNG TRÌNH # {{event_name}}</th>
+      </tr>
+      <tr>
+        <th>Loại</th>
+        <th>Tên</th>
+        <th>Số lượng</th>
+        <th>Trạng thái</th>
+      </tr>
+      <tr *ngFor="let donate of listDonate">
+        <td></td>
+        <td>Smith</td>
+        <td>50</td>
+        <td>50</td>
+      </tr>
+    </table>
+  </div> -->
 </div>

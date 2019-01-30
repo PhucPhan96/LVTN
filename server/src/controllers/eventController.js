@@ -145,7 +145,8 @@ var event = {
     },
 
     getEventComingSoon: (req, res) => {
-        JoinEvent.find({ 'user': req.params.user }, function (err, rs) {
+        var now = new Date();
+        JoinEvent.find({ 'user': req.params.user, 'event.event_start' : { $gt: new Date(now).toISOString() } }, function (err, rs) {
             if (err || !rs) {
                 res.json({ result: 0, msg: `${err}`, rs: {} });
             } else

@@ -1,18 +1,33 @@
 <div class="row ev-detail">
 
   <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-    <div>{{donate_item.type}}</div>
+    <div>{{userDonate.firstname}} {{userDonate.lastname}}</div>
   </div>
 
   <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-    <div>{{donate_item.nameitem}}</div>
+    <div>{{donate_item.quality | number}} {{donate_item.unit}} {{donate_item.nameitem}}</div>
   </div>
   <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-    <div>{{donate_item.quality}}</div>
+    <div>{{donate_item.time | date : 'dd-MM-yyyy HH:mm'}}</div>
   </div>
 
   <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-    <div class="status" [style.background]="donate_item.status == 'Đã nhận' ? '#28a745' : '#dc3545'" (click)="confirm()" >{{donate_item.status}}</div>
+    <div class="status" [style.background]="donate_item.status == 'Đã nhận' ? '#28a745' : '#dc3545'" (click)="confirm(content)" >{{donate_item.status}}</div>
   </div>
 
 </div>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Xác nhận</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Bạn có chắc chắn đã nhận đóng góp này chưa ?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="received()" >Đã nhận</button>
+    <button type="button" class="btn btn-danger" (click)="notReceived()">Chưa nhận</button>
+  </div>
+</ng-template>

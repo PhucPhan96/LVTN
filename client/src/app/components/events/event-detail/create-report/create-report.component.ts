@@ -20,12 +20,17 @@ export class CreateReportComponent implements OnInit {
   action : String = 'Thêm';
   api: String = this.config.API;
   event : String;
+  isFocusNote : Boolean = false;
+  notifyMessage : String = '';
+
   constructor(private router: Router, private eventService: EventService, private config: Config, private websocketService: WebsocketService) {
     this.websocketService.newSpendingEventReceived().subscribe(data => {
       let newitem = new SpendingEvent();
-      newitem.time = data.time;
       newitem.content = data.content;
-      newitem.spending = data.spending;
+      newitem.quality = data.quality;
+      newitem.unit_price = data.unit_price;
+      newitem.total = data.total;
+      newitem.note = data.note;
       newitem.event = data.event;
       this.lstSpending.push(newitem);
     })
@@ -49,6 +54,7 @@ export class CreateReportComponent implements OnInit {
       this.action = 'Hoàn tất';
     }
     else{
+      this.addSpendingEvent();
       this.action = 'Thêm';
     }
   }
@@ -62,8 +68,34 @@ export class CreateReportComponent implements OnInit {
     })
   }
 
+  onFocus(){
+    this.isFocusNote = true;
+    console.log('focus');
+  }
+
+  focusOutFunction(){
+    this.isFocusNote = false;
+    console.log('focusout');
+  }
+
+  isFieldStringInvalid(value : String){
+    return (value == null || value == undefined || value == '');
+  }
+
   addSpendingEvent(){
-    this.websocketService.addSpendingEvent({time: this.newSpending.time, content: this.newSpending.content, spending: this.newSpending.spending, event: this.event })
-    this.newSpending = new SpendingEvent();
+    if(!this.isFieldStringInvalid(this.newSpending.content)){
+      this.websocketService.addSpendingEvent({content: this.newSpending.content, quality : this.newSpending.quality, unit_price : this.newSpending.unit_price, total : this.newSpending.total, note : this.newSpending.note, event: this.event })
+      this.newSpending = new SpendingEvent();
+    }
+    else{
+      this.notifyMessage = 'Bạn chưa nhập đầy đủ nội dung!';
+    }
+  }
+  onKey(event){
+    this.addSpendingEvent();
+  }
+
+  export(){
+    this.router.navigateByUrl('/eventdetail/exportspending');
   }
 }

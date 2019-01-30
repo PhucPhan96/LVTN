@@ -21,6 +21,8 @@ export class EventDetailComponent implements OnInit {
   api: String = this.config.API;
   group: Group = new Group();
   isAdmin: Boolean = false;
+  status: String;
+  now: Date = new Date();
 
   constructor(private router: Router, private eventService: EventService, private config: Config, private groupService: GroupService) { }
 
@@ -42,6 +44,16 @@ export class EventDetailComponent implements OnInit {
       }
     })
 
+    if (this.compareDate(this.ev.event_start, this.now) == 1) {
+      this.status = "Sắp diễn ra";
+    }
+    else if(this.compareDate(this.ev.event_end, this.now) == -1){
+      this.status = "Đã kết thúc";
+    }
+    else if(this.compareDate(this.ev.event_start, this.now) == -1 && this.compareDate(this.ev.event_end, this.now) == 1){
+      this.status = "Đang diễn ra";
+    }
+
     this.subscription = this.eventService.isJoin(localStorage.getItem('idUser'), this.ev._id).subscribe(data => {
       let res = JSON.parse(JSON.stringify(data));
 
@@ -53,6 +65,23 @@ export class EventDetailComponent implements OnInit {
       }
     })
 
+  }
+
+  compareDate(date1: Date, date2: Date): number {
+    // With Date object we can compare dates them using the >, <, <= or >=.
+    // The ==, !=, ===, and !== operators require to use date.getTime(),
+    // so we need to create a new instance of Date with 'new Date()'
+    let d1 = new Date(date1); let d2 = new Date(date2);
+
+    // Check if the dates are equal
+    let same = d1.getTime() === d2.getTime();
+    if (same) return 0;
+
+    // Check if the first is greater than second
+    if (d1 > d2) return 1;
+
+    // Check if the first is less than second
+    if (d1 < d2) return -1;
   }
 
   joinorleave(event) {
@@ -78,7 +107,7 @@ export class EventDetailComponent implements OnInit {
     this.router.navigateByUrl('eventdetail/listdonate');
   }
 
-  createReport(){
+  createReport() {
     this.router.navigateByUrl('eventdetail/createreport');
   }
 }
