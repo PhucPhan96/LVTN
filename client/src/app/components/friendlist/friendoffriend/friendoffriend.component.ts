@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { FriendService } from './../../../services/friend.service';
 import { UserService } from './../../../services/user.service';
@@ -14,6 +14,7 @@ import { MyResponse } from './../../../models/my_response.class';
   styleUrls: ['./friendoffriend.component.css']
 })
 export class FriendoffriendComponent implements OnInit {
+  @Output() emailChange = new EventEmitter<String>();
   user : User = new User();
   public listUser : User[] = Array<User>();
   public subscription: Subscription;
@@ -59,6 +60,7 @@ export class FriendoffriendComponent implements OnInit {
   gotoProfile(user){
     localStorage.setItem('friendemail', user.email);
     localStorage.setItem('profile', 'friend');
+    this.emailChange.emit(user.email);
     this.router.navigateByUrl('/editprof/basicInfo');
   }
 

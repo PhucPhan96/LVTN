@@ -21,7 +21,7 @@ import { Config } from './../../app.cofig';
 export class EditprofComponent implements OnInit {
   user: User = new User();
   idUser: String = "";
-  email: String = ""
+  email: String = "";
   public subscription: Subscription;
   coverimg: String = "";
   isFriend : Boolean = false;
@@ -41,21 +41,19 @@ export class EditprofComponent implements OnInit {
         $(this).addClass('active').siblings().removeClass('active');
       });
     });
-    console.log(localStorage.getItem('user'));
+    
     this.isProfile = localStorage.getItem('profile');
     
     if(this.isProfile == 'user'){
       this.email = localStorage.getItem('user');
+      // this.changeEmail()
     }
     else if(this.isProfile == 'friend'){
       this.email = localStorage.getItem('friendemail');
     }
-    console.log('edit prof get userby email');
     this.getUserByEmail();
-
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-      console.log('ImageUpload:uploaded:', item, status, response);
       this.resultUpload = item;
       if (this.typeUpdate == "avatar") {
         this.updateAvatarPath(this.user._id, this.resultUpload.file.name);
@@ -63,12 +61,23 @@ export class EditprofComponent implements OnInit {
       else if (this.typeUpdate == "cover") {
         this.updateCoverPath(this.user._id, this.resultUpload.file.name);
       }
-      console.log(this.resultUpload.file.name);
       alert('File uploaded successfully');
       window.location.reload();
       // this.router.navigateByUrl('/editprof/basicInfo');
     };
     
+  }
+
+  onActivate(email : String){
+    console.log(email);
+    this.email = email;
+
+    // this.setEmail(email);
+  }
+
+  setEmail(email){
+    this.email = email;
+    this.getUserByEmail();
   }
 
   editBasic() {
@@ -85,14 +94,10 @@ export class EditprofComponent implements OnInit {
 
   getUserByEmail() {
     this.subscription = this.userService.getUserByEmail(this.email).subscribe(data => {
-      console.log('edit prof get userby email 2');
       let res = new MyResponse<User>();
       res = JSON.parse(JSON.stringify(data));
-      console.log(res);
       this.user = JSON.parse(JSON.stringify(res.data));
-      console.log(this.user);
       this.coverimg = this.api + 'images/' + this.user.coverpath;
-      console.log(this.coverimg);
       this.idUser = this.user._id;
       this.checkFriend(this.user._id, localStorage.getItem('idUser'));
     });
@@ -102,7 +107,6 @@ export class EditprofComponent implements OnInit {
     this.subscription = this.userService.updateAvatar(id, path).subscribe(data => {
       let res = new MyResponse<User>();
       res = JSON.parse(JSON.stringify(data));
-      console.log(res); 
     });
   }
 
@@ -110,21 +114,18 @@ export class EditprofComponent implements OnInit {
     this.subscription = this.userService.updateCover(id, path).subscribe(data => {
       let res = new MyResponse<User>();
       res = JSON.parse(JSON.stringify(data));
-      console.log(res);
     });
   }
 
   checkFriend(user_one : String, user_two : String){
     this.subscription = this.friendService.checkFriend(user_one, user_two).subscribe(data => {
       let res = JSON.parse(JSON.stringify(data));
-      console.log(res.msg);
       
       if(res.msg == "OK")
         this.isFriend = true;
       else
         this.isFriend = false;
     })
-    console.log(this.isFriend);
   }
 
   openLg(content) {

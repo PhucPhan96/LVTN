@@ -79,8 +79,8 @@ export class EventService {
     return this.http.get<MyResponse<SpendingEvent[]>>(`${this.API}getAllSpendingEvent/${event}`);
   }
 
-  getEventComingSoon(user : String) : Observable<MyResponse<Event[]>>{
-    return this.http.get<MyResponse<Event[]>>(`${this.API}getEventComingSoon/${user}`);
+  getEventComingSoon() : Observable<MyResponse<Event[]>>{
+    return this.http.get<MyResponse<Event[]>>(`${this.API}getEventComingSoon`);
   }
 
   // addSpendingEvent(spend : SpendingEvent) : Observable<MyResponse<SpendingEvent>>{

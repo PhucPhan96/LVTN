@@ -145,15 +145,13 @@ var event = {
     },
 
     getEventComingSoon: (req, res) => {
-        var now = new Date();
-        JoinEvent.find({ 'user': req.params.user, 'event.event_start' : { $gt: new Date(now).toISOString() } }, function (err, rs) {
+        Event.find({$where : "this.event_start > new Date()" }, function (err, rs) {
             if (err || !rs) {
                 res.json({ result: 0, msg: `${err}`, rs: {} });
             } else
                 res.json({ result: 1, msg: rs || {} });
             })
-            .sort({ 'event.event_start': 1 })
-            .populate(['event'])
+            .sort({ 'event_start': 1 })
             .limit(3)
     }
 

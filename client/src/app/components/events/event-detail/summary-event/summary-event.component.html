@@ -1,0 +1,22 @@
+<kendo-grid #grid="kendoGrid" [kendoGridBinding]="datarp" [height]="auto">
+  <ng-template kendoGridToolbarTemplate>
+    <button type="button" kendoGridExcelCommand icon="file-excel">Export to Excel</button>
+    <div class="title">
+      <h5>TỔNG KẾT THU CHI CHƯƠNG TRÌNH # <span style="color: rgb(184, 10, 10)">{{event_name}}</span></h5>
+    </div>
+  </ng-template>
+  <!-- <ng-template kendoGridHeaderTemplate>
+    <div class="title">
+      <h5>CHI TIẾT CÁC KHOẢN CHI TIÊU CỦA CHƯƠNG TRÌNH # <span style="color: rgb(184, 10, 10)">{{event_name}}</span></h5>
+    </div>
+  </ng-template> -->
+  <kendo-grid-column field="stt" [locked]="false" title="STT" [width]="50">
+  </kendo-grid-column>
+  <kendo-grid-column field="content" title="Nội dung" [width]="300">
+  </kendo-grid-column>
+  <kendo-grid-column field="total_collect" title="Thu" [width]="100" format="{0:n}">
+  </kendo-grid-column>
+  <kendo-grid-column field="total_spend" title="Chi" [width]="100" format="{0:n}">
+  </kendo-grid-column>
+  <kendo-grid-excel fileName="tong_ket_chuong_trinh_{{event_name}}.xlsx"></kendo-grid-excel>
+</kendo-grid>

@@ -108,12 +108,28 @@ export class NewfeedsComponent implements OnInit {
   }
 
   getEventComingSoon(user : String){
-    this.subscription = this.eventService.getEventComingSoon(user).subscribe(data => {
+    this.eventService.getAllEventOfUser(user).subscribe(data => {
       let res = JSON.parse(JSON.stringify(data));
+      
       res.msg.forEach(element => {
-        this.lsEventComming.push(element);
+        this.eventService.getEventComingSoon().subscribe(data => {
+          let rs = JSON.parse(JSON.stringify(data));
+          rs.msg.forEach(e => {
+            if(e._id == element.event._id){
+              this.lsEventComming.push(e);
+            }
+          });
+        })
       });
       console.log(this.lsEventComming);
+      
     })
+    // this.subscription = this.eventService.getEventComingSoon().subscribe(data => {
+    //   let res = JSON.parse(JSON.stringify(data));
+    //   res.msg.forEach(element => {
+    //     this.lsEventComming.push(element);
+    //   });
+    //   console.log(this.lsEventComming);
+    // })
   }
 }

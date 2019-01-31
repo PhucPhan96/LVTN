@@ -60,6 +60,7 @@ import { CreateReportComponent } from './components/events/event-detail/create-r
 import { FriendoffriendComponent } from './components/friendlist/friendoffriend/friendoffriend.component';
 import { ReportDonateComponent } from './components/events/listdonate/report-donate/report-donate.component';
 import { ExportSpendingComponent } from './components/events/event-detail/create-report/export-spending/export-spending.component';
+import { SummaryEventComponent } from './components/events/event-detail/summary-event/summary-event.component';
 
 const appRoutes : Routes = [
   {
@@ -115,6 +116,7 @@ const appRoutes : Routes = [
       { path: 'createreport', component: CreateReportComponent},
       { path: 'reportdonate', component: ReportDonateComponent},
       { path: 'exportspending', component: ExportSpendingComponent},
+      { path: 'summaryevent', component: SummaryEventComponent},
     ]
   }
 ];
@@ -160,7 +162,8 @@ const appRoutes : Routes = [
     CreateReportComponent,
     FriendoffriendComponent,
     ReportDonateComponent,
-    ExportSpendingComponent
+    ExportSpendingComponent,
+    SummaryEventComponent
   ],
   imports: [
     BrowserModule,

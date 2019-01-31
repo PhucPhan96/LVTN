@@ -7,5 +7,6 @@ export class Group{
     avatarpath : String;
     coverpath : String;
     member : Number;
+    funds : Number;
     admin : String;
 }

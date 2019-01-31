@@ -9,6 +9,7 @@ var groupSchema = new schema({
     contact : String,
     avatarpath : String,
     coverpath : String,
+    funds : Number,
     admin : {type : objectId, ref : 'user', required: false}
 });
 

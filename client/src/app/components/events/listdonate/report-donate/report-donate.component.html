@@ -9,7 +9,7 @@
   </kendo-grid-column>
   <kendo-grid-column field="content" title="Nội dung" [width]="220">
   </kendo-grid-column>
-  <kendo-grid-column field="money" title="Tiền mặt" [width]="200">
+  <kendo-grid-column field="money" title="Tiền mặt" [width]="200" format="{0:n}">
     <ng-template kendoGridGroupFooterTemplate let-aggregates>
       Tổng: {{aggregates["money"].sum | number}} VND
     </ng-template>
@@ -26,5 +26,5 @@
   </kendo-grid-column>
   <kendo-grid-column field="user" title="Người đóng góp" width="180">
   </kendo-grid-column>
-  <kendo-grid-excel fileName="Products.xlsx"></kendo-grid-excel>
+  <kendo-grid-excel fileName="tong_ket_ho_tro_chuong_trinh_{{event_name}}.xlsx"></kendo-grid-excel>
 </kendo-grid>

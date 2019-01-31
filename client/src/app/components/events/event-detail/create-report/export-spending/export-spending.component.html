@@ -1,3 +1,31 @@
-<p>
-  export-spending works!
-</p>
+<kendo-grid #grid="kendoGrid" [kendoGridBinding]="datarp" [height]="600" [group]="group">
+  <ng-template kendoGridToolbarTemplate>
+    <button type="button" kendoGridExcelCommand icon="file-excel">Export to Excel</button>
+    <div class="title">
+      <h5>CHI TIẾT CÁC KHOẢN CHI TIÊU CỦA CHƯƠNG TRÌNH # <span style="color: rgb(184, 10, 10)">{{event_name}}</span></h5>
+    </div>
+  </ng-template>
+  <!-- <ng-template kendoGridHeaderTemplate>
+    <div class="title">
+      <h5>CHI TIẾT CÁC KHOẢN CHI TIÊU CỦA CHƯƠNG TRÌNH # <span style="color: rgb(184, 10, 10)">{{event_name}}</span></h5>
+    </div>
+  </ng-template> -->
+  <kendo-grid-column field="stt" [locked]="false" title="STT" [width]="50">
+  </kendo-grid-column>
+  <kendo-grid-column field="content" title="Nội dung" [width]="300">
+  </kendo-grid-column>
+  <kendo-grid-column field="quality" title="Số lượng" [width]="100" format="{0:n}">
+  </kendo-grid-column>
+  <kendo-grid-column field="unit_price" title="Đơn giá" width="100" format="{0:n}">
+  </kendo-grid-column>
+  <kendo-grid-column field="total" title="Thành tiền" width="220" format="{0:n}">
+    <ng-template kendoGridGroupFooterTemplate let-aggregates>
+      Tổng: {{aggregates["total"].sum | number}} VND
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column field="note" title="Ghi chú" width="180">
+  </kendo-grid-column>
+  <kendo-grid-column field="group" title="Chương trình" width="180">
+  </kendo-grid-column>
+  <kendo-grid-excel fileName="chi_tieu_chuong_trinh_{{event_name}}.xlsx"></kendo-grid-excel>
+</kendo-grid>

@@ -110,4 +110,8 @@ export class EventDetailComponent implements OnInit {
   createReport() {
     this.router.navigateByUrl('eventdetail/createreport');
   }
+
+  summary(){
+    this.router.navigateByUrl('eventdetail/summaryevent');
+  }
 }

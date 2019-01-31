@@ -20,7 +20,7 @@
       </div>
 
       <div class="reaction">
-        <button type="button" class="btn" [disabled]="status == 'Đã kết thúc' && isJoin == 'Tham gia' ? true : false" [ngClass]="isJoin == 'Tham gia' ? 'btn-join' : 'btn-leave'" (click)="joinorleave(ev._id)">{{isJoin}}</button>
+        <button type="button" class="btn" [disabled]="(status == 'Đã kết thúc' && isJoin == 'Tham gia') || isAdmin ? true : false" [ngClass]="isJoin == 'Tham gia' ? 'btn-join' : 'btn-leave'" (click)="joinorleave(ev._id)">{{isJoin}}</button>
         <button type="button" class="btn btn-create" [disabled]="status == 'Đã kết thúc' ? true : false" (click)="donate()">Đóng góp</button>
       </div>
       <hr>

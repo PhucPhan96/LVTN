@@ -7,7 +7,7 @@
       </div>
       <div class="list-button">
       <button class="btn btn-light btn-unfriend" [ngClass]="isProfile == 'friend' ? 'show': 'hidden'">{{isFriend ? 'Hủy kết bạn' : 'Kết bạn'}}</button>
-      <button class="btn btn-light btn-unfriend" [ngClass]="isProfile == 'friend' ? 'show': 'hidden'" (click)="chat()" >Nhắn tin</button>
+      <!-- <button class="btn btn-light btn-unfriend" [ngClass]="isProfile == 'friend' ? 'show': 'hidden'" (click)="chat()" >Nhắn tin</button> -->
       </div>
       <ng-template #content let-modal>
         <div class="modal-header">
@@ -83,7 +83,7 @@
 
           <!-- Basic Information
         ================================================= -->
-          <router-outlet></router-outlet>
+          <router-outlet (emailChange)='onActivate($event)'></router-outlet>
         </div>
       </div>
     </div>

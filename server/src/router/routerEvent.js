@@ -26,7 +26,7 @@ module.exports = (app) => {
         .put(EventController.updateStatusDonate);
     app.route('/getAllSpendingEvent/:event')
         .get(EventController.getAllSpendingEvent);
-    app.route('/getEventComingSoon/:user')
+    app.route('/getEventComingSoon')
         .get(EventController.getEventComingSoon);
     // app.route('/addSpendingEvent')
     //     .post(EventController.addSpendingEvent);
