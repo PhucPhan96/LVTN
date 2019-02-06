@@ -26,8 +26,8 @@
       <li class="list-group-item" *ngFor="let plan of lsPlan">
         <app-plan-item [planItem]='plan'></app-plan-item>
       </li>
-      <div class="addmore" [ngClass]="isAdmin ? 'show': 'hide'" [ngClass]="lsPlan.length > 0 ? '' : 'plan'" (click)="createPlan()">
-        <button class="btn btn-success right"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button></div>
+      <div class="addmore" [ngClass]="isAdmin ? 'show': 'hide'" [ngClass]="lsPlan.length > 0 ? '' : 'plan'">
+        <button class="btn btn-success right" (click)="createPlan()"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button></div>
     </ul>
   </div>
 

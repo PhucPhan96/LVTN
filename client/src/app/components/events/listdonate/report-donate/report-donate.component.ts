@@ -42,7 +42,7 @@ export class ReportDonateComponent implements OnInit {
   }
 
   getReportDonate() {
-    this.eventService.getAllDonateEvent(this.event).subscribe(data => {
+    this.eventService.getAllDonateReceived(this.event).subscribe(data => {
       let res = JSON.parse(JSON.stringify(data));
       res.msg.forEach((element, index) => {
         let temp = new ReportDonate();

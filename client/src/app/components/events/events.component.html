@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+  <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
     <!-- <div class="card text-left card-newfeeds" *ngFor="let event of listEvent" >
       <app-event-detail [event] = event></app-event-detail>
     </div> -->
@@ -19,13 +19,13 @@
     </ul>
   </div>
 
-  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
     <div class="panel panel-default panel-right">
-      <div class="createEvent">
-        <i class="fa fa-plus" style="padding: 10px; border: 1px solid; border-radius: 8px;" aria-hidden="true" (click)="createEvent()">&nbsp; Tạo sự kiện</i>
-        <hr>
+      <div class="createEvent" [ngClass]="isAdmin? 'show': 'hide'">
+        <i class="fa fa-plus" style="padding: 10px; border: 1px solid; border-radius: 8px; float: right; font-size: 1.1rem;" aria-hidden="true" (click)="createEvent()">&nbsp; Tạo sự kiện</i>
+        <!-- <hr> -->
       </div>
-      <div class="title">
+      <!-- <div class="title">
         <h4>Sắp diễn ra</h4>
       </div>
       <ul class="list-group">
@@ -40,7 +40,7 @@
             </div>
           </div>
         </li>
-      </ul>
+      </ul> -->
     </div>
   </div>
 </div>

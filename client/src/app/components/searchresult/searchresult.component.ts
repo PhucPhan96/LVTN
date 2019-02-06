@@ -33,7 +33,8 @@ export class SearchresultComponent implements OnInit {
     this.subscription = this.userService.getUserByName(text).subscribe(data => {
       let res = JSON.parse(JSON.stringify(data));
       res.msg.forEach(element => {
-        this.lstUser.push(element);
+        if(element._id != localStorage.getItem('idUser'))
+          this.lstUser.push(element);
       });
     })
   }
@@ -42,7 +43,8 @@ export class SearchresultComponent implements OnInit {
     this.subscription = this.groupService.getGroupByName(text).subscribe(data => {
       let res = JSON.parse(JSON.stringify(data));
       res.msg.forEach(element => {
-        this.lstGroup.push(element);
+        if(element.admin != localStorage.getItem('idUser'))
+          this.lstGroup.push(element);
       });
     })
   }

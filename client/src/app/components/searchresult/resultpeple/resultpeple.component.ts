@@ -31,7 +31,6 @@ export class ResultpepleComponent implements OnInit {
       else if(res.msg == "OK"){
         this.status = "Bạn bè";
       }
-      console.log(this.status);
       
     })
   }
@@ -43,7 +42,7 @@ export class ResultpepleComponent implements OnInit {
 
   addFriend(user){
     this.subscription = this.friendService.addFriend(localStorage.getItem('idUser'), user._id, 'friend').subscribe(data => {
-      console.log(data);
+      
       let res = JSON.parse(JSON.stringify(data));
       if(res != 'Error!' )
       {

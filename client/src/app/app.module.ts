@@ -39,6 +39,8 @@ import { MessageService } from './services/message.service';
 import { WebsocketService } from './services/websocket.service';
 import { GroupService } from './services/group.service';
 import { EventService } from './services/event.service';
+import { EventEmitterService } from './services/event.emitter.service';
+
 import { Config } from './app.cofig';
 import { CommentComponent } from './components/group/gr-newfeed/comment/comment.component';
 import { PostComponent } from './components/group/gr-newfeed/post/post.component';
@@ -61,6 +63,8 @@ import { FriendoffriendComponent } from './components/friendlist/friendoffriend/
 import { ReportDonateComponent } from './components/events/listdonate/report-donate/report-donate.component';
 import { ExportSpendingComponent } from './components/events/event-detail/create-report/export-spending/export-spending.component';
 import { SummaryEventComponent } from './components/events/event-detail/summary-event/summary-event.component';
+import { MutualFriendComponent } from './components/friendlist/mutual-friend/mutual-friend.component';
+import { NumberPipePipe } from './pipe/number.pipe';
 
 const appRoutes : Routes = [
   {
@@ -89,7 +93,8 @@ const appRoutes : Routes = [
       { path: 'basicInfo', component: BasicInfoComponent },
       { path: 'changeBasicInfo', component: EditBasicComponent },
       { path: 'changePass', component: ChangePassComponent },
-      { path: 'listFriend', component: FriendoffriendComponent }
+      { path: 'listFriend', component: FriendoffriendComponent },
+      { path: 'mutualFriend', component: MutualFriendComponent}
     ]
   },
   {
@@ -100,7 +105,7 @@ const appRoutes : Routes = [
       { path: 'createEvent', component: CreateEventComponent },
       { path: 'events', component: EventsComponent },
       { path: 'intro', component: IntroGroupComponent },
-      { path: 'mngroup', component: MngroupComponent },
+      // { path: 'mngroup', component: MngroupComponent },
       { path: 'creategroup', component: CreateGroupComponent },
       { path: 'member', component: ListmemberComponent },
     ]
@@ -163,7 +168,9 @@ const appRoutes : Routes = [
     FriendoffriendComponent,
     ReportDonateComponent,
     ExportSpendingComponent,
-    SummaryEventComponent
+    SummaryEventComponent,
+    MutualFriendComponent,
+    NumberPipePipe
   ],
   imports: [
     BrowserModule,
@@ -188,6 +195,7 @@ const appRoutes : Routes = [
     GroupService,
     EventService,
     PlanService,
+    EventEmitterService
     // ExcelService
   ],
   bootstrap: [AppComponent]

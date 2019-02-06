@@ -1,6 +1,7 @@
 var Message = require('./../models/message');
 var Post = require('./../models/post');
 var CmtPost = require('./../models/cmt_post');
+var ConverSation = require('./../models/conversation');
 const PlanDetail = require('./../models/plan_detail.js');
 const SpendingEvent = require('./../models/spending_event.js');
 
@@ -92,6 +93,20 @@ exports = module.exports = function (io) {
                     "total" : data.total,
                     "note" : data.note,
                     "event" : data.event
+                }, function(err, rs){
+                    if(err) console.log(err);
+                    else console.log(rs);
+                })
+        });
+
+        socket.on('newCons', (data)=>{
+            console.log(data);
+            
+            io.sockets.emit('newConsReceived', data);
+            ConverSation.create(
+                {
+                    "user_one" : data.user_one,
+                    "user_two" : data.user_two
                 }, function(err, rs){
                     if(err) console.log(err);
                     else console.log(rs);

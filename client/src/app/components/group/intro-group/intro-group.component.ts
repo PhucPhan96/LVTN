@@ -31,13 +31,10 @@ export class IntroGroupComponent implements OnInit {
       this.isAdmin = false;
     }
     this.group = JSON.parse(localStorage.getItem('group'));
-    console.log(this.group);
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-      console.log('ImageUpload:uploaded:', item, status, response);
       this.resultUpload = item;
       this.updateCoverPath(this.group._id, this.resultUpload.file.name);
-      console.log(this.resultUpload.file.name);
       alert('File uploaded successfully');
       window.location.reload();
     }
@@ -56,7 +53,6 @@ export class IntroGroupComponent implements OnInit {
     this.subscription = this.groupService.updateCover(id, path).subscribe(data => {
       let res = new MyResponse<Group>();
       res = JSON.parse(JSON.stringify(data));
-      console.log(res);
     });
   }
 

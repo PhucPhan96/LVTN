@@ -130,7 +130,6 @@ export class GrNewfeedComponent implements OnInit {
     // pos/max will give you the distance between scroll bottom and and bottom of screen in percentage.
     if (pos == max) {
       //Do your action here 
-      console.log('Da het trang!');
       this.getAllPost(this.group._id, this.listPost.length, 3);
     }
   }

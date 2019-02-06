@@ -25,7 +25,6 @@ export class HeaderComponent implements OnInit {
 
   search(){
     this.router.navigateByUrl('/searchresult');
-    console.log(this.txtSearch);
     
     localStorage.setItem('txtSearch', this.txtSearch.toString());
     this.txtSearch = "";

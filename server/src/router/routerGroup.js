@@ -20,4 +20,10 @@ module.exports = (app) => {
         .put(GroupController.updateCover);
     app.route('/createGroup')
         .post(GroupController.createGroup);
+    app.route('/checkUserJoinGroup/:user/:group')
+        .get(GroupController.checkUserJoinGroup);
+    app.route('/joinGroup')
+        .post(GroupController.joinGroup);
+    app.route('/leaveGroup/:user/:group')
+        .get(GroupController.leaveGroup);
 }

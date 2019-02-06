@@ -27,12 +27,8 @@ export class CreateEventComponent implements OnInit {
   ngOnInit() {
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-      console.log('ImageUpload:uploaded:', item, status, response);
       this.resultUpload = item;
       this.event.imgpath = this.resultUpload.file.name;
-      
-      console.log(this.event.imgpath);
-      
     }
   }
 
@@ -40,7 +36,6 @@ export class CreateEventComponent implements OnInit {
     this.subscription = this.eventService.createEvent(event).subscribe(data => {
       let res = new MyResponse();
       res = JSON.parse(JSON.stringify(data));
-      console.log(res);
       if (!res.error) {
         alert('Tạo thành công!')
         this.router.navigateByUrl('/groupdetail/newfeed');
@@ -49,7 +44,6 @@ export class CreateEventComponent implements OnInit {
         alert("Thất bại!");
       }
     }, error => {
-      console.log(error);
     });
   }
 
@@ -60,7 +54,6 @@ export class CreateEventComponent implements OnInit {
     this.event.user_create = localStorage.getItem('idUser');
     let group = JSON.parse(localStorage.getItem('group'));
     this.event.group = group._id;
-    console.log(this.event);
     
     this.createEvent(this.event);
   }

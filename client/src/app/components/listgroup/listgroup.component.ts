@@ -23,12 +23,10 @@ export class ListgroupComponent implements OnInit {
 
   ngOnInit() {
     this.idUser = localStorage.getItem('idUser');
-    console.log(this.idUser);
     this.getAllGroupUserJoin(this.idUser);
   }
 
   detail(group) {
-    console.log(group);
     localStorage.setItem('group', JSON.stringify(group).toString());
 
     this.router.navigateByUrl('/groupdetail/newfeed');

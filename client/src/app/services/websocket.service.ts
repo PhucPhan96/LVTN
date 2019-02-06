@@ -108,4 +108,20 @@ export class WebsocketService {
     });
     return observable;
   }
+
+  addNewConversation(data){
+    this.socket.emit('newCons', data);
+  }
+
+  newConversationReceived(){
+    const observable = new Observable<{ user_one : String, user_two : String}>(observer => {
+      this.socket.on('newConsReceived', (data) => {
+        observer.next(data);
+      });
+      return () => {
+        this.socket.disconnect();
+      };
+    });
+    return observable;
+  }
 }

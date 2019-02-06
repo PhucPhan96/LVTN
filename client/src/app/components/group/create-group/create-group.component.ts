@@ -26,7 +26,6 @@ export class CreateGroupComponent implements OnInit {
     this.subcription = this.groupService.createGroup(this.newGroup).subscribe(data => {
       let res = new MyResponse();
       res = JSON.parse(JSON.stringify(data));
-      console.log(res);
       if (!res.error) {
         alert('Tạo thành công!')
         location.reload();
@@ -35,7 +34,6 @@ export class CreateGroupComponent implements OnInit {
         alert("Thất bại!");
       }
     }, error => {
-      console.log(error);
     });
   }
 

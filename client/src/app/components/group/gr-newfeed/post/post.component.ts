@@ -49,7 +49,6 @@ export class PostComponent implements OnInit {
 
   commentPost(post) {
     let emit = { 'post': post, 'cmt': this.txtComment }
-    console.log(emit);
     this.newComment.emit(emit);
     this.txtComment = "";
     this.totalCmt += 1;

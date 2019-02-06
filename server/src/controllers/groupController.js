@@ -5,14 +5,14 @@ var Group = require('./../models/group');
 var GroupJoin = require('./../models/join_group');
 
 var group = {
-    getAllGroupJoined : (req, res) => {
-        GroupJoin.find({'user' : req.params._id}, function(err, rs){
+    getAllGroupJoined: (req, res) => {
+        GroupJoin.find({ 'user': req.params._id }, function (err, rs) {
             if (err || !rs) {
                 console.log(`Error ${err}`);
                 res.json({ result: 0, msg: `${err}`, rs: {} });
             } else
                 res.json({ result: 1, msg: rs || {} });
-            })
+        })
             .populate(['user', 'group'])
             .exec(function (err, users) {
                 if (err) console.log(err);
@@ -20,24 +20,24 @@ var group = {
             })
     },
 
-    getAllGroupUserAdmin : (req, res) => {
-        Group.find({'admin' : req.params._id}, function(err, rs){
+    getAllGroupUserAdmin: (req, res) => {
+        Group.find({ 'admin': req.params._id }, function (err, rs) {
             if (err || !rs) {
                 console.log(`Error ${err}`);
                 res.json({ result: 0, msg: `${err}`, rs: {} });
             } else
                 res.json({ result: 1, msg: rs || {} });
-            })
+        })
     },
 
-    getAllMemberGroupMain : (req, res) => {
-        GroupJoin.find({'group' : req.params._id}, 'user', function(err, rs){
+    getAllMemberGroupMain: (req, res) => {
+        GroupJoin.find({ 'group': req.params._id }, 'user', function (err, rs) {
             if (err || !rs) {
                 console.log(`Error ${err}`);
                 res.json({ result: 0, msg: `${err}`, rs: {} });
             } else
                 res.json({ result: 1, msg: rs || {} });
-            })
+        })
             .populate(['user'])
             .exec(function (err, users) {
                 if (err) console.log(err);
@@ -45,19 +45,46 @@ var group = {
             })
     },
 
-    getAllMemberGroup : (req, res) => {
-        GroupJoin.count({'group' : req.params._id}, function(err, rs){
+    getAllMemberGroup: (req, res) => {
+        GroupJoin.count({ 'group': req.params._id }, function (err, rs) {
             if (err) {
                 res.send(err);
                 return;
             }
             res.json({ count: rs });
-            // })
-            // .populate(['user'])
-            // .exec(function (err, users) {
-            //     if (err) console.log(err);
-            //     else console.log(users)
-            });
+        });
+    },
+
+    checkUserJoinGroup: (req, res) => {
+        GroupJoin.find({ 'user': req.params.user, 'group': req.params.group }, function (err, rs) {
+            if (err || !rs) {
+                console.log(`error ${err}`);
+                res.json({ result: 0, msg: `${err}`, rs: {} });
+            } else
+                res.json({ result: 1, msg: rs || {}, len: rs.length });
+        });
+    },
+
+    joinGroup: (req, res) => {
+        var join_group = req.body;
+        GroupJoin.create(join_group, function (err, result) {
+            if (err) {
+                res.send("Error!");
+            }
+            else {
+                res.json(result);
+            }
+        });
+    },
+
+    leaveGroup: (req, res) => {
+        GroupJoin.deleteOne({ 'user': req.params.user, 'group': req.params.group }, function (err, rs) {
+            if (err || !rs) {
+                console.log(`error ${err}`);
+                res.json({ result: 0, msg: `${err}`, rs: {} });
+            } else
+                res.json({ result: 1, msg: rs || {}});
+        });
     },
 
     updateAvatar: (req, res) => {
@@ -82,7 +109,7 @@ var group = {
         })
     },
 
-    createGroup : (req, res) => {
+    createGroup: (req, res) => {
         var group = req.body;
         Group.create(group, function (err, result) {
             if (err) {
@@ -94,8 +121,8 @@ var group = {
         });
     },
 
-    getGroupByID : (req, res) => {
-        Group.find({'_id' : req.params._id}, function(err, rs){
+    getGroupByID: (req, res) => {
+        Group.find({ '_id': req.params._id }, function (err, rs) {
             if (err || !rs) {
                 console.log(`Error ${err}`);
                 res.json({ result: 0, msg: `${err}`, rs: {} });
@@ -103,9 +130,9 @@ var group = {
                 res.json({ result: 1, msg: rs || {} });
         })
     },
-    
-    getGroupByName : (req, res) => {
-        Group.find({ name: new RegExp(req.params.search, "i") }, function(err, rs){
+
+    getGroupByName: (req, res) => {
+        Group.find({ name: new RegExp(req.params.search, "i") }, function (err, rs) {
             if (err || !rs) {
                 console.log(`Error ${err}`);
                 res.json({ result: 0, msg: `${err}`, rs: {} });

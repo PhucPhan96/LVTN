@@ -22,7 +22,6 @@ export class DonateItemComponent implements OnInit {
   constructor(private config: Config, private eventService: EventService, private modalService: NgbModal, private userService : UserService) { }
 
   ngOnInit() {
-    console.log(this.donate_item.user);
     
     this.subscription = this.userService.getUserByID(this.donate_item.user).subscribe(data => {
       this.userDonate = JSON.parse(JSON.stringify(data)).msg[0];

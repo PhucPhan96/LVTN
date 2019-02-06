@@ -56,7 +56,7 @@ export class UserService {
     return this.http.put(this.api + 'updateuser', body);
   }
 
-  getUserByID(_id : String){
-    return this.http.get(`${this.api}getUserByID/${_id}`);
+  getUserByID(_id : String) : Observable<MyResponse<User>>{
+    return this.http.get<MyResponse<User>>(`${this.api}getUserByID/${_id}`);
   }
 }

@@ -23,7 +23,6 @@ export class ListmemberComponent implements OnInit {
     this.group = JSON.parse(localStorage.getItem('group'));
     this.subcription = this.userService.getUserByID(this.group.admin).subscribe(data => {
       let res = JSON.parse(JSON.stringify(data));
-      console.log(res);
       
       this.listMember.push(res.msg[0]);
     })
@@ -32,13 +31,17 @@ export class ListmemberComponent implements OnInit {
       res.msg.forEach(element => {
         this.listMember.push(element.user);
       });
-      console.log(this.listMember);
     })
   }
 
   gotoProfile(member){
     localStorage.setItem('friendemail', member.email);
-    localStorage.setItem('profile', 'friend');
+    if(member.email == localStorage.getItem('user')){
+      localStorage.setItem('profile', 'user');
+    }
+    else{
+      localStorage.setItem('profile', 'friend');
+    }
     this.router.navigateByUrl('/editprof/basicInfo');
   }
 }

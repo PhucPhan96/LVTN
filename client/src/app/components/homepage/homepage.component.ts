@@ -50,8 +50,7 @@ export class HomepageComponent implements OnInit {
   }
 
   getUserByEmail(){
-    this.subscription = this.userService.getUserByEmail(this.email).subscribe(data => {
-      
+    this.subscription = this.userService.getUserByEmail(this.email).subscribe(data => { 
       let res =new MyResponse<User>();
       res = JSON.parse(JSON.stringify(data));
       this.user = JSON.parse(JSON.stringify(res.data));

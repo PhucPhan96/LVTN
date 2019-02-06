@@ -43,7 +43,7 @@ export class ListdonateComponent implements OnInit {
   }
 
   getAllDonateEvent(){
-    this.subscription = this.eventService.getAllDonateReceived(this.event).subscribe(data =>{
+    this.subscription = this.eventService.getAllDonateEvent(this.event).subscribe(data =>{
       let res = JSON.parse(JSON.stringify(data));
       res.msg.forEach((element, index) => {
         this.listDonate.push(element);

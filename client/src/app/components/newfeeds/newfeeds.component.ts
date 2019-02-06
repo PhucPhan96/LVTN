@@ -12,6 +12,7 @@ import { Event } from './../../models/event.class';
 import { PostDetail } from './../../models/postDetail.class';
 import { CmtPost } from './../../models/cmtpost.class';
 import { WebsocketService } from './../../services/websocket.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-newfeeds',
   templateUrl: './newfeeds.component.html',
@@ -27,7 +28,7 @@ export class NewfeedsComponent implements OnInit {
   api: String = this.config.API;
   skip: Number = 0;
 
-  constructor(private websocketService: WebsocketService, private config: Config, private groupService: GroupService,
+  constructor(private router : Router, private websocketService: WebsocketService, private config: Config, private groupService: GroupService,
      private postService: PostService, private userService : UserService, private eventService : EventService) {
       
     this.websocketService.newCommentReceived().subscribe(data => {
@@ -58,10 +59,10 @@ export class NewfeedsComponent implements OnInit {
   }
 
   getAllGroupUserJoin(id: String) {
-    console.log(id);
+    
     
     this.subscription = this.groupService.getAllGroupUserJoin(id).subscribe(data => {
-      console.log(data);
+      
       
       let res = JSON.parse(JSON.stringify(data));
       res.msg.forEach(element => {
@@ -99,7 +100,6 @@ export class NewfeedsComponent implements OnInit {
         });
       })
     })
-    console.log(this.listPost);
   }
 
   newCommentSend(event) {
@@ -121,15 +121,12 @@ export class NewfeedsComponent implements OnInit {
           });
         })
       });
-      console.log(this.lsEventComming);
       
     })
-    // this.subscription = this.eventService.getEventComingSoon().subscribe(data => {
-    //   let res = JSON.parse(JSON.stringify(data));
-    //   res.msg.forEach(element => {
-    //     this.lsEventComming.push(element);
-    //   });
-    //   console.log(this.lsEventComming);
-    // })
+  }
+
+  gotoEvent(event){
+    localStorage.setItem('detailevent', JSON.stringify(event).toString());
+    this.router.navigateByUrl('eventdetail/plan');
   }
 }

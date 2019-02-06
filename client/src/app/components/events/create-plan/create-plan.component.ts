@@ -19,8 +19,10 @@ export class CreatePlanComponent implements OnInit {
   api: String = this.config.API;
   newItem: PlanItem = new PlanItem();
   planCur: String;
+  isRightDate: Boolean = false;
+  notify: String = '';
 
-  constructor(private websocketService: WebsocketService, private router: Router, private config: Config, private planService: PlanService) { 
+  constructor(private websocketService: WebsocketService, private router: Router, private config: Config, private planService: PlanService) {
     this.websocketService.newItemPlanReceived().subscribe(data => {
       let newitem = new PlanItem();
       newitem.time = data.time;
@@ -34,24 +36,34 @@ export class CreatePlanComponent implements OnInit {
   ngOnInit() {
     this.event = JSON.parse(localStorage.getItem('detailevent'))._id;
     this.checkPlanExist(this.event);
-    console.log(this.lsPlan);
     this.planCur = localStorage.getItem('plan');
-    console.log(this.planCur);
+  }
+
+  dateChange(value) {
+    let dateinput: Date = new Date(value);
+    let now: Date = new Date();
+    if (dateinput.getTime() > now.getTime()) {
+      this.isRightDate = false;
+      this.notify = 'Ngày phải nhỏ hơn ngày hiện tại!'
+    }
+    else {
+      this.isRightDate = true;
+      this.notify = ''
+    }
   }
 
   checkPlanExist(event: String) {
     this.subscription = this.planService.checkPlanExist(event).subscribe(data => {
       let res = JSON.parse(JSON.stringify(data));
-      console.log(res);
 
       if (res.msg != "null") {
         this.getPlanDetail(this.event);
         localStorage.setItem('plan', res.msg._id);
       }
-      else{
+      else {
         this.subscription = this.planService.createPlan(event).subscribe(data => {
-            let rs = JSON.parse(JSON.stringify(data));
-            localStorage.setItem('plan', rs.msg[0]._id);
+          let rs = JSON.parse(JSON.stringify(data));
+          localStorage.setItem('plan', rs.msg[0]._id);
         })
       }
     })
@@ -66,6 +78,10 @@ export class CreatePlanComponent implements OnInit {
     })
   }
 
+  isFieldStringInvalid(value: any) {
+    return (value == null || value == undefined || value == '');
+  }
+
   addNewItemPlan() {
     this.newItem.plan = this.planCur;
     // this.subscription = this.planService.addPlanDetail(this.newItem).subscribe(data => {
@@ -73,7 +89,15 @@ export class CreatePlanComponent implements OnInit {
     //     this.lsPlan.push(res.msg);
     // })
     // this.newItem = new PlanItem();
-    this.websocketService.newItemPlan({ time: this.newItem.time, work: this.newItem.work, cost: this.newItem.cost, plan: this.newItem.plan });
+    if (this.isFieldStringInvalid(this.newItem.time) || this.isFieldStringInvalid(this.newItem.work) || this.isFieldStringInvalid(this.newItem.cost)) {
+      this.notify = 'Chưa nhập đủ thông tin !';
+    }
+    else if(this.isRightDate == false){
+      this.notify = 'Ngày phải nhỏ hơn ngày hiện tại !';
+    }
+    else {
+      this.websocketService.newItemPlan({ time: this.newItem.time, work: this.newItem.work, cost: this.newItem.cost, plan: this.newItem.plan });
+    }
   }
 
 }

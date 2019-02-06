@@ -4,6 +4,7 @@ import {MyResponse} from '../models/my_response.class';
 import { Observable } from 'rxjs';
 import { Config } from '../app.cofig';
 import { Group } from '../models/group.class';
+import { JoinGroup } from '../models/join_group.class';
 @Injectable({
   providedIn: 'root'
 })
@@ -35,6 +36,18 @@ export class GroupService {
 
   getGroupByID(_id : String){
     return this.http.get(`${this.API}getGroupByID/${_id}`);
+  }
+
+  checkUserJoinGroup(user : String, group : String){
+    return this.http.get(`${this.API}checkUserJoinGroup/${user}/${group}`);
+  }
+
+  joinGroup(join_group : JoinGroup) : Observable<MyResponse<JoinGroup>>{
+    return this.http.post<MyResponse<JoinGroup>>(this.API + 'joinGroup/', join_group);
+  }
+
+  leaveGroup(user : String, group : String){
+    return this.http.get(`${this.API}leaveGroup/${user}/${group}`);
   }
 
   createGroup(group : Group) : Observable<MyResponse<Group>>{

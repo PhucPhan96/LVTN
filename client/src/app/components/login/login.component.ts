@@ -40,20 +40,17 @@ export class LoginComponent implements OnInit {
         alert("Tài khoản hoặc mật khẩu trống!")
       }
       else if (res.msg == 'incorect') {
-        console.log("Đăng nhập thất bại! Không tồn tại user");
         this.user.email = "";
         this.user.password = "";
         alert("Tài khoản hoặc mật khẩu không đúng!");
       }
       else {
-        console.log("Đăng nhập thành công!");
         this.router.navigateByUrl('/home');
         localStorage.setItem('user', islog.email.toString());
         this.user.email = "";
         this.user.password = "";
       }
     }, error => {
-      console.log(error);
       alert("Tài khoản hoặc mật khẩu không đúng!");
     });
   }

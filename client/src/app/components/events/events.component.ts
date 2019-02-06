@@ -18,11 +18,19 @@ export class EventsComponent implements OnInit {
   api: String = this.config.API;
   group : Group = new Group();
   isJoin : String = "Tham gia";
+  isAdmin : Boolean = false;
+
   constructor(private router: Router,  private config: Config, private eventService : EventService) { }
 
   ngOnInit() {
     this.group = JSON.parse(localStorage.getItem('group'));
     this.getAllEventOfGroup(this.group._id);
+    if(this.group.admin == localStorage.getItem('idUser')){
+      this.isAdmin = true;
+    }
+    else{
+      this.isAdmin = false;
+    }
   }
 
   createEvent() {

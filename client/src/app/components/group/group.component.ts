@@ -20,6 +20,7 @@ export class GroupComponent implements OnInit {
   api: String = this.config.API
   public subscription: Subscription;
   isAdmin : Boolean = false;
+  isJoin : Boolean = false;
 
   resultUpload: any;
   public uploader: FileUploader = new FileUploader({ url: this.api + '/api/uploadimg', itemAlias: 'userPhoto' });
@@ -33,6 +34,7 @@ export class GroupComponent implements OnInit {
       });
     });
 
+    
     // this.idUser = localStorage.getItem('idUser');
     this.group = JSON.parse(localStorage.getItem('group'));
     
@@ -44,13 +46,12 @@ export class GroupComponent implements OnInit {
     }
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-      console.log('ImageUpload:uploaded:', item, status, response);
       this.resultUpload = item;
       this.updateAvatarPath(this.group._id, this.resultUpload.file.name);
-      console.log(this.resultUpload.file.name);
-      alert('File uploaded successfully');
+      alert('Cập nhật thành công !');
       window.location.reload();
     }
+    this.checkUserJoinGroup();
   }
 
   createEvent(){
@@ -61,7 +62,6 @@ export class GroupComponent implements OnInit {
     this.subscription = this.groupService.updateAvatar(id, path).subscribe(data => {
       let res = new MyResponse<Group>();
       res = JSON.parse(JSON.stringify(data));
-      console.log(res); 
     });
   }
 
@@ -72,6 +72,17 @@ export class GroupComponent implements OnInit {
   updateAvatar() {
     this.uploader.uploadAll();
     this.modalService.dismissAll();
+  }
+
+  checkUserJoinGroup() {
+    this.groupService.checkUserJoinGroup(localStorage.getItem('idUser'), this.group._id).subscribe(data => {
+      let res = JSON.parse(JSON.stringify(data));
+
+      if (res.len > 0)
+        this.isJoin = true;
+      else
+        this.isJoin = false;
+    })
   }
 
 }

@@ -55,16 +55,22 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit() {
+    $(function () {
+      $('.contact-list').on('click', 'li', function () {
+        $(this).addClass('active').siblings().removeClass('active');
+      });
+    });
     this.idUser = localStorage.getItem('idUser');
-    console.log(this.idUser);
     this.getAllConversation();
     this.scrollbottom(".chat-body");
+    setTimeout(() => {
+      $('.contact-list li').first().addClass('active');
+    }, 200);
   }
 
   getAllConversation() {
     this.subscription = this.conversationService.getAllFriendChat(this.idUser).subscribe(data => {
       let res = JSON.parse(JSON.stringify(data));
-      console.log(res.msg);
       res.msg.forEach((e) => {
 
         if (e.user_one._id == this.idUser) {
@@ -77,14 +83,12 @@ export class ChatComponent implements OnInit {
         }
       });
       this.showAllMessage(this.userCons[0]._id);
-      console.log(this.message);
     })
   }
 
   showAllMessage(id) {
     this.subscription = this.conversationService.getIDConversation(this.idUser, id).subscribe(data => {
       let res = JSON.parse(JSON.stringify(data));
-      console.log(res.msg[0]._id);
       this.websocketService.leaveRoom(this.idCons);
       this.idCons = res.msg[0]._id;
       this.websocketService.joinRoom(res.msg[0]._id);

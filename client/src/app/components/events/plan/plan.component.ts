@@ -51,8 +51,6 @@ export class PlanComponent implements OnInit {
         }
       });
     })
-
-    console.log(this.lsDonate);
     
 
     this.subscription = this.eventService.isJoin(localStorage.getItem('idUser'), this.event).subscribe(data => {
@@ -65,14 +63,12 @@ export class PlanComponent implements OnInit {
         this.isJoin = "Rời khỏi";
       }
     })
-    console.log(this.isJoin);
     
   }
 
   checkPlanExist(event: String) {
     this.subscription = this.planService.checkPlanExist(event).subscribe(data => {
       let res = JSON.parse(JSON.stringify(data));
-      console.log(res);
 
       if (res.msg != "null") {
         this.getPlanDetail(this.event);

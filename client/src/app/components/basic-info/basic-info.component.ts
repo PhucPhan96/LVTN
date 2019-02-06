@@ -20,7 +20,8 @@ export class BasicInfoComponent implements OnInit {
   isProfile : String = "";
 
   public api : String = this.cofig.API;
-  constructor(private router : Router, private userService : UserService, private cofig : Config) { }
+  constructor(private router : Router, private userService : UserService, private cofig : Config) {
+  }
 
   ngOnInit() {
     this.isProfile = localStorage.getItem('profile');
@@ -31,7 +32,6 @@ export class BasicInfoComponent implements OnInit {
     else if(this.isProfile == 'friend'){
       this.email = localStorage.getItem('friendemail');
     }
-    // this.email = localStorage.getItem('friendemail');
     
     this.getUserByEmail();
   }
@@ -41,9 +41,7 @@ export class BasicInfoComponent implements OnInit {
       
       let res =new MyResponse<User>();
       res = JSON.parse(JSON.stringify(data));
-      console.log(res);
       this.user = JSON.parse(JSON.stringify(res.data));
-      console.log(this.user);
     });
   }
 

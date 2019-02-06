@@ -25,3 +25,9 @@
 .list-group-item label{
     font-weight: bold;
 }
+
+.notify{
+    margin-top: 1rem;
+    color: #da0014;
+    font-weight: bold;
+}

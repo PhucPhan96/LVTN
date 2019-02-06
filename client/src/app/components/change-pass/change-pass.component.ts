@@ -29,9 +29,7 @@ export class ChangePassComponent implements OnInit {
       
       let res =new MyResponse<User>();
       res = JSON.parse(JSON.stringify(data));
-      console.log(res);
       this.user = JSON.parse(JSON.stringify(res.data));
-      console.log(this.user);
     });
   }
 
@@ -41,7 +39,6 @@ export class ChangePassComponent implements OnInit {
     }
     else{
       this.subscription = this.userService.updatePassword(this.user._id, this.newPass).subscribe(data =>{
-        console.log(data);
       })
     }
   }

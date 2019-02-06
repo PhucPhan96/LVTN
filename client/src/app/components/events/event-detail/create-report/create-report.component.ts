@@ -52,9 +52,11 @@ export class CreateReportComponent implements OnInit {
   createReport(){
     if(this.action == 'Thêm'){
       this.action = 'Hoàn tất';
+      this.notifyMessage = 'Nhấn tab sau khi điền đầy đủ thông tin để lưu lại và tiếp tục.';
     }
     else{
-      this.addSpendingEvent();
+      // this.addSpendingEvent();
+      this.notifyMessage = '';
       this.action = 'Thêm';
     }
   }
@@ -70,12 +72,10 @@ export class CreateReportComponent implements OnInit {
 
   onFocus(){
     this.isFocusNote = true;
-    console.log('focus');
   }
 
   focusOutFunction(){
     this.isFocusNote = false;
-    console.log('focusout');
   }
 
   isFieldStringInvalid(value : String){

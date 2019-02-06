@@ -37,4 +37,8 @@ export class FriendService {
     }
     return this.http.post(`${this.API}addFriend`, body);
   }
+
+  unFriend(user_one : String, user_two : String){
+    return this.http.get(`${this.API}unFriend/${user_one}/${user_two}`);
+  }
 }

@@ -4,6 +4,10 @@
     overflow-y: scroll;
   }
 
+  .contact-list li.active{
+    background: aliceblue;
+  }
+
   .chat-body{
     height: 600px;
     overflow-y: scroll;
@@ -113,5 +117,5 @@
   }
 
   .list-group-item{
-    cursor:   ;
+    padding: 10px;
   }

@@ -21,13 +21,14 @@
     </div>
 
     <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-      <label for="">Số lượng:</label>
-      <input type="text" class="form-control" placeholder="" [(ngModel)]="dona.quality" [ngModelOptions]="{standalone: true}">
+      <label for="" *ngIf="dona.type != 'Tiền mặt'" >Số lượng:</label>
+      <label for="" *ngIf="dona.type == 'Tiền mặt'" >Số tiền:</label>
+      <input class="form-control" placeholder="" [ngModel]="dona.quality | numberPipe" (ngModelChange)="dona.quality=$event" [ngModelOptions]="{standalone: true}">
     </div>
 
     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
       <label for="">Đơn vị:</label>
-      <input type="text" class="form-control" placeholder="" [(ngModel)]="dona.unit" [ngModelOptions]="{standalone: true}">
+      <input class="form-control" placeholder="" [(ngModel)]="dona.type == 'Tiền mặt' ? 'VND' : dona.unit" [ngModelOptions]="{standalone: true}">
     </div>
   </div>
 

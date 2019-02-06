@@ -6,8 +6,10 @@
         <h5 (click)="openLg(content)"><i clas class="fa fa-camera" aria-hidden="true"></i><br></h5>
       </div>
       <div class="list-button">
-      <button class="btn btn-light btn-unfriend" [ngClass]="isProfile == 'friend' ? 'show': 'hidden'">{{isFriend ? 'Hủy kết bạn' : 'Kết bạn'}}</button>
-      <!-- <button class="btn btn-light btn-unfriend" [ngClass]="isProfile == 'friend' ? 'show': 'hidden'" (click)="chat()" >Nhắn tin</button> -->
+        <button class="btn btn-light btn-unfriend" [ngClass]="isProfile == 'friend' ? 'show': 'hidden'" (click)="addOrUnfriend()">{{isFriend
+          ? 'Hủy kết bạn' : 'Kết bạn'}}</button>
+        <button class="btn btn-light btn-unfriend" [ngClass]="isProfile == 'friend' ? 'show': 'hidden'" (click)="chat()">Nhắn
+          tin</button>
       </div>
       <ng-template #content let-modal>
         <div class="modal-header">
@@ -63,28 +65,58 @@
         <div class="col-md-3">
 
           <!--Edit Profile Menu-->
-          <ul class="edit-menu" [ngClass]="isProfile == 'friend' ? 'hidden': 'show'">
-            <li><i class="icon ion-ios-information-outline"></i><a (click)="editBasic()">Chỉnh sửa thông tin cơ bản</a></li>
-            <!-- <li><i class="icon ion-ios-briefcase-outline"></i><a href="edit-profile-work-edu.html">Education and Work</a></li>
-            <li><i class="icon ion-ios-heart-outline"></i><a href="edit-profile-interests.html">My Interests</a></li>
-            <li><i class="icon ion-ios-settings"></i><a href="edit-profile-settings.html">Account Settings</a></li> -->
-            <li><i class="icon ion-ios-locked-outline"></i><a (click)="changePass()">Thay đổi mật khẩu</a></li>
+          <ul class="edit-menu">
+            <li class="info active"><i class="icon ion-ios-information-outline"></i><a (click)="profile()">Thông tin cơ
+                bản</a></li>
+            <li><i class="icon ion-ios-locked-outline"></i><a (click)="listFriend()">Bạn bè</a></li>
+            <li [ngClass]="isProfile == 'friend' ? 'show': 'hidden'"><i class="icon ion-ios-locked-outline"></i><a (click)="listMutualFriend()">Bạn chung</a></li>
+            <li [ngClass]="isProfile == 'friend' ? 'hidden': 'show'"><i class="icon ion-ios-information-outline"></i><a
+                (click)="editBasic()">Chỉnh sửa thông tin cơ bản</a></li>
+            <li [ngClass]="isProfile == 'friend' ? 'hidden': 'show'"><i class="icon ion-ios-locked-outline"></i><a
+                (click)="changePass()">Thay đổi mật khẩu</a></li>
+
           </ul>
           <!-- Profile Friend -->
-          <ul class="edit-menu friend" [ngClass]="isProfile == 'friend' ? 'show': 'hidden'">
-            <li class="active"><i class="icon ion-ios-information-outline"></i><a (click)="profile()">Thông tin cơ bản</a></li>
-            <!-- <li><i class="icon ion-ios-briefcase-outline"></i><a href="edit-profile-work-edu.html">Education and Work</a></li>
-            <li><i class="icon ion-ios-heart-outline"></i><a href="edit-profile-interests.html">My Interests</a></li>
-            <li><i class="icon ion-ios-settings"></i><a href="edit-profile-settings.html">Account Settings</a></li> -->
-            <li><i class="icon ion-ios-locked-outline"></i><a (click)="listFriend()">Bạn bè</a></li>
-          </ul>
+          <!-- <ul class="edit-menu friend">
+            
+          </ul> -->
         </div>
         <div class="col-md-9">
 
           <!-- Basic Information
         ================================================= -->
-          <router-outlet (emailChange)='onActivate($event)'></router-outlet>
+          <router-outlet></router-outlet>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal_chat" [ngClass]="isChat ? 'show-mess' : 'hide-mess'">
+    <div class="row chat-title">
+      <img src="{{api}}images/{{user.avatarpath}}" alt="" class="profile-photo-sm">
+      <h6>{{user.firstname}} {{user.lastname}}</h6>
+      <div><i class="fa fa-times" aria-hidden="true" (click)="clossMessBox()"></i></div>
+      
+    </div>
+    <hr style="border-bottom: 1px solid #c2c1c1">
+    <ul class="list-group chat-body">
+      <li class="list-group-item" *ngFor="let mess of message" [ngClass]="mess.author._id == idUser ? 'left': 'right'">
+        <img src="{{api}}images/{{mess.author.avatarpath}}" alt="" class="profile-photo-sm" [ngClass]="mess.author._id == idUser ? 'pull-left': ' pull-right'">
+        <div class="chat-item">
+          <!-- <div class="chat-item-header">
+            <h5>{{mess.author.firstname}} {{mess.author.lastname}}</h5>
+            <small class="text-muted">{{mess.time_send | timeAgo}}</small>
+          </div> -->
+          <p>{{mess.message}}</p>
+        </div>
+      </li>
+    </ul>
+    <div class="send-message">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Nhập tin nhắn..." [(ngModel)]="messSend" (keyup.enter)="sendMessage()">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button" (click)="sendMessage()">Gửi</button>
+        </span>
       </div>
     </div>
   </div>
