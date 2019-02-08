@@ -37,7 +37,8 @@ export class CreateEventComponent implements OnInit {
       let res = new MyResponse();
       res = JSON.parse(JSON.stringify(data));
       if (!res.error) {
-        alert('Tạo thành công!')
+        alert('Tạo thành công!');
+        this.subscription = this.eventService.joinEvent(localStorage.getItem('idUser'), event._id).subscribe();
         this.router.navigateByUrl('/groupdetail/newfeed');
       }
       else {
@@ -54,6 +55,7 @@ export class CreateEventComponent implements OnInit {
     this.event.user_create = localStorage.getItem('idUser');
     let group = JSON.parse(localStorage.getItem('group'));
     this.event.group = group._id;
+    this.event.issummary = false;
     
     this.createEvent(this.event);
   }

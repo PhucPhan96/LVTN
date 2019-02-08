@@ -102,7 +102,7 @@ export class GrNewfeedComponent implements OnInit {
   }
 
   getAllPost(idGroup: String, skip : Number, limit : Number) {
-    this.subcription = this.postService.getAllPost(idGroup, skip, limit).subscribe(data => {
+    this.subcription = this.postService.getAllPostOfGroup(idGroup, skip, limit).subscribe(data => {
       let res = JSON.parse(JSON.stringify(data));
       res.msg.forEach(element => {
         this.listPost.push(element);
@@ -128,7 +128,7 @@ export class GrNewfeedComponent implements OnInit {
     let pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
     let max = document.documentElement.scrollHeight;
     // pos/max will give you the distance between scroll bottom and and bottom of screen in percentage.
-    if (pos == max) {
+    if (pos + 1 >= max) {
       //Do your action here 
       this.getAllPost(this.group._id, this.listPost.length, 3);
     }

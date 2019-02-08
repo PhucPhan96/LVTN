@@ -14,6 +14,7 @@ export class Event{
     misson : String;
     target : String;
     require : String;
+    issummary : Boolean;
     user_create : String;
     group : String;
 }

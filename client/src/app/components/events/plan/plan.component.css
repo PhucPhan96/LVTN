@@ -44,3 +44,24 @@
 .title h6{
     font-weight: bold;
 }
+
+.total-cost{
+    font-size: 1.2rem;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin-right: 15px;
+}
+
+.ev-detail{
+    margin-top: 1rem;
+}
+
+.ev-detail input{
+    width: 100%;
+}
+
+.label-notify{
+    color: #c40303;
+    font-size: .9rem;
+}

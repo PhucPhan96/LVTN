@@ -18,7 +18,7 @@ module.exports = (app) => {
         .post(PostController.dislikePost);
     app.route('/checkLikePost')
         .post(PostController.checkLikePost);
-    app.route('/getAllPostOfGroup/:_id')
+    app.route('/getAllPostOfGroup/:_id/:skip/:limit')
         .get(PostController.getAllPostOfGroup);
     app.route('/getAllPostOfUser/:_id')
         .get(PostController.getAllPostOfUser);

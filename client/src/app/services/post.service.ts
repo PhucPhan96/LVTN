@@ -35,8 +35,8 @@ export class PostService {
     return this.http.get<MyResponse<Post>>(`${this.API}getPostByID/${idPost}`);
   }
 
-  getAllPostOfGroup(group : String) : Observable<MyResponse<PostDetail[]>> {
-    return this.http.get<MyResponse<PostDetail[]>>(`${this.API}getAllPostOfGroup/${group}`);
+  getAllPostOfGroup(group : String, skip : Number, limit : Number) : Observable<MyResponse<PostDetail[]>> {
+    return this.http.get<MyResponse<PostDetail[]>>(`${this.API}getAllPostOfGroup/${group}/${skip}/${limit}`);
   }
   getAllPostOfUser(id : String) : Observable<MyResponse<Post[]>> {
     return this.http.get<MyResponse<Post[]>>(`${this.API}getAllPostOfUser/${id}`);

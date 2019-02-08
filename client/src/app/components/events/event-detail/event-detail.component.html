@@ -45,7 +45,7 @@
             <i class="fa fa-users" aria-hidden="true"></i>
           </div>
           <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
-            <span>Số lượng thành viên hiện tại: </span>
+            <span>Số lượng tham gia hiện tại: {{totalmember}}</span>
           </div>
         </div>
 
@@ -64,7 +64,7 @@
         <ul class="edit-menu" [ngClass]="isProfile == 'friend' ? 'hidden' : 'show'">
           <li><a (click)="listDonate()">Danh sách đóng góp</a></li>
           <li><a (click)="createReport()">Thống kê chi tiêu</a></li>
-          <li><a (click)="summary()">Tổng kết</a></li>
+          <li [ngClass]="status == 'friend' ? 'hidden' : 'show'"><a (click)="summary()">Tổng kết</a></li>
         </ul>
       </div>
     </div>

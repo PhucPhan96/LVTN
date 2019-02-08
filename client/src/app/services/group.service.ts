@@ -62,6 +62,14 @@ export class GroupService {
     return this.http.put<MyResponse<Group>>(this.API + 'updateAvatarGroup/', body);
   }
 
+  updateFunds(id : String, funds : Number):Observable<MyResponse<Group>>{
+    var body =  { 
+      _id: id,
+      funds : funds
+   };
+    return this.http.put<MyResponse<Group>>(this.API + 'updateFunds/', body);
+  }
+
   updateCover(id : String, path : String):Observable<MyResponse<Group>>{
     var body =  { 
       _id: id,

@@ -1,6 +1,14 @@
 <h4 [ngClass]="isJoin == 'Tham gia' ? 'show': 'hide'">Hãy tham gia sự kiện để theo dõi!</h4>
 <div class="titleEvent" [ngClass]="isJoin == 'Rời khỏi' ? 'show': 'hide'">
-  <h3>Kế hoạch</h3>
+  <div class="row">
+    
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <h3>Kế hoạch</h3>      
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <h3 class="total-cost">Tổng chi phí: <span style="color:#e60e0e">{{totalCost | number}} VND</span></h3>            
+    </div>
+  </div>
   <hr>
   <div class="detail">
     <div class="create" [ngClass]="lsPlan.length > 0 ? 'plan' : 'noplan'">
@@ -26,8 +34,24 @@
       <li class="list-group-item" *ngFor="let plan of lsPlan">
         <app-plan-item [planItem]='plan'></app-plan-item>
       </li>
-      <div class="addmore" [ngClass]="isAdmin ? 'show': 'hide'" [ngClass]="lsPlan.length > 0 ? '' : 'plan'">
-        <button class="btn btn-success right" (click)="createPlan()"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button></div>
+      <div class="row ev-detail" [ngClass]="action == 'Thêm' ? 'hide' : 'show'"  >
+
+          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+              <input type="datetime-local" class="form-control" name="" id="" (ngModelChange)="dateChange($event)" [(ngModel)]="newItem.time" [ngModelOptions]="{standalone: true}">
+            </div>
+  
+            <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+              <input type="text" class="form-control" name="" id="" [(ngModel)]="newItem.work" [ngModelOptions]="{standalone: true}">
+            </div>
+  
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <input class="form-control" name="" id="" (keydown.Tab)="onKey($event)" [ngModel]="newItem.cost | numberPipe" (ngModelChange)="newItem.cost=$event" [ngModelOptions]="{standalone: true}">
+            </div>
+        </div>
+        <div class="addmore" [ngClass]="isAdmin ? 'show': 'hide'" [ngClass]="lsPlan.length > 0 ? '' : 'plan'">
+          <label for="" class="label-notify">{{notifyMessage}}</label>
+          <button class="btn btn-success right" (click)="createPlan()" >{{action}}</button>
+        </div>
     </ul>
   </div>
 

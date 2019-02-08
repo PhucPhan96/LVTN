@@ -5,6 +5,7 @@ var Event = require('./../models/event');
 var JoinEvent = require('./../models/join_event');
 var Donate = require('./../models/donate');
 var SpendingEvent = require('./../models/spending_event');
+var SummaryEvent = require('./../models/summary_event');
 
 var event = {
     createEvent: (req, res) => {
@@ -19,10 +20,30 @@ var event = {
         });
     },
 
+    createSummaryEvent: (req, res) => {
+        var sumevent = req.body;
+        SummaryEvent.create(sumevent, function (err, result) {
+            if (err) {
+                res.send("Error!");
+            }
+            else {
+                res.json(result);
+            }
+        });
+    },
+
+    getSummaryOfEvent: (req, res) => {
+        SummaryEvent.find({ 'event': req.params.event }, function (err, rs) {
+            if (err || !rs) {
+                res.json({ result: 0, msg: `${err}`, rs: {} });
+            } else
+                res.json({ result: 1, msg: rs || {} });
+        })
+    },
+
     getAllEventOfGroup: (req, res) => {
         Event.find({ 'group': req.params._id }, function (err, rs) {
             if (err || !rs) {
-                console.log(`Get error ${err}`);
                 res.json({ result: 0, msg: `${err}`, rs: {} });
             } else
                 res.json({ result: 1, msg: rs || {} });
@@ -42,6 +63,15 @@ var event = {
                 if (err) console.log(err);
                 else console.log(users);
             })
+    },
+
+    getAllEventMember: (req, res) => {
+        JoinEvent.find({ 'event': req.params._id }, function (err, rs) {
+            if (err || !rs) {
+                res.json({ result: 0, msg: `${err}`, rs: {} });
+            } else
+                res.json({ result: 1, len: rs.length || 0 });
+        })
     },
 
     joinEvent: (req, res) => {

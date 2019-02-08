@@ -102,7 +102,9 @@ export class LoginComponent implements OnInit {
         console.log(res);
         if (!res.error) {
           alert('Tạo thành công!')
-          location.reload();
+          // location.reload();
+          this.user = new User();
+          this.confimPass = '';
         }
         else {
           alert("Thất bại!");

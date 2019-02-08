@@ -14,6 +14,7 @@ var eventSchema = new schema({
     misson : String,
     target : String,
     require : String,
+    issummary : Boolean,
     user_create : {type : objectId, ref : 'user'},
     group : {type : objectId, ref : 'group'}
 });

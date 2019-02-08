@@ -22,6 +22,7 @@ export class CreateReportComponent implements OnInit {
   event : String;
   isFocusNote : Boolean = false;
   notifyMessage : String = '';
+  totalnewitem : String;
 
   constructor(private router: Router, private eventService: EventService, private config: Config, private websocketService: WebsocketService) {
     this.websocketService.newSpendingEventReceived().subscribe(data => {
@@ -84,8 +85,11 @@ export class CreateReportComponent implements OnInit {
 
   addSpendingEvent(){
     if(!this.isFieldStringInvalid(this.newSpending.content)){
-      this.websocketService.addSpendingEvent({content: this.newSpending.content, quality : this.newSpending.quality, unit_price : this.newSpending.unit_price, total : this.newSpending.total, note : this.newSpending.note, event: this.event })
+      let quality : String = this.newSpending.quality.toString().replace(',', '').toString();
+      let unit : String = this.newSpending.unit_price.toString().replace(',', '').toString();
+      this.websocketService.addSpendingEvent({content: this.newSpending.content, quality : Number.parseInt(quality.toString()), unit_price : Number.parseInt(unit.toString()), total : this.newSpending.total, note : this.newSpending.note, event: this.event })
       this.newSpending = new SpendingEvent();
+      this.totalnewitem = '';
     }
     else{
       this.notifyMessage = 'Bạn chưa nhập đầy đủ nội dung!';
@@ -93,6 +97,14 @@ export class CreateReportComponent implements OnInit {
   }
   onKey(event){
     this.addSpendingEvent();
+  }
+
+  total(){
+    let quality : String = this.newSpending.quality.toString().replace(',', '').toString();
+    let unit : String = this.newSpending.unit_price.toString().replace(',', '').toString();
+    
+    this.newSpending.total = Number.parseInt(quality.toString()) * Number.parseInt(unit.toString());
+    this.totalnewitem = this.newSpending.total.toLocaleString('en-us', {minimumFractionDigits: 0})
   }
 
   export(){

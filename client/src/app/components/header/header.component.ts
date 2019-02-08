@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {EventEmitterService  } from './../../services/event.emitter.service';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   txtSearch : String;
-  constructor(private router : Router) { }
+  constructor(private router : Router, private eventEmitterService : EventEmitterService) { }
 
   ngOnInit() {
   }
@@ -24,9 +25,9 @@ export class HeaderComponent implements OnInit {
   }
 
   search(){
+    this.eventEmitterService.changeTxtSearch(this.txtSearch);
     this.router.navigateByUrl('/searchresult');
-    
-    localStorage.setItem('txtSearch', this.txtSearch.toString());
+    // localStorage.setItem('txtSearch', this.txtSearch.toString());
     this.txtSearch = "";
   }
 }

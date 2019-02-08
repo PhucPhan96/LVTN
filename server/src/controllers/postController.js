@@ -29,10 +29,6 @@ var post = {
             .limit(parseInt(req.params.limit))
             .sort({ 'time_create': -1 })
             .populate(['group', 'user'])
-            .exec(function (err, users) {
-                if (err) console.log(err);
-                 //console.log(users);
-            })
     },
 
     getAllPostOfUser: (req, res) => {
@@ -51,7 +47,7 @@ var post = {
                 //console.log(`Get error ${err}`);
                 res.json({ result: 0, msg: `${err}`, rs: {} });
             } else
-                res.json({ result: 1, msg: rs || {}, len : rs.length});
+                res.json({ result: 1, msg: rs || {}, len: rs.length });
         })
             .sort({ 'time_cmt': 1 })
             .populate(['post', 'user'])
@@ -65,11 +61,11 @@ var post = {
         LikePost.find({ 'post': req.params._id }, function (err, rs) {
             if (err || !rs) {
                 //console.log(`Get error ${err}`);
-               
+
                 res.json({ result: 0, msg: `${err}`, rs: {} });
             } else
-                res.json({ result: 1, msg: rs.length});
-                //console.log(`Get error ${rs.length}`);
+                res.json({ result: 1, msg: rs.length });
+            //console.log(`Get error ${rs.length}`);
         })
     },
 
@@ -126,7 +122,10 @@ var post = {
             } else
                 res.json({ result: 1, msg: rs || {} });
         })
-            .populate(['user', 'group'])
+            .skip(parseInt(req.params.skip))
+            .limit(parseInt(req.params.limit))
+            .sort({ 'time_create': -1 })
+            .populate(['group', 'user'])
     },
 }
 

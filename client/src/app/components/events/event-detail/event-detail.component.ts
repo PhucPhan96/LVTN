@@ -23,6 +23,7 @@ export class EventDetailComponent implements OnInit {
   isAdmin: Boolean = false;
   status: String;
   now: Date = new Date();
+  totalmember : number = 0;
 
   constructor(private router: Router, private eventService: EventService, private config: Config, private groupService: GroupService) { }
 
@@ -64,7 +65,12 @@ export class EventDetailComponent implements OnInit {
         this.isJoin = "Rời khỏi";
       }
     })
-
+    this.eventService.getAllEventMember(this.ev._id).subscribe(data => {
+      let rs = JSON.parse(JSON.stringify(data));
+      this.totalmember += rs.len;
+      console.log(this.totalmember);
+      
+    })
   }
 
   compareDate(date1: Date, date2: Date): number {

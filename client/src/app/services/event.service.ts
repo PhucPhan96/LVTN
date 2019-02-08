@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Event } from './../models/event.class';
 import { Donate } from './../models/donate.class';
+import { SummaryEventExported } from './../models/summary_event.class';
 import { SpendingEvent } from './../models/spendingevent.class';
 import { Config } from './../app.cofig';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -20,12 +21,24 @@ export class EventService {
     return this.http.post<MyResponse<Event>>(this.API + 'createEvent/', event);
   }
 
+  createSummaryEvent(sumevent : SummaryEventExported) : Observable<MyResponse<SummaryEventExported>>{
+    return this.http.post<MyResponse<SummaryEventExported>>(this.API + 'createSummaryEvent/', sumevent);
+  }
+
+  getSummaryOfEvent(event : String) : Observable<MyResponse<SummaryEventExported>>{
+    return this.http.get<MyResponse<SummaryEventExported>>(`${this.API}getSummaryOfEvent/${event}`);
+  }
+
   getAllEventOfGroup(_id : String) : Observable<MyResponse<Event[]>>{
     return this.http.get<MyResponse<Event[]>>(`${this.API}getAllEventOfGroup/${_id}`);
   }
 
   getAllEventOfUser(_id : String) : Observable<MyResponse<Event[]>>{
     return this.http.get<MyResponse<Event[]>>(`${this.API}getAllEventOfUser/${_id}`);
+  }
+
+  getAllEventMember(_id : String){
+    return this.http.get(`${this.API}getAllEventMember/${_id}`);
   }
   
   getEventByName(title : String) : Observable<MyResponse<Event[]>>{

@@ -7,6 +7,7 @@ import { GroupService } from './../../services/group.service';
 import { Group } from './../../models/group.class';
 import { UserService } from './../../services/user.service';
 import { User } from './../../models/user.class';
+import {EventEmitterService  } from './../../services/event.emitter.service';
 
 @Component({
   selector: 'app-searchresult',
@@ -20,7 +21,11 @@ export class SearchresultComponent implements OnInit {
   txtSearch : String;
   subscription : Subscription;
 
-  constructor(private userService : UserService, private eventService : EventService, private groupService : GroupService) { }
+  constructor(private userService : UserService, private eventService : EventService, private groupService : GroupService, private eventEmitterService : EventEmitterService) { 
+    this.eventEmitterService.txtSearchChange.subscribe(data => {
+      this.setValueChange(data);
+    });
+   }
 
   ngOnInit() {
     this.txtSearch = localStorage.getItem('txtSearch');
@@ -29,7 +34,17 @@ export class SearchresultComponent implements OnInit {
     this.getEventByName(this.txtSearch);
   }
 
+  setValueChange(value : String){
+    this.txtSearch = value;
+    console.log(this.txtSearch);
+    this.getUserByName(this.txtSearch);
+    this.getGroupByName(this.txtSearch);
+    this.getEventByName(this.txtSearch);
+    
+  }
+
   getUserByName(text : String){
+    this.lstUser = new Array<User>();
     this.subscription = this.userService.getUserByName(text).subscribe(data => {
       let res = JSON.parse(JSON.stringify(data));
       res.msg.forEach(element => {
@@ -40,6 +55,7 @@ export class SearchresultComponent implements OnInit {
   }
 
   getGroupByName(text : String){
+    this.lstGroup = new Array<Group>();
     this.subscription = this.groupService.getGroupByName(text).subscribe(data => {
       let res = JSON.parse(JSON.stringify(data));
       res.msg.forEach(element => {
@@ -50,6 +66,7 @@ export class SearchresultComponent implements OnInit {
   }
 
   getEventByName(text : String){
+    this.lstEvent = new Array<Event>();
     this.subscription = this.eventService.getEventByName(text).subscribe(data => {
       let res = JSON.parse(JSON.stringify(data));
       res.msg.forEach(element => {

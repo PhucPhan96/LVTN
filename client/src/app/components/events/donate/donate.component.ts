@@ -25,6 +25,7 @@ export class DonateComponent implements OnInit {
   }
 
   donate() {
+    this.dona.quality = Number.parseInt(this.dona.quality.toString().replace(',', '').toString());
     this.isSuccess = true;
     this.dona.time = new Date();
     this.dona.user = localStorage.getItem('idUser');

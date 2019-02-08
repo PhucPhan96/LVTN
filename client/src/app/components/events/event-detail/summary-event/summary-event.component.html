@@ -1,8 +1,8 @@
 <kendo-grid #grid="kendoGrid" [kendoGridBinding]="datarp" [height]="auto">
   <ng-template kendoGridToolbarTemplate>
-    <button type="button" kendoGridExcelCommand icon="file-excel">Export to Excel</button>
+    <button type="button" kendoGridExcelCommand icon="file-excel" (click)="summary()" >Xuất báo cáo</button>
     <div class="title">
-      <h5>TỔNG KẾT THU CHI CHƯƠNG TRÌNH # <span style="color: rgb(184, 10, 10)">{{event_name}}</span></h5>
+      <h5>TỔNG KẾT THU CHI CHƯƠNG TRÌNH #<span style="color: rgb(184, 10, 10)">{{event_name}}</span></h5>
     </div>
   </ng-template>
   <!-- <ng-template kendoGridHeaderTemplate>

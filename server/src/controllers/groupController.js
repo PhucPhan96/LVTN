@@ -140,6 +140,15 @@ var group = {
                 res.json({ result: 1, msg: rs || {} });
         })
     },
+
+    updateFunds: (req, res) => {
+        Group.findOneAndUpdate({ '_id': req.body._id }, { 'funds': req.body.funds }, (err, data) => {
+            if (err || !data) {
+                res.json({ result: 0, msg: `${err}`, data: {} });
+            } else
+                res.json({ result: 1, msg: data || {} });
+        })
+    },
 }
 
 module.exports = group;

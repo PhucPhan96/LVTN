@@ -18,6 +18,8 @@ module.exports = (app) => {
         .put(GroupController.updateAvatar);
     app.route('/updateCoverGroup')
         .put(GroupController.updateCover);
+    app.route('/updateFunds')
+        .put(GroupController.updateFunds);
     app.route('/createGroup')
         .post(GroupController.createGroup);
     app.route('/checkUserJoinGroup/:user/:group')
