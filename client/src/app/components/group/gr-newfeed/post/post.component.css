@@ -2,3 +2,13 @@
     color: #549dec;
     font-weight: bold;
 }
+
+.seemore{
+    cursor: pointer;
+    font-weight: bold;
+    color: #2a91cb;
+}
+
+.post-text{
+    font-size: 1.2rem;
+}

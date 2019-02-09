@@ -57,6 +57,17 @@ var post = {
             })
     },
 
+    deleteCmt: (req, res) => {
+        CmtPost.deleteOne({ '_id': req.body.id}, function (err, result) {
+            if (err) {
+                res.send("Error!");
+            }
+            else {
+                res.json(result);
+            }
+        });
+    },
+
     getAllLikePost: (req, res) => {
         LikePost.find({ 'post': req.params._id }, function (err, rs) {
             if (err || !rs) {
@@ -64,7 +75,7 @@ var post = {
 
                 res.json({ result: 0, msg: `${err}`, rs: {} });
             } else
-                res.json({ result: 1, msg: rs.length });
+                res.json({ result: 1, msg: rs, len : rs.length });
             //console.log(`Get error ${rs.length}`);
         })
     },
@@ -103,13 +114,12 @@ var post = {
     },
 
     checkLikePost: (req, res) => {
-        LikePost.findOne({ 'user': req.body.user, 'post': req.body.post }, function (err, result) {
-            if (result === null) {
-                res.send("nolike");
-                return;
+        LikePost.find({ 'user': req.params.user, 'post': req.params.post }, function (err, result) {
+            if (err) {
+                res.send("Error!");
             }
             else {
-                res.json(result);
+                res.json({ result : 1, msg : result, len : result.length});
             }
         });
     },

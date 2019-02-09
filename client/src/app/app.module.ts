@@ -65,6 +65,7 @@ import { ExportSpendingComponent } from './components/events/event-detail/create
 import { SummaryEventComponent } from './components/events/event-detail/summary-event/summary-event.component';
 import { MutualFriendComponent } from './components/friendlist/mutual-friend/mutual-friend.component';
 import { NumberPipePipe } from './pipe/number.pipe';
+import { TextMorePipe } from './pipe/textmore.pipe';
 
 const appRoutes : Routes = [
   {
@@ -170,7 +171,8 @@ const appRoutes : Routes = [
     ExportSpendingComponent,
     SummaryEventComponent,
     MutualFriendComponent,
-    NumberPipePipe
+    NumberPipePipe,
+    TextMorePipe
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,9 @@
+.cmt p{
+    font-size: 1rem !important;
+}
+
+.del-cmt{
+    color: #909090;
+    margin-left: 10px;
+    cursor: pointer;
+}

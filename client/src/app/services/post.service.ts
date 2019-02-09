@@ -58,11 +58,14 @@ export class PostService {
     return this.http.post(this.API + 'dislikePost/', body);
   }
 
-  checkLikePost(user : String, post : String){
+  deleteCmt(id : String){
     var body = {
-      user : user,
-      post : post
+      id : id
     }
-    return this.http.post(this.API + 'checkLikePost/', body);
+    return this.http.post(this.API + 'deleteCmt/', body);
+  }
+
+  checkLikePost(user : String, post : String){
+    return this.http.get(`${this.API}checkLikePost/${user}/${post}`);
   }
 }

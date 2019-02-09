@@ -34,11 +34,10 @@ export class CreateEventComponent implements OnInit {
 
   createEvent(event: Event) {
     this.subscription = this.eventService.createEvent(event).subscribe(data => {
-      let res = new MyResponse();
-      res = JSON.parse(JSON.stringify(data));
+      let res = JSON.parse(JSON.stringify(data));
       if (!res.error) {
         alert('Tạo thành công!');
-        this.subscription = this.eventService.joinEvent(localStorage.getItem('idUser'), event._id).subscribe();
+        this.subscription = this.eventService.joinEvent(localStorage.getItem('idUser'), res._id).subscribe();
         this.router.navigateByUrl('/groupdetail/newfeed');
       }
       else {

@@ -6,14 +6,14 @@
         <h3>Kế hoạch</h3>      
     </div>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-      <h3 class="total-cost">Tổng chi phí: <span style="color:#e60e0e">{{totalCost | number}} VND</span></h3>            
+      <h3 class="total-cost">Chi phí dự trù: <span style="color:#e60e0e">{{totalCost | number}} VND</span></h3>            
     </div>
   </div>
   <hr>
   <div class="detail">
     <div class="create" [ngClass]="lsPlan.length > 0 ? 'plan' : 'noplan'">
       <h4>Chưa có kế hoạch</h4>
-      <button class="btn btn-success" [ngClass]="isAdmin ? 'show': 'hide'" (click)="createPlan()">Lập kế hoạch</button>
+      <!-- <button class="btn btn-success" [ngClass]="isAdmin ? 'show': 'hide'" (click)="createPlan()">Lập kế hoạch</button> -->
     </div>
     <ul class="list-group">
       <li class="list-group-item" [ngClass]="lsPlan.length > 0 ? '' : 'plan'">
@@ -37,7 +37,7 @@
       <div class="row ev-detail" [ngClass]="action == 'Thêm' ? 'hide' : 'show'"  >
 
           <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-              <input type="datetime-local" class="form-control" name="" id="" (ngModelChange)="dateChange($event)" [(ngModel)]="newItem.time" [ngModelOptions]="{standalone: true}">
+              <input type="date" class="form-control" name="" id="" (ngModelChange)="dateChange($event)" [(ngModel)]="newItem.time" [ngModelOptions]="{standalone: true}">
             </div>
   
             <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">

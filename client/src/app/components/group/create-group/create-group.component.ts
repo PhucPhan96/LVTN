@@ -23,6 +23,7 @@ export class CreateGroupComponent implements OnInit {
     this.newGroup.avatarpath = "defaultgroup.png";
     this.newGroup.coverpath = "defaultcover.jpg";
     this.newGroup.admin = localStorage.getItem('idUser');
+    this.newGroup.funds = 0;
     this.subcription = this.groupService.createGroup(this.newGroup).subscribe(data => {
       let res = new MyResponse();
       res = JSON.parse(JSON.stringify(data));

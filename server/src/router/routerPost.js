@@ -8,6 +8,8 @@ module.exports = (app) => {
         .get(PostController.getAllPost);
     app.route('/getAllCmtPost/:_id')
         .get(PostController.getAllCmtPost);
+    app.route('/deleteCmt')
+        .post(PostController.deleteCmt);
     app.route('/getAllLikePost/:_id')
         .get(PostController.getAllLikePost);
     app.route('/getPostByID/:_id')
@@ -16,8 +18,8 @@ module.exports = (app) => {
         .post(PostController.likePost);
     app.route('/dislikePost')
         .post(PostController.dislikePost);
-    app.route('/checkLikePost')
-        .post(PostController.checkLikePost);
+    app.route('/checkLikePost/:user/:post')
+        .get(PostController.checkLikePost);
     app.route('/getAllPostOfGroup/:_id/:skip/:limit')
         .get(PostController.getAllPostOfGroup);
     app.route('/getAllPostOfUser/:_id')

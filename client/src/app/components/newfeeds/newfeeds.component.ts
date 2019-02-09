@@ -13,6 +13,7 @@ import { PostDetail } from './../../models/postDetail.class';
 import { CmtPost } from './../../models/cmtpost.class';
 import { WebsocketService } from './../../services/websocket.service';
 import { Router } from '@angular/router';
+import { EventEmitterService } from 'src/app/services/event.emitter.service';
 @Component({
   selector: 'app-newfeeds',
   templateUrl: './newfeeds.component.html',
@@ -29,8 +30,12 @@ export class NewfeedsComponent implements OnInit {
   skip: Number = 0;
 
   constructor(private router : Router, private websocketService: WebsocketService, private config: Config, private groupService: GroupService,
-     private postService: PostService, private userService : UserService, private eventService : EventService) {
+     private postService: PostService, private userService : UserService, private eventService : EventService, private eventEmitterService: EventEmitterService) {
       
+      this.eventEmitterService.cmtDel.subscribe(data => {
+        this.deleteCmt(data);
+      });
+
     this.websocketService.newCommentReceived().subscribe(data => {
       let newCmtPost = new CmtPost();
       this.subscription = this.userService.getUserByID(data.user).subscribe(rs => {
@@ -100,6 +105,16 @@ export class NewfeedsComponent implements OnInit {
         });
       })
     })
+  }
+
+  deleteCmt(id : String){
+    this.listPost.forEach(element => {
+      element.cmtPost.forEach((e, index) => {
+        if(e._id == id){
+          element.cmtPost.splice(index, 1);
+        }
+      });
+    });
   }
 
   newCommentSend(event) {

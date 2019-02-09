@@ -68,7 +68,6 @@ export class EventDetailComponent implements OnInit {
     this.eventService.getAllEventMember(this.ev._id).subscribe(data => {
       let rs = JSON.parse(JSON.stringify(data));
       this.totalmember += rs.len;
-      console.log(this.totalmember);
       
     })
   }

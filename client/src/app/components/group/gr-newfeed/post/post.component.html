@@ -5,12 +5,13 @@
       <div class="post-detail">
         <div class="user-info">
           <h5><a href="timeline.html" class="profile-link">{{post.user.firstname}} {{post.user.lastname}}</a></h5>
-          <p class="text-muted">Đã đăng {{post.time_create | timeAgo}} </p>
+          <p class="text-muted">Đã đăng trong nhóm <span style="color: #007bff; font-weight: bold">{{post.group.name}}</span> {{post.time_create | timeAgo}} </p>
         </div>
         <div class="line-divider"></div>
         <div class="post-text">
-          <p>{{post.content}}<i class="em em-anguished"></i> <i class="em em-anguished"></i>
+          <p [innerHTML]='readMore ? post.content : post.content | textMore : 400'><i class="em em-anguished"></i> <i class="em em-anguished"></i>
             <i class="em em-anguished"></i></p>
+            <p class="seemore" (click)="seeMore()" [ngClass]="post.content.length <= 400 ? 'hide' : 'show'" >{{readMore ? 'Ẩn bớt...' : 'Đọc thêm...'}}</p>
         </div>
         <div class="imgcontent">
           <img src="{{api}}images/{{post.img_path}}" alt="">

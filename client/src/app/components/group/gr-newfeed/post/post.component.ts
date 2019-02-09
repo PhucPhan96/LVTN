@@ -19,14 +19,18 @@ export class PostComponent implements OnInit {
   liked: Boolean = false;
   subcription: Subscription;
   // totalLikes : LikePost[] = Array<LikePost>();
-  totalLikes: number;
-  totalCmt: number;
-  constructor(private config: Config, private postService: PostService) { }
+  totalLikes: number = 0;
+  totalCmt: number = 0;
+  readMore: Boolean = false;
+
+  constructor(private config: Config, private postService: PostService) {
+    
+   }
 
   ngOnInit() {
     this.subcription = this.postService.checkLikePost(localStorage.getItem('idUser'), this.post._id).subscribe(data => {
       let res = JSON.parse(JSON.stringify(data));
-      if (res != 'nolike') {
+      if (res.len > 0) {
         this.liked = true;
       }
     })
@@ -40,7 +44,7 @@ export class PostComponent implements OnInit {
   getAllLikePost(id: String) {
     this.postService.getAllLikePost(id).subscribe(data => {
       let res = JSON.parse(JSON.stringify(data));
-      this.totalLikes = res.msg;
+      this.totalLikes = res.len;
       // JSON.parse(JSON.stringify(res.msg)).forEach(element => {
       //   this.totalLikes.push(element);
       // });
@@ -65,5 +69,9 @@ export class PostComponent implements OnInit {
       this.liked = false;
       this.totalLikes -= 1;
     }
+  }
+
+  seeMore() {
+    this.readMore = !this.readMore;
   }
 }

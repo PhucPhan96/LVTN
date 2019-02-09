@@ -1,8 +1,24 @@
 <div class="cmt">
   <img src="{{api}}images/{{cmt.user.avatarpath}}" alt="" class="profile-photo-sm">
-  <p><a href="timeline.html" class="profile-link">{{cmt.user.firstname}} {{cmt.user.lastname}} </a><i class="em em-laughing"></i>
-    {{cmt.comment}}</p>
+  <p (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()"><a href="timeline.html" class="profile-link">{{cmt.user.firstname}} {{cmt.user.lastname}} </a><i class="em em-laughing"></i>
+    {{cmt.comment}} <span (click)="confirm(content)" [ngClass]="isDel ? 'show' : 'hide'" ><i class="fa fa-close del-cmt" aria-hidden="true"></i></span></p>
 </div>
 <div class="timecmt">
   <p>{{cmt.time_cmt | timeAgo}}</p>
 </div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Xác nhận</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Bạn có chắc chắn muốn xóa bình luận này không?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="received()" >Xác nhận</button>
+    <button type="button" class="btn btn-danger" (click)="notReceived()">Hủy</button>
+  </div>
+</ng-template>

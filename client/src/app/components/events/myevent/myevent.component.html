@@ -4,7 +4,7 @@
       <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let event of listEvent">
         <div>
           <h3 (click)="detailEvent(event)">{{event.title}}</h3>
-          <p>{{event.intro}}</p>
+          <p>{{event.intro | textMore : 100}}</p>
           <p><i aria-hidden="true" class="fa fa-clock-o" style="color: rgb(226, 2, 2)">&nbsp; {{event.event_start |
               date
               : "HH:mm dd-MM-yyyy"}}</i> &nbsp;&nbsp;

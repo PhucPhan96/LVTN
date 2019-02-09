@@ -24,18 +24,18 @@ export class IntroGroupComponent implements OnInit {
   constructor(private config: Config, private groupService: GroupService, private modalService: NgbModal) { }
 
   ngOnInit() {
+    this.group = JSON.parse(localStorage.getItem('group'));
     if(this.group.admin == localStorage.getItem('idUser')){
       this.isAdmin = true;
     }
     else{
       this.isAdmin = false;
     }
-    this.group = JSON.parse(localStorage.getItem('group'));
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       this.resultUpload = item;
       this.updateCoverPath(this.group._id, this.resultUpload.file.name);
-      alert('File uploaded successfully');
+      alert('Cập nhật thành công!');
       window.location.reload();
     }
   }

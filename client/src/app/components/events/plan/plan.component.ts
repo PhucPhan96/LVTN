@@ -86,10 +86,10 @@ export class PlanComponent implements OnInit {
 
   dateChange(value) {
     let dateinput: Date = new Date(value);
-    let now: Date = new Date();
+    let now: Date = new Date(JSON.parse(localStorage.getItem('detailevent')).event_end);
     if (dateinput.getTime() > now.getTime()) {
       this.isRightDate = false;
-      this.notifyMessage = 'Ngày phải nhỏ hơn ngày hiện tại!'
+      this.notifyMessage = 'Ngày phải nhỏ hơn ngày kết thúc sự kiện!'
     }
     else {
       this.isRightDate = true;
@@ -136,10 +136,12 @@ export class PlanComponent implements OnInit {
       this.notifyMessage = 'Chưa nhập đủ thông tin !';
     }
     else if(this.isRightDate == false){
-      this.notifyMessage = 'Ngày phải nhỏ hơn ngày hiện tại !';
+      this.notifyMessage = 'Ngày phải nhỏ hơn ngày kết thúc sự kiện!';
     }
     else {
-      let number_string : String = this.newItem.cost.toString().replace(',', '').toString();
+      let number_string : String = this.newItem.cost.toString().replace(/,/g, '');
+      console.log(number_string);
+      
       this.websocketService.newItemPlan({ time: this.newItem.time, work: this.newItem.work, cost: Number.parseInt(number_string.toString()), plan: this.newItem.plan });
       this.newItem = new PlanItem();
     }

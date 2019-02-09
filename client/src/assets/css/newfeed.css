@@ -28,7 +28,7 @@
   }
   
   .post-content .post-container .post-detail .post-text{
-    line-height: 24px;
+    line-height: 30px;
     margin: 0;
   }
   
@@ -70,8 +70,8 @@
     border: 1px solid rgb(119, 119, 119);
     padding: 2px;
     border-radius: 50%;
-    height: 50px;
-    width: 50px;
+    height: 60px;
+    width: 60px;
   }
 
   .imgcontent img{

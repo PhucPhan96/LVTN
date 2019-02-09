@@ -85,8 +85,8 @@ export class CreateReportComponent implements OnInit {
 
   addSpendingEvent(){
     if(!this.isFieldStringInvalid(this.newSpending.content)){
-      let quality : String = this.newSpending.quality.toString().replace(',', '').toString();
-      let unit : String = this.newSpending.unit_price.toString().replace(',', '').toString();
+      let quality : String = this.newSpending.quality.toString().replace(/,/g, '').toString();
+      let unit : String = this.newSpending.unit_price.toString().replace(/,/g, '').toString();
       this.websocketService.addSpendingEvent({content: this.newSpending.content, quality : Number.parseInt(quality.toString()), unit_price : Number.parseInt(unit.toString()), total : this.newSpending.total, note : this.newSpending.note, event: this.event })
       this.newSpending = new SpendingEvent();
       this.totalnewitem = '';
@@ -100,8 +100,8 @@ export class CreateReportComponent implements OnInit {
   }
 
   total(){
-    let quality : String = this.newSpending.quality.toString().replace(',', '').toString();
-    let unit : String = this.newSpending.unit_price.toString().replace(',', '').toString();
+    let quality : String = this.newSpending.quality.toString().replace(/,/g, '').toString();
+    let unit : String = this.newSpending.unit_price.toString().replace(/,/g, '').toString();
     
     this.newSpending.total = Number.parseInt(quality.toString()) * Number.parseInt(unit.toString());
     this.totalnewitem = this.newSpending.total.toLocaleString('en-us', {minimumFractionDigits: 0})

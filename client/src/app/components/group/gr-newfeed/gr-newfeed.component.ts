@@ -13,6 +13,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Group } from './../../../models/group.class';
 import { CmtPost } from './../../../models/cmtpost.class';
 import { Config } from './../../../app.cofig';
+import { EventEmitterService } from 'src/app/services/event.emitter.service';
 
 @Component({
   selector: 'app-gr-newfeed',
@@ -33,7 +34,12 @@ export class GrNewfeedComponent implements OnInit {
   resultUpload: any;
   public uploader: FileUploader = new FileUploader({ url: this.api + '/api/uploadimg', itemAlias: 'userPhoto' });
   constructor(private config: Config, private postService: PostService, private modalService: NgbModal,
-    private websocketService: WebsocketService, private userService: UserService, private groupService: GroupService) {
+    private websocketService: WebsocketService, private userService: UserService, private groupService: GroupService,
+    private eventEmitterService: EventEmitterService) {
+
+      this.eventEmitterService.cmtDel.subscribe(data => {
+        this.deleteCmt(data);
+      });
 
     this.websocketService.newPostReceived().subscribe(data => {
       let newPost = new PostDetail();
@@ -81,6 +87,16 @@ export class GrNewfeedComponent implements OnInit {
       this.post.img_path = this.resultUpload.file.name;
     }
     this.getAllPost(this.group._id, this.skip, 3);
+  }
+
+  deleteCmt(id : String){
+    this.listPost.forEach(element => {
+      element.cmtPost.forEach((e, index) => {
+        if(e._id == id){
+          element.cmtPost.splice(index, 1);
+        }
+      });
+    });
   }
 
   createPost() {
